@@ -47,8 +47,7 @@
             max = input.data( 'max' ),
             min = input.data( 'min' ),
             step = input.data( 'step' ),
-            value = input.val(),
-            handle = $( $slider ).parent().find( '.custom-handle' );
+            value = input.val();
 
         $( $slider ).slider( {
           value: value,
@@ -57,10 +56,6 @@
           step: step,
           slide: function( event, ui ) {
             input.val( ui.value ).trigger( 'change' );
-            handle.text( ui.value );
-          },
-          create: function() {
-            handle.text( $( this ).slider( 'value' ) );
           }
         } );
       } );

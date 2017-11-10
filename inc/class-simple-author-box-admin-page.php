@@ -528,9 +528,9 @@ class Simple_Author_Box_Admin_Page {
 				break;
 			case 'slider':
 				$value = isset( $this->options[ $field_name ] ) ? $this->options[ $field_name ] : $field['default'];
-				echo '<div class="sabox-slider-container">';
-				echo '<div class="sabox-slider"><div class="custom-handle ui-slider-handle"></div></div>';
-				echo '<input id="' . esc_attr( $field_name ) . '" class="saboxfield" name="' . esc_attr( $name ) . '" data-min="' . absint( $field['choices']['min'] ) . '" data-max="' . absint( $field['choices']['max'] ) . '" data-step="' . absint( $field['choices']['increment'] ) . '" value="' . esc_attr( $value ) . '">';
+				echo '<div class="sabox-slider-container slider-container">';
+				echo '<input type="text" id="' . esc_attr( $field_name ) . '" class="saboxfield" name="' . esc_attr( $name ) . '" data-min="' . absint( $field['choices']['min'] ) . '" data-max="' . absint( $field['choices']['max'] ) . '" data-step="' . absint( $field['choices']['increment'] ) . '" value="' . esc_attr( $value ) . '">';
+				echo '<div class="sabox-slider"></div>';
 				echo '</div>';
 				break;
 			case 'color':
