@@ -30,14 +30,14 @@ if ( isset( $options['sab_web_rel'] ) ) {
 
 if ( isset( $options['sab_author_link'] ) ) {
 	if ( 'author-page' == $options['sab_author_link'] ) {
-		$sab_author_link = sprintf( '<a href="%s">%s</a>', get_author_posts_url( $author_id ), get_the_author_meta( 'display_name', $author_id ) );
+		$sab_author_link = sprintf( '<a href="%s">%s</a>', esc_url( get_author_posts_url( $author_id ) ), esc_html( get_the_author_meta( 'display_name', $author_id ) ) );
 	} elseif ( 'author-website' == $options['sab_author_link'] ) {
-		$sab_author_link = sprintf( '<a href="%s">%s</a>', get_the_author_meta( 'user_url', $author_id ), get_the_author_meta( 'display_name', $author_id ) );
+		$sab_author_link = sprintf( '<a href="%s">%s</a>', esc_url( get_author_posts_url( $author_id ) ), esc_html( get_the_author_meta( 'display_name', $author_id ) ) );
 	} else {
-		$sab_author_link = sprintf( '<span>%s</span>', get_the_author_meta( 'display_name', $author_id ) );
+		$sab_author_link = sprintf( '<span>%s</span>', esc_html( get_the_author_meta( 'display_name', $author_id ) ) );
 	}
 } else {
-	$sab_author_link = sprintf( '<a href="%s">%s</a>', get_author_posts_url( $author_id ), get_the_author_meta( 'display_name', $author_id ) );
+	$sab_author_link = sprintf( '<a href="%s">%s</a>', esc_url( get_author_posts_url( $author_id ) ), esc_html( get_the_author_meta( 'display_name', $author_id ) ) );
 }
 
 if ( get_the_author_meta( 'description' ) != '' || ! isset( $options['sab_no_description'] ) ) { // hide the author box if no description is provided
@@ -58,14 +58,14 @@ if ( get_the_author_meta( 'description' ) != '' || ! isset( $options['sab_no_des
 	// author box description
 	echo '<div class="saboxplugin-desc">';
 	echo '<div class="vcard author"><span class="fn">';
-	echo  get_the_author_meta( 'description', $author_id );
+	echo  wp_kses_post( get_the_author_meta( 'description', $author_id ) );
 	echo '</span></div>';
 	echo '</div>';
 
 	if ( is_single() ) {
 		if ( get_the_author_meta( 'user_url' ) != '' and isset( $options['sab_web'] ) ) { // author website on single
-			echo '<div class="saboxplugin-web ' . $sab_web_align . '">';
-			echo '<a href="' . get_the_author_meta( 'user_url', $author_id ) . '" target="' . $sab_web_target . '" ' . $sab_web_rel . '>' . get_the_author_meta( 'user_url', $author_id ) . '</a>';
+			echo '<div class="saboxplugin-web ' . esc_attr( $sab_web_align ) . '">';
+			echo '<a href="' . esc_url( get_the_author_meta( 'user_url', $author_id ) ) . '" target="' . esc_attr( $sab_web_target ) . '" ' . esc_attr( $sab_web_rel ) . '>' . esc_html( get_the_author_meta( 'user_url', $author_id ) ) . '</a>';
 			echo '</div>';
 		}
 	}
@@ -73,8 +73,8 @@ if ( get_the_author_meta( 'description' ) != '' || ! isset( $options['sab_no_des
 
 	if ( is_author() or is_archive() ) {
 		if ( get_the_author_meta( 'user_url' ) != '' ) { // force show author website on author.php or archive.php
-			echo '<div class="saboxplugin-web ' . $sab_web_align . '">';
-			echo '<a href="' . get_the_author_meta( 'user_url', $author_id ) . '" target="' . $sab_web_target . '" ' . $sab_web_rel . '>' . get_the_author_meta( 'user_url', $author_id ) . '</a>';
+			echo '<div class="saboxplugin-web ' . esc_attr( $sab_web_align ) . '">';
+			echo '<a href="' . esc_url( get_the_author_meta( 'user_url', $author_id ) ) . '" target="' . esc_attr( $sab_web_target ) . '" ' . esc_attr( $sab_web_rel ) . '>' . esc_html( get_the_author_meta( 'user_url', $author_id ) ) . '</a>';
 			echo '</div>';
 		}
 	}
@@ -86,7 +86,7 @@ if ( get_the_author_meta( 'description' ) != '' || ! isset( $options['sab_no_des
 
 	// author box social icons
 	if ( ! isset( $options['sab_hide_socials'] ) ) { // hide social icons div option
-		echo '<div class="saboxplugin-socials ' . $sabox_color . '">';
+		echo '<div class="saboxplugin-socials ' . esc_attr( $sabox_color ) . '">';
 		$social_icons = apply_filters( 'sabox_social_icons', Simple_Author_Box_Helper::$social_icons );
 		foreach ( $social_icons as $sabox_social_id => $sabox_social_name ) {
 

@@ -61,7 +61,7 @@ class Simple_Author_Box_Helper {
 			$sab_color = 'saboxplugin-icon-grey';
 		}
 
-		return '<a target="' . $sabox_blank . '" href="' . $url . '"><span class="' . $sab_color . ' saboxplugin-icon-' . $icon_name . '"></span></a>';
+		return '<a target="' . esc_attr( $sabox_blank ) . '" href="' . esc_url( $url ) . '"><span class="' . esc_attr( $sab_color ) . ' saboxplugin-icon-' . esc_attr( $icon_name ) . '"></span></a>';
 
 	}
 
