@@ -64,8 +64,9 @@ module.exports = function( grunt ) {
   grunt.loadNpmTasks( 'grunt-contrib-clean' );
   grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
 
-  grunt.registerTask( 'default', [] );
-  grunt.registerTask( 'checktextdomain' ); // Check Missing Text Domain Strings
+  grunt.registerTask( 'textdomain', [
+    'checktextdomain'
+  ] );
   grunt.registerTask( 'mincss', [  // Minify CSS
     'clean:css',
     'cssmin'

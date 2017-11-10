@@ -5,9 +5,10 @@ class Simple_Author_Box_Admin_Page {
 	private $tab;
 	private $options;
 	private $sections;
-	private $views_path = SIMPLE_AUTHOR_BOX_PATH . 'inc/admin/';
+	private $views_path;
 
 	function __construct() {
+		$this->views_path = SIMPLE_AUTHOR_BOX_PATH . 'inc/admin/';
 		$this->tab        = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'general-options';
 		$default_sections = array(
 			'general-options'       => array(
