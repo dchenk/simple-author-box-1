@@ -8,12 +8,12 @@ module.exports = function( grunt ) {
     pkg: grunt.file.readJSON( 'package.json' ),
 
     dirs: {
-      css: '/css',
-      js: '/js'
+      css: '/assets/css',
+      js: '/assets/js'
     },
 
     clean: {
-      css: [ 'css/*.min.css', '!css/jquery-ui.min.css' ]
+      css: [ 'assets/css/*.min.css', '!assets/css/jquery-ui.min.css' ]
     },
     checktextdomain: {
       standard: {
@@ -52,9 +52,9 @@ module.exports = function( grunt ) {
         files: [
           {
             expand: true,
-            cwd: 'css/dev',
+            cwd: 'assets/css/dev',
             src: [ '*.css', '!*.min.css' ],
-            dest: 'css',
+            dest: 'assets/css',
             ext: '.min.css'
           } ]
       }
