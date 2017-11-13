@@ -27,13 +27,9 @@
 
 */
 
-define( 'SIMPLE_AUTHOR_BOX_LAST_UPDATE', date_i18n( 'F j, Y', '1409122800' ) );    // Defining plugin last update
 define( 'SIMPLE_AUTHOR_BOX_PATH', plugin_dir_path( __FILE__ ) );                   // Defining plugin dir path
 define( 'SIMPLE_AUTHOR_BOX_ASSETS', plugins_url( '/assets/', __FILE__ ) );         // Defining plugin assets url
 define( 'SIMPLE_AUTHOR_BOX_SLUG', plugin_basename( __FILE__ ) );            // Defining plugin dir name
-define( 'SIMPLE_AUTHOR_BOX_VERSION', 'v1.9' );                                      // Defining plugin version
-define( 'SIMPLE_AUTHOR_BOX', 'Simple Author Box' );                                 // Defining plugin name
-define( 'SIMPLE_AUTHOR_BOX_FOOTER', 10 );
 
 require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box.php';
 

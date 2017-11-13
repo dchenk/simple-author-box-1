@@ -67,7 +67,7 @@ class Simple_Author_Box {
 				'wp_footer', array(
 					$this,
 					'inline_style',
-				), SIMPLE_AUTHOR_BOX_FOOTER + 3
+				), 13
 			);
 		} else {
 			add_action( 'wp_head', array( $this, 'inline_style' ), 15 );
