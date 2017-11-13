@@ -420,13 +420,13 @@ class Simple_Author_Box_Admin_Page {
 					}
 
 					if ( isset( $settings[ $setting['group'] ][ $key ] ) ) {
-						$groups[ $setting['group'] ][ $key ] = $this->saniteze_fields( $setting, $settings[ $setting['group'] ][ $key ] );
+						$groups[ $setting['group'] ][ $key ] = $this->sanitize_fields( $setting, $settings[ $setting['group'] ][ $key ] );
 					}
 				} else {
 
 					$current_value = get_option( $key );
 					if ( isset( $settings[ $key ] ) ) {
-						$value = $this->saniteze_fields( $setting, $settings[ $key ] );
+						$value = $this->sanitize_fields( $setting, $settings[ $key ] );
 						if ( $current_value != $value ) {
 							update_option( $key, $value );
 						}
@@ -446,7 +446,7 @@ class Simple_Author_Box_Admin_Page {
 
 	}
 
-	private function saniteze_fields( $setting, $value ) {
+	private function sanitize_fields( $setting, $value ) {
 		$default_sanitizers = array(
 			'toggle' => 'absint',
 			'slider' => 'absint',
