@@ -33,6 +33,4 @@ define( 'SIMPLE_AUTHOR_BOX_SLUG', plugin_basename( __FILE__ ) );            // D
 
 require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box.php';
 
-if ( class_exists( 'Simple_Author_Box' ) ) {
-	Simple_Author_Box::get_instance();
-}
+Simple_Author_Box::get_instance();
