@@ -57,9 +57,12 @@ if ( get_the_author_meta( 'description' ) != '' || ! isset( $options['sab_no_des
 
 	// author box description
 	echo '<div class="saboxplugin-desc">';
-	echo '<div class="vcard author"><span class="fn">';
-	echo  wp_kses_post( get_the_author_meta( 'description', $author_id ) );
-	echo '</span></div>';
+	echo '<div class="vcard author"><div class="fn">';
+	$description = get_the_author_meta( 'description', $author_id );
+	$description = wptexturize( $description );
+	$description = wpautop( $description );
+	echo  wp_kses_post( $description );
+	echo '</div></div>';
 	echo '</div>';
 
 	if ( is_single() ) {

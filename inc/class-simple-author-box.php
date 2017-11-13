@@ -52,6 +52,10 @@ class Simple_Author_Box {
 		add_filter( 'user_contactmethods', array( $this, 'add_extra_fields' ) );
 		add_filter( 'plugin_action_links_' . SIMPLE_AUTHOR_BOX_SLUG, array( $this, 'settings_link' ) );
 
+		// Allow HTML in user description.
+		remove_filter('pre_user_description', 'wp_filter_kses');
+		add_filter('pre_user_description', 'wp_kses_post');
+
 	}
 
 	private function define_public_hooks() {
@@ -93,6 +97,11 @@ class Simple_Author_Box {
 			// Scripts
 			wp_enqueue_script( 'sabox-admin-js', SIMPLE_AUTHOR_BOX_ASSETS . 'js/sabox-admin.js', array( 'jquery-ui-slider', 'wp-color-picker' ), false, true );
 
+		}elseif ( 'profile.php' == $hook ) {
+
+			wp_enqueue_editor();
+			wp_enqueue_script( 'sabox-admin-editor-js', SIMPLE_AUTHOR_BOX_ASSETS . 'js/sabox-editor.js', array(), false, true );
+			
 		}
 
 	}
