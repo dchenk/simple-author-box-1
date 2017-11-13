@@ -65,7 +65,12 @@ class Simple_Author_Box_Admin_Page {
 				),
 				'sab_avatar_style'      => array(
 					'label' => __( 'Author avatar image style:', 'saboxplugin' ),
-					'type'  => 'toggle',
+					'type'    => 'select',
+					'choices' => array(
+						0 => __( 'Square', 'saboxplugin' ),
+						1 => __( 'Circle', 'saboxplugin' ),
+					),
+					'default' => '0',
 					'group' => 'saboxplugin_options',
 				),
 				'sab_avatar_hover'      => array(

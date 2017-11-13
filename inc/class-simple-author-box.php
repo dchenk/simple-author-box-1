@@ -211,7 +211,7 @@ class Simple_Author_Box {
 			$style .= '.saboxplugin-wrap .saboxplugin-socials {-webkit-box-shadow: 0 0.05em 0 0 ' . esc_html( $this->options['sab_box_border'] ) . ' inset; -moz-box-shadow:0 0.05em 0 0 ' . esc_html( $this->options['sab_box_border'] ) . ' inset;box-shadow:0 0.05em 0 0 ' . esc_html( $this->options['sab_box_border'] ) . ' inset;}';
 		}
 		// Avatar image style
-		if ( isset( $this->options['sab_avatar_style'] ) ) {
+		if ( isset( $this->options['sab_avatar_style'] ) && '0' != $this->options['sab_avatar_style'] ) {
 			$style .= '.saboxplugin-wrap .saboxplugin-gravatar img {-webkit-border-radius:50%;-moz-border-radius:50%;-ms-border-radius:50%;-o-border-radius:50%;border-radius:50%;}';
 		}
 		// Social icons style
@@ -223,7 +223,7 @@ class Simple_Author_Box {
 			$style .= '.saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-color:before {text-shadow: none;}';
 		}
 		// Avatar hover effect
-		if ( isset( $this->options['sab_avatar_style'] ) && isset( $this->options['sab_avatar_hover'] ) ) {
+		if ( isset( $this->options['sab_avatar_style'] ) && '0' != $this->options['sab_avatar_style'] && isset( $this->options['sab_avatar_hover'] ) ) {
 			$style .= '.saboxplugin-wrap .saboxplugin-gravatar img {-webkit-transition:all .5s ease;-moz-transition:all .5s ease;-o-transition:all .5s ease;transition:all .5s ease;}';
 			$style .= '.saboxplugin-wrap .saboxplugin-gravatar img:hover {-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-o-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg);}';
 		}
