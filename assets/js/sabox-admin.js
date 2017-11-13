@@ -3,7 +3,7 @@
   'use strict';
   var context = $( '#sabox-cotnainer' );
   context.find( '.saboxfield' ).change( function() {
-    var value = getElemetValue( $( this ) ),
+    var value = getElementValue( $( this ) ),
         elements = context.find( '.show_if_' + $( this ).attr( 'id' ) );
     if ( value && '0' !== value ) {
       elements.show();
@@ -12,7 +12,7 @@
     }
   } );
 
-  function getElemetValue( $element ) {
+  function getElementValue( $element ) {
     var type = $element.attr( 'type' );
 
     if ( 'checkbox' === type ) {
@@ -33,7 +33,7 @@
 
     elements.each( function( $index, $element ) {
       var element = $( $element ),
-          value = getElemetValue( element ),
+          value = getElementValue( element ),
           elements = context.find( '.show_if_' + element.attr( 'id' ) );
       if ( value && '0' !== value ) {
         elements.removeClass( 'hide' );
