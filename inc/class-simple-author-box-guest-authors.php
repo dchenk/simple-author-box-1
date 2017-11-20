@@ -306,8 +306,8 @@ class Simple_Author_Box_Guest_Authors {
 		global $post_type, $post_type_object;
 
 		if ( post_type_supports( $post_type, 'author' ) && current_user_can( $post_type_object->cap->edit_others_posts ) ) {
-			remove_meta_box( 'authordiv', 'post', 'core' );
-			add_meta_box( 'authordiv', __( 'Author', 'saboxplugin' ), array( $this, 'display_author_meta_box' ), null, 'core', 'high' );
+			remove_meta_box( 'authordiv', 'post', 'normal' );
+			add_meta_box( 'authordiv', __( 'Author', 'saboxplugin' ), array( $this, 'display_author_meta_box' ), 'post', 'normal', 'high' );
 		}
 
 	}
