@@ -66,7 +66,6 @@ if ( ! function_exists( 'wpsabox_author_box' ) ) {
 					include( $template );
 				}
 			}
-			
 
 			$saboxmeta .= ob_get_clean();
 

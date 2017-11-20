@@ -473,7 +473,7 @@ class Simple_Author_Box_Guest_Authors {
 
 			update_post_meta( $post_id, 'sabox-coauthors', $coauthors );
 
-		}else{
+		} else {
 			delete_post_meta( $post_id, 'sabox-coauthors' );
 		}
 
