@@ -49,8 +49,25 @@ if ( ! function_exists( 'wpsabox_author_box' ) ) {
 
 		if ( wpsabox_check_if_show() ) {
 
+			global $post;
+			$template = Simple_Author_Box_Helper::get_template();
+
 			ob_start();
-			Simple_Author_Box_Helper::get_template();
+			$sabox_options   = get_option( 'saboxplugin_options' );
+			$sabox_author_id = $post->post_author;
+			include( $template );
+
+			$co_authors = get_post_meta( $post->ID, 'sabox-coauthors', true );
+
+			if ( ! empty( $co_authors ) ) {
+				echo '<h2 class="sabox-guest-authors">' . esc_html__( 'Guest Authors :', 'saboxplugin' ) . '</h2>';
+				foreach ( $co_authors as $co_author ) {
+					$sabox_author_id = $co_author;
+					include( $template );
+				}
+			}
+			
+
 			$saboxmeta .= ob_get_clean();
 
 		}

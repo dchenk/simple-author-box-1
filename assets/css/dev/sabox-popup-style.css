@@ -1,0 +1,145 @@
+div#sabox-add-user {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    background-color: rgba( 241,241,241, .9 );
+}
+.sabox-popup-container {
+    width: 600px;
+    height: 650px;
+    margin: 0 auto;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate( -50%,-50% );
+    padding: 20px 50px;
+    background-color: #fff;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.sabox-popup-container .close-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+.sabox-popup-container > h2 {
+	text-align: center;
+    font-size: 23px;
+    margin-bottom: 30px;
+}
+.sabox-popup-container label {
+	display: block;
+}
+.sabox-popup-container .input-container:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.sabox-popup-container .input-col {
+	float: left;
+}
+.sabox-popup-container .input-col input {
+	width: 90%;
+}
+.sabox-popup-container .input-col input.error {
+    border-color: #dc3232;
+}
+.sabox-popup-container .personal-info .input-col {
+	width: 33%;
+}
+.sabox-popup-container .contact-info .input-col {
+	width: 50%;
+}
+.sabox-popup-container .biographical-info .input-col,
+#sabox-description {
+	width: 100%;
+}
+.sabox-popup-container .biographical-info {
+	position: relative;
+	margin-top: 1.5em;
+}
+.sabox-popup-container .biographical-info h3 {
+	position: absolute;
+	top: -10px;
+	left: 0;
+}
+.sabox-guest-popup-button p.submit {
+	text-align: center;
+}
+.sabox-add-social-link {
+    cursor: pointer;
+    text-align: center;
+    padding: 10px 0;
+    border: 1px solid #ddd;
+    width: 100%;
+}
+.sabox-add-social-link:hover {
+  border-color: #000;
+}
+#sabox-social-table .dashicons-no {
+    vertical-align: middle;
+    cursor: pointer;
+    color: #a00;
+}
+#sabox-social-table .dashicons-no:hover {
+  color: #dc3232;
+}
+.social-media-info .sabox-media-links .social-link-item select {
+	width: 29%;
+	box-sizing: border-box;
+	float: left;
+}
+.social-media-info .sabox-media-links .social-link-item .social-link-container {
+	width: 70%;
+	box-sizing: border-box;
+	float: right;
+	line-height: 20px;
+}
+.social-media-info .sabox-media-links .social-link-item .social-link-container input {
+    width: calc( 100% - 30px );
+}
+.social-media-info .sabox-media-links .social-link-item .social-link-container span {
+    vertical-align: middle;
+    cursor: pointer;
+    color: #a00;
+}
+.social-media-info .sabox-media-links .social-link-item .social-link-container span:hover {
+    color: #dc3232;
+}
+.social-media-info .sabox-media-links .social-link-item:after {
+	display: block;
+	content: "";
+	clear: both;
+}
+.sabox-media-links {
+	margin-bottom: 20px;
+}
+
+/* Co Authors */
+#sab-coauthors:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.sab-co-author {
+    float: left;
+    clear: left;
+    min-width: 150px;
+    border-bottom: 1px solid;
+    margin-bottom: 15px;
+}
+.sab-co-author > .dashicons {
+    float: right;
+    color: #a00;
+    cursor: pointer;
+}
+.sab-co-author > .dashicons:hover {
+    color: #dc3232;
+}
+.sabox-coauthors-container .selectize-control {
+    max-width: 200px;
+}

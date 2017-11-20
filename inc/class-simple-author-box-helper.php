@@ -65,6 +65,36 @@ class Simple_Author_Box_Helper {
 
 	}
 
+	public static function get_user_social_links( $userd_id, $show_email = false ) {
+
+		$social_icons = apply_filters( 'sabox_social_icons', Simple_Author_Box_Helper::$social_icons );
+		$social_links = get_user_meta( $userd_id, 'sabox_social_links', true );
+		$use_meta     = true;
+
+		if ( ! is_array( $social_links ) ) {
+			$social_links = array();
+			$use_meta     = false;
+
+			if ( ! $show_email ) {
+				unset( $social_icons['user_email'] );
+			}
+
+			foreach ( $social_icons as $key => $social_icon ) {
+				$url = get_the_author_meta( $key, $userd_id );
+				if ( $url ) {
+					$social_links[ $key ] = $url;
+				}
+			}
+		}
+
+		if ( $show_email && $use_meta ) {
+			$social_links['user_email'] = get_the_author_meta( 'user_email', $userd_id );
+		}
+
+		return $social_links;
+
+	}
+
 	public static function get_google_font_subsets() {
 		return array(
 			'none'         => 'None',
@@ -798,10 +828,14 @@ class Simple_Author_Box_Helper {
 			$template = SIMPLE_AUTHOR_BOX_PATH . 'template/' . $template_name;
 		}
 
+		if ( ! $template ) {
+			$template = SIMPLE_AUTHOR_BOX_PATH . 'template/template-sab.php';
+		}
+
 		// Allow 3rd party plugins to filter template file from their plugin.
 		$template = apply_filters( 'sabox_get_template_part', $template );
 		if ( $template ) {
-			load_template( $template, false );
+			return $template;
 		}
 
 	}

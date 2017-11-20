@@ -186,3 +186,44 @@
   top: 0;
   bottom: 0;
 }
+
+/* Social Links */
+.sabox-add-social-link {
+    cursor: pointer;
+    text-align: center;
+    padding: 10px 0;
+    border: 1px solid #ddd;
+    max-width: 570px;
+}
+.sabox-add-social-link:hover {
+  border-color: #000;
+}
+#sabox-social-table .dashicons-no {
+    vertical-align: middle;
+    cursor: pointer;
+    color: #a00;
+}
+#sabox-social-table .dashicons-no:hover {
+  color: #dc3232;
+}
+
+/* Simple Author Box Badge */
+.wp-badge.epsilon-welcome-logo {
+    color: #fff;
+    background-image: url(../img/macho-themes-logo.svg);
+    background-position: center center;
+    background-size: 70%;
+    background-repeat: no-repeat;
+}
+.sabox-wrap .col-fulwidth {
+    border: 1px dashed #555;
+    background: #fff;
+    width: 100%;
+    padding: 40px;
+    text-align: center;
+    margin-top: 15px;
+}
+.sabox-wrap .col-fulwidth .button.button-feedback {
+    padding: 10px 20px;
+    height: initial;
+}

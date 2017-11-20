@@ -35,6 +35,7 @@ class Simple_Author_Box {
 
 		if ( is_admin() ) {
 			require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-admin-page.php';
+			require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-guest-authors.php';
 		}
 	}
 
@@ -53,8 +54,8 @@ class Simple_Author_Box {
 		add_filter( 'plugin_action_links_' . SIMPLE_AUTHOR_BOX_SLUG, array( $this, 'settings_link' ) );
 
 		// Allow HTML in user description.
-		remove_filter('pre_user_description', 'wp_filter_kses');
-		add_filter('pre_user_description', 'wp_kses_post');
+		remove_filter( 'pre_user_description', 'wp_filter_kses' );
+		add_filter( 'pre_user_description', 'wp_kses_post' );
 
 	}
 
@@ -77,6 +78,8 @@ class Simple_Author_Box {
 			add_action( 'wp_head', array( $this, 'inline_style' ), 15 );
 		}
 
+		add_shortcode( 'simple-author-box', array( $this, 'shortcode' ) );
+
 	}
 
 	public function settings_link( $links ) {
@@ -92,16 +95,24 @@ class Simple_Author_Box {
 			// Styles
 			wp_enqueue_style( 'wp-color-picker' );
 			wp_enqueue_style( 'jquery-ui', SIMPLE_AUTHOR_BOX_ASSETS . 'css/jquery-ui.min.css' );
-			wp_enqueue_style( 'saboxplugin-admin-style', SIMPLE_AUTHOR_BOX_ASSETS . 'css/dev/sabox-admin-style.css' );
+			wp_enqueue_style( 'saboxplugin-admin-style', SIMPLE_AUTHOR_BOX_ASSETS . 'css/sabox-admin-style.min.css' );
 
 			// Scripts
 			wp_enqueue_script( 'sabox-admin-js', SIMPLE_AUTHOR_BOX_ASSETS . 'js/sabox-admin.js', array( 'jquery-ui-slider', 'wp-color-picker' ), false, true );
 
-		}elseif ( 'profile.php' == $hook ) {
+		} elseif ( 'profile.php' == $hook || 'user-edit.php' == $hook ) {
+
+			wp_enqueue_style( 'saboxplugin-admin-style', SIMPLE_AUTHOR_BOX_ASSETS . 'css/dev/sabox-admin-style.css' );
 
 			wp_enqueue_editor();
 			wp_enqueue_script( 'sabox-admin-editor-js', SIMPLE_AUTHOR_BOX_ASSETS . 'js/sabox-editor.js', array(), false, true );
-			
+			$sabox_js_helper = array();
+			$social_icons    = apply_filters( 'sabox_social_icons', Simple_Author_Box_Helper::$social_icons );
+			unset( $social_icons['user_email'] );
+			$sabox_js_helper['socialIcons'] = $social_icons;
+
+			wp_localize_script( 'sabox-admin-editor-js', 'SABHerlper', $sabox_js_helper );
+
 		}
 
 	}
@@ -111,13 +122,6 @@ class Simple_Author_Box {
 		unset( $extra_fields['aim'] );
 		unset( $extra_fields['jabber'] );
 		unset( $extra_fields['yim'] );
-
-		$social_icons = apply_filters( 'sabox_social_icons', Simple_Author_Box_Helper::$social_icons );
-		unset( $social_icons['user_email'] );
-
-		foreach ( $social_icons as $sabox_social_id => $sabox_social_name ) {
-			$extra_fields[ $sabox_social_id ] = $sabox_social_name;
-		}
 
 		return $extra_fields;
 
@@ -301,6 +305,11 @@ class Simple_Author_Box {
 		$style .= '</style>';
 
 		echo $style;
+	}
+
+	public function shortcode( $atts ) {
+		$html = wpsabox_author_box();
+		return $html;
 	}
 
 }

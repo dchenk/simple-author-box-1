@@ -1512,6 +1512,48 @@
   rgb(0, 71, 70) 29px 29px,
   rgb(0, 71, 70) 30px 30px;
 }
+
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-mixcloud {
+  background:#52aad8;
+  border: 1px solid #1B95C2;
+  text-shadow:
+  rgb(27, 149, 194) 1px 1px,
+  rgb(27, 149, 194) 2px 2px,
+  rgb(27, 149, 194) 3px 3px,
+  rgb(27, 149, 194) 4px 4px,
+  rgb(27, 149, 194) 5px 5px,
+  rgb(27, 149, 194) 6px 6px,
+  rgb(27, 149, 194) 7px 7px,
+  rgb(27, 149, 194) 8px 8px,
+  rgb(27, 149, 194) 9px 9px,
+  rgb(27, 149, 194) 10px 10px,
+  rgb(27, 149, 194) 11px 11px,
+  rgb(27, 149, 194) 12px 12px,
+  rgb(27, 149, 194) 13px 13px,
+  rgb(27, 149, 194) 14px 14px,
+  rgb(27, 149, 194) 15px 15px,
+  rgb(27, 149, 194) 16px 16px,
+  rgb(27, 149, 194) 17px 17px,
+  rgb(27, 149, 194) 18px 18px,
+  rgb(27, 149, 194) 19px 19px,
+  rgb(27, 149, 194) 20px 20px,
+  rgb(27, 149, 194) 21px 21px,
+  rgb(27, 149, 194) 22px 22px,
+  rgb(27, 149, 194) 23px 23px,
+  rgb(27, 149, 194) 24px 24px,
+  rgb(27, 149, 194) 25px 25px,
+  rgb(27, 149, 194) 26px 26px,
+  rgb(27, 149, 194) 27px 27px,
+  rgb(27, 149, 194) 28px 28px,
+  rgb(27, 149, 194) 29px 29px,
+  rgb(27, 149, 194) 30px 30px;
+}
+
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-goodreads {
+  background:#553b08;
+  border: 1px solid #1B95C2;
+}
+
 /*  - GLOBAL MEDIA QUERIES
 -------------------------------------------------------------- */
 @media screen and (max-width: 480px) {

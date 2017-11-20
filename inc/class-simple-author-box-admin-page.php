@@ -32,10 +32,16 @@ class Simple_Author_Box_Admin_Page {
 					'type'  => 'toggle',
 					'group' => 'saboxplugin_options',
 				),
-				'plugin_sshortcode'     => array(
+				'plugin_code'           => array(
 					'label'     => __( 'If you want to manually insert the Simple Author Box in your template file (single post view), you can use the following code snippet:', 'saboxplugin' ),
 					'type'      => 'readonly',
 					'value'     => '&lt;?php if ( function_exists( \'wpsabox_author_box\' ) ) echo wpsabox_author_box(); ?&gt;',
+					'condition' => 'sab_autoinsert',
+				),
+				'plugin_shortcode'      => array(
+					'label'     => __( 'If you want to manually insert the Simple Author Box in your post content, you can use the following shortcode:', 'saboxplugin' ),
+					'type'      => 'readonly',
+					'value'     => '[ simple-author-box ]',
 					'condition' => 'sab_autoinsert',
 				),
 				'sab_box_margin_top'    => array(
@@ -64,14 +70,14 @@ class Simple_Author_Box_Admin_Page {
 					'group' => 'saboxplugin_options',
 				),
 				'sab_avatar_style'      => array(
-					'label' => __( 'Author avatar image style:', 'saboxplugin' ),
+					'label'   => __( 'Author avatar image style:', 'saboxplugin' ),
 					'type'    => 'select',
 					'choices' => array(
 						0 => __( 'Square', 'saboxplugin' ),
 						1 => __( 'Circle', 'saboxplugin' ),
 					),
 					'default' => '0',
-					'group' => 'saboxplugin_options',
+					'group'   => 'saboxplugin_options',
 				),
 				'sab_avatar_hover'      => array(
 					'label' => __( 'Rotate effect on author avatar hover:', 'saboxplugin' ),
@@ -362,7 +368,7 @@ class Simple_Author_Box_Admin_Page {
 	public function setting_page() {
 		?>
 
-		<div class="wrap about-wrap epsilon-wrap">
+		<div class="wrap about-wrap epsilon-wrap sabox-wrap">
 			<h1>
 				<?php
 				/* Translators: Welcome Screen Title. */
@@ -372,7 +378,7 @@ class Simple_Author_Box_Admin_Page {
 			<div class="about-text">
 				<?php
 				/* Translators: Welcome Screen Description. */
-				echo esc_html__( 'Simple Author Box is now installed and ready to use! Get ready to build something beautiful. We hope you enjoy it! We want to make sure you have the best experience using %1$s and that is why we gathered here all the necessary information for you. We hope you will enjoy using %1$s, as much as we enjoy creating great products.', 'saboxplugin' );
+				echo esc_html__( 'Simple Author Box is now installed and ready to use! Get ready to create beautiful author boxes. We hope you enjoy it! We want to make sure you have the best experience using Simple Author Box and that is why we gathered here all the necessary information for you. We hope you will enjoy using Simple Author Box, as much as we enjoy creating great products.', 'saboxplugin' );
 				?>
 			</div>
 			<div class="wp-badge epsilon-welcome-logo"></div>
@@ -401,6 +407,24 @@ class Simple_Author_Box_Admin_Page {
 
 			?>
 			</form>
+
+			<div class="col-fulwidth">
+		<h3><?php esc_html_e( 'Lend a hand & share your thoughts', 'saboxplugin' ); ?></h3>
+		<p>
+			<?php
+			echo vsprintf(
+				// Translators: 1 is Theme Name, 2 is opening Anchor, 3 is closing.
+				__( 'We\'ve been working hard on making %1$s the best one out there. We\'re interested in hearing your thoughts about %1$s and what we could do to <u>make it even better</u>.<br/> <br/> %2$sHave your say%3$s', 'saboxplugin' ),
+				array(
+					'Simple Author Box',
+					'<a class="button button-feedback" target="_blank" href="http://bit.ly/feedback-simple-author-box">',
+					'</a>',
+				)
+			);
+			?>
+		</p>
+	</div>
+
 		</div>
 
 		<?php

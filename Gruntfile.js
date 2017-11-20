@@ -11,10 +11,6 @@ module.exports = function( grunt ) {
       css: '/assets/css',
       js: '/assets/js'
     },
-
-    clean: {
-      css: [ 'assets/css/*.min.css', '!assets/css/jquery-ui.min.css' ]
-    },
     checktextdomain: {
       standard: {
         options: {
@@ -58,7 +54,48 @@ module.exports = function( grunt ) {
             ext: '.min.css'
           } ]
       }
-    }
+    },
+    clean: {
+      css: [ 'assets/css/*.min.css', '!assets/css/jquery-ui.min.css' ],
+      init: {
+        src: ['build/']
+      },
+    },
+    copy: {
+      build: {
+        expand: true,
+        src: [
+          '**',
+          '!node_modules/**',
+          '!vendor/**',
+          '!build/**',
+          '!readme.md',
+          '!README.md',
+          '!phpcs.ruleset.xml',
+          '!Gruntfile.js',
+          '!package.json',
+          '!composer.json',
+          '!composer.lock',
+          '!set_tags.sh',
+          '!illdy-companion.zip',
+          '!nbproject/**' ],
+        dest: 'build/'
+      }
+    },
+
+    compress: {
+      build: {
+        options: {
+          pretty: true,                           // Pretty print file sizes when logging.
+          archive: '<%= pkg.name %>.zip'
+        },
+        expand: true,
+        cwd: 'build/',
+        src: ['**/*'],
+        dest: '<%= pkg.name %>/'
+      }
+    },
+
   } );
 
   grunt.loadNpmTasks( 'grunt-contrib-clean' );
