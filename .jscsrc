@@ -3,7 +3,7 @@
   "fileExtensions": [ ".js" ],
   "excludeFiles": [
     "**.min.js",
-    "assets/js/selectize.js"
+    "assets/js/selectize.js",
     "assets/js/selectize.min.js"
   ]
 }
