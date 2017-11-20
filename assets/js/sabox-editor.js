@@ -3,6 +3,66 @@
   'use strict';
   var SABox = {};
 
+  var mediaControl = {
+
+    // Initializes a new media manager or returns an existing frame.
+    // @see wp.media.featuredImage.frame()
+    selector: null,
+    size: null,
+    container: null,
+    frame: function() {
+      if ( this._frame ) {
+        return this._frame;
+
+      }
+
+      this._frame = wp.media( {
+        title: 'Media',
+        button: {
+          text: 'Update'
+        },
+        multiple: false
+      } );
+
+      this._frame.on( 'open', this.updateFrame ).state( 'library' ).on( 'select', this.select );
+
+      return this._frame;
+
+    },
+
+    select: function() {
+      var context = $( '#sabox-custom-profile-image' ),
+          input = context.find( '#sabox-custom-image' ),
+          image = context.find( 'img' ),
+          attachment = mediaControl.frame().state().get( 'selection' ).first().toJSON();
+
+      image.attr( 'src', attachment.url );
+      input.val( attachment.url );
+
+    },
+
+    init: function() {
+      var context = $( '#sabox-custom-profile-image' );
+      context.on( 'click', '#sabox-add-image', function( e ) {
+        e.preventDefault();
+        mediaControl.frame().open();
+      } );
+
+      context.on( 'click', '#sabox-remove-image', function( e ) {
+        var context = $( '#sabox-custom-profile-image' ),
+            input = context.find( '#sabox-custom-image' ),
+            image = context.find( 'img' );
+
+        e.preventDefault();
+
+        input.val( '' );
+        image.attr( 'src', image.data( 'default' ) );
+      } );
+
+    }
+
+  };
+
   $( document ).ready( function() {
     if ( $( '#description' ).length > 0 ) {
       wp.editor.initialize( 'description', {
@@ -35,6 +95,8 @@
         row.remove();
       } );
     } );
+
+    mediaControl.init();
 
   } );
 

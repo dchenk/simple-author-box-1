@@ -41,7 +41,13 @@ if ( get_the_author_meta( 'description' ) != '' || ! isset( $sabox_options['sab_
 
 	// author box gravatar
 	echo '<div class="saboxplugin-gravatar">';
-	echo get_avatar( get_the_author_meta( 'user_email', $sabox_author_id ), '100' );
+	$custom_profile_image = get_the_author_meta( 'sabox-profile-image', $sabox_author_id );
+	if ( '' != $custom_profile_image ) {
+		echo '<img src="' . $custom_profile_image . '">';
+	}else{
+		echo get_avatar( get_the_author_meta( 'user_email', $sabox_author_id ), '100' );
+	}
+	
 	echo '</div>';
 
 	// author box name

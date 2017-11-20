@@ -52,6 +52,18 @@ We are a young team of WordPress aficionados who love building WordPress plugins
 
 == Changelog ==
 
+= 2.0 =
+Included the option to add html to a user's description ( https://github.com/MachoThemes/simple-author-box/issues/23 )
+Fixed Google fonts error ( https://github.com/MachoThemes/simple-author-box/issues/14 )
+Added new features ( https://github.com/MachoThemes/simple-author-box/issues/7 )
+Added the posibility to select where to show the author box ( https://github.com/MachoThemes/simple-author-box/issues/5 )
+Added the option to link the author's name to its website ( https://github.com/MachoThemes/simple-author-box/issues/4 )
+Added the posibility to add guest authors
+Added the posibility to add custom profile images
+Created a shortcode that can be placed inside the posts' content wherever a user wants
+Improved how you add social links
+
+
 = 1.9 =
 * Removed lang folder, translations are now being handled by GlotPress on w.org
 * Fixed a CSS bug ( https://github.com/MachoThemes/simple-author-box/issues/11 )

@@ -227,3 +227,8 @@
     padding: 10px 20px;
     height: initial;
 }
+
+#sab-current-image img {
+  max-width: 130px;
+  height: auto;
+}

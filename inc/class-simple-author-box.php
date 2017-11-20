@@ -53,6 +53,13 @@ class Simple_Author_Box {
 		add_filter( 'user_contactmethods', array( $this, 'add_extra_fields' ) );
 		add_filter( 'plugin_action_links_' . SIMPLE_AUTHOR_BOX_SLUG, array( $this, 'settings_link' ) );
 
+		// Custom Profile Image
+		add_action( 'show_user_profile', array( $this, 'add_profile_image' ), 9, 1 );
+		add_action( 'edit_user_profile', array( $this, 'add_profile_image' ), 9, 1 );
+
+		add_action( 'personal_options_update', array( $this, 'save_profile_image' ), 9, 1 );
+		add_action( 'edit_user_profile_update', array( $this, 'save_profile_image' ), 9, 1 );
+
 		// Allow HTML in user description.
 		remove_filter( 'pre_user_description', 'wp_filter_kses' );
 		add_filter( 'pre_user_description', 'wp_kses_post' );
@@ -104,6 +111,7 @@ class Simple_Author_Box {
 
 			wp_enqueue_style( 'saboxplugin-admin-style', SIMPLE_AUTHOR_BOX_ASSETS . 'css/dev/sabox-admin-style.css' );
 
+			wp_enqueue_media();
 			wp_enqueue_editor();
 			wp_enqueue_script( 'sabox-admin-editor-js', SIMPLE_AUTHOR_BOX_ASSETS . 'js/sabox-editor.js', array(), false, true );
 			$sabox_js_helper = array();
@@ -310,6 +318,58 @@ class Simple_Author_Box {
 	public function shortcode( $atts ) {
 		$html = wpsabox_author_box();
 		return $html;
+	}
+
+	public function add_profile_image( $user ) {
+
+		if ( ! current_user_can( 'upload_files' ) ) {
+			return;
+		}
+
+		$default_url = SIMPLE_AUTHOR_BOX_ASSETS . 'img/default.png';
+		$image_url   = get_user_meta( $user->ID, 'sabox-profile-image', true );
+
+		?>
+
+		<div id="sabox-custom-profile-image">
+			<h3><?php _e( 'Custom User Profile Image', 'saboxplugin' ); ?></h3>
+			<table class="form-table">
+				<tr>
+					<th><label for="cupp_meta"><?php _e( 'Profile Image', 'saboxplugin' ); ?></label></th>
+					<td>
+						<div id="sab-current-image">
+							<?php wp_nonce_field( 'sabox-profile-image', 'sabox-profile-nonce' ); ?>
+							<input type="hidden" name="sabox-custom-image" id="sabox-custom-image" value="<?php echo esc_attr( $image_url ); ?>">
+							<img data-default="<?php echo esc_url_raw( $default_url ); ?>" src="<?php echo '' != $image_url ? esc_url_raw( $image_url ) : esc_url_raw( $default_url ); ?>">
+						</div>
+						<div class="actions">
+							<a href="#" class="button-secondary" id="sabox-remove-image"><?php _e( 'Remove Image', 'saboxplugin' ); ?></a>
+							<a href="#" class="button-primary" id="sabox-add-image"><?php _e( 'Upload Image', 'saboxplugin' ); ?></a>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<?php
+	}
+
+	public function save_profile_image( $user_id ) {
+
+		if ( ! current_user_can( 'upload_files', $user_id ) ) {
+			return;
+		}
+
+		if ( ! isset( $_POST['sabox-profile-nonce'] ) || ! wp_verify_nonce( $_POST['sabox-profile-nonce'], 'sabox-profile-image' ) ) {
+			return;
+		}
+
+		if ( isset( $_POST['sabox-custom-image'] ) && '' != $_POST['sabox-custom-image'] ) {
+			update_user_meta( $user_id, 'sabox-profile-image', esc_url_raw( $_POST['sabox-custom-image'] ) );
+		} else {
+			delete_user_meta( $user_id, 'sabox-profile-image' );
+		}
+
 	}
 
 }

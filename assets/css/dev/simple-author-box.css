@@ -18,7 +18,8 @@
 }
 
 .saboxplugin-wrap .saboxplugin-gravatar img {
-
+  max-width: 100px;
+  height: auto;
 }
 
 .saboxplugin-wrap .saboxplugin-gravatar img:hover {
