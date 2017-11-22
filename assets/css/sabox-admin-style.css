@@ -87,7 +87,7 @@
   transition: all 0.2s ease-in 0s;
 }
 .sabox-table .onoffswitch-label:after {
-  content: "No";
+  content: "OFF";
   display: block;
   color: #FFF;
   position: absolute;
@@ -112,7 +112,7 @@
 }
 
 .sabox-table .onoffswitch-checkbox:checked + .onoffswitch-label:after {
-  content: "Yes";
+  content: "ON";
   display: block;
   color: #FFF;
   position: absolute;
@@ -209,7 +209,7 @@
 
 /* Simple Author Box Badge */
 .wp-badge.epsilon-welcome-logo {
-    color: #fff;
+    background-color: #191e22;
     background-image: url(../img/macho-themes-logo.svg);
     background-position: center center;
     background-size: 70%;
@@ -224,11 +224,26 @@
     margin-top: 15px;
 }
 .sabox-wrap .col-fulwidth .button.button-feedback {
-    padding: 10px 20px;
+    padding: 10px 40px;
     height: initial;
 }
 
 #sab-current-image img {
   max-width: 130px;
   height: auto;
+}
+
+.about-wrap .feedback-box h3 {
+    font-weight: 700;
+}
+.about-wrap .feedback-box h3 > img {
+  width: 30px;
+}
+.about-wrap .feedback-box > p {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.checkbox-label {
+  text-transform: capitalize;
 }

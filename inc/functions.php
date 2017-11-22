@@ -12,14 +12,14 @@ if ( ! function_exists( 'wpsabox_check_if_show' ) ) {
 		if ( isset( $options['sab_visibility'] ) ) {
 			$custom_post_types = $options['sab_visibility'];
 		} else {
-			$custom_post_types = Simple_Author_Box_Helper::get_custom_post_type();
+			$custom_post_types = array_keys( Simple_Author_Box_Helper::get_custom_post_type() );
 		}
 
-		foreach ( $custom_post_types as $custom_post_type => $label ) {
+		foreach ( $custom_post_types as $custom_post_type ) {
 
 			switch ( $custom_post_type ) {
 				case 'post':
-					if ( is_single() || is_author() || is_archive() ) {
+					if ( is_singular( 'post' ) || is_author() || is_archive() ) {
 						return true;
 					}
 					break;
@@ -35,6 +35,8 @@ if ( ! function_exists( 'wpsabox_check_if_show' ) ) {
 					break;
 			}
 		}
+
+		return false;
 
 	}
 }
@@ -53,14 +55,27 @@ if ( ! function_exists( 'wpsabox_author_box' ) ) {
 			$template = Simple_Author_Box_Helper::get_template();
 
 			ob_start();
-			$sabox_options   = get_option( 'saboxplugin_options' );
-			$sabox_author_id = $post->post_author;
-			include( $template );
-
-			$co_authors = get_post_meta( $post->ID, 'sabox-coauthors', true );
+			$sabox_options      = get_option( 'saboxplugin_options' );
+			$co_authors         = get_post_meta( $post->ID, 'sabox-coauthors', true );
+			$sabox_guest_author = false;
 
 			if ( ! empty( $co_authors ) ) {
-				echo '<h2 class="sabox-guest-authors">' . esc_html__( 'Guest Authors :', 'saboxplugin' ) . '</h2>';
+				if ( isset( $sabox_options['co_authors'] ) ) {
+					$sabox_author_id = $post->post_author;
+					include( $template );
+				}
+			} else {
+				$sabox_author_id = $post->post_author;
+				include( $template );
+			}
+
+			if ( ! empty( $co_authors ) ) {
+				if ( isset( $sabox_options['co_authors'] ) ) {
+					echo '<h2 class="sabox-guest-authors">' . esc_html__( 'Co Authors :', 'saboxplugin' ) . '</h2>';
+				} else {
+					$sabox_guest_author = true;
+				}
+
 				foreach ( $co_authors as $co_author ) {
 					$sabox_author_id = $co_author;
 					include( $template );

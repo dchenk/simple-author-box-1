@@ -65,11 +65,16 @@ class Simple_Author_Box_Guest_Authors {
 	}
 
 	public function admin_style_and_scripts( $hook ) {
+		$suffix = '.min';
+		if ( SIMPLE_AUTHOR_SCRIPT_DEBUG ) {
+			$suffix = '';
+		}
 
 		if ( 'post.php' == $hook || 'post-new.php' == $hook ) {
+
 			wp_enqueue_style( 'saboxplugin-selectize-style', SIMPLE_AUTHOR_BOX_ASSETS . 'css/selectize.css' );
 			wp_enqueue_style( 'saboxplugin-selectize-default-style', SIMPLE_AUTHOR_BOX_ASSETS . 'css/selectize.default.css' );
-			wp_enqueue_style( 'saboxplugin-popup-style', SIMPLE_AUTHOR_BOX_ASSETS . 'css/dev/sabox-popup-style.css' );
+			wp_enqueue_style( 'saboxplugin-popup-style', SIMPLE_AUTHOR_BOX_ASSETS . 'css/sabox-popup-style' . $suffix . '.css' );
 
 			wp_enqueue_editor();
 			wp_enqueue_script( 'sabox-selectize-js', SIMPLE_AUTHOR_BOX_ASSETS . 'js/selectize.min.js', array(), false, true );
@@ -306,8 +311,8 @@ class Simple_Author_Box_Guest_Authors {
 		global $post_type, $post_type_object;
 
 		if ( post_type_supports( $post_type, 'author' ) && current_user_can( $post_type_object->cap->edit_others_posts ) ) {
-			remove_meta_box( 'authordiv', 'post', 'normal' );
-			add_meta_box( 'authordiv', __( 'Author', 'saboxplugin' ), array( $this, 'display_author_meta_box' ), 'post', 'normal', 'high' );
+			remove_meta_box( 'authordiv', $post_type, 'normal' );
+			add_meta_box( 'authordiv', __( 'Author', 'saboxplugin' ), array( $this, 'display_author_meta_box' ), $post_type, 'normal', 'high' );
 		}
 
 	}
@@ -353,6 +358,9 @@ class Simple_Author_Box_Guest_Authors {
 				'selected' => false,
 			)
 		);
+
+		submit_button( __( 'Add Guest Author', 'saboxplugin' ), 'primary', '', true, array( 'id' => 'sabox-add-guest-author' ) );
+
 		?>
 		</div>
 		<?php

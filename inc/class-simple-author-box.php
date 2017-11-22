@@ -97,19 +97,24 @@ class Simple_Author_Box {
 
 	public function admin_style_and_scripts( $hook ) {
 
+		$suffix = '.min';
+		if ( SIMPLE_AUTHOR_SCRIPT_DEBUG ) {
+			$suffix = '';
+		}
+
 		if ( 'toplevel_page_simple-author-box-options' == $hook ) {
 
 			// Styles
 			wp_enqueue_style( 'wp-color-picker' );
 			wp_enqueue_style( 'jquery-ui', SIMPLE_AUTHOR_BOX_ASSETS . 'css/jquery-ui.min.css' );
-			wp_enqueue_style( 'saboxplugin-admin-style', SIMPLE_AUTHOR_BOX_ASSETS . 'css/sabox-admin-style.min.css' );
+			wp_enqueue_style( 'saboxplugin-admin-style', SIMPLE_AUTHOR_BOX_ASSETS . 'css/sabox-admin-style' . $suffix . '.css' );
 
 			// Scripts
 			wp_enqueue_script( 'sabox-admin-js', SIMPLE_AUTHOR_BOX_ASSETS . 'js/sabox-admin.js', array( 'jquery-ui-slider', 'wp-color-picker' ), false, true );
 
 		} elseif ( 'profile.php' == $hook || 'user-edit.php' == $hook ) {
 
-			wp_enqueue_style( 'saboxplugin-admin-style', SIMPLE_AUTHOR_BOX_ASSETS . 'css/dev/sabox-admin-style.css' );
+			wp_enqueue_style( 'saboxplugin-admin-style', SIMPLE_AUTHOR_BOX_ASSETS . 'css/sabox-admin-style' . $suffix . '.css' );
 
 			wp_enqueue_media();
 			wp_enqueue_editor();
@@ -142,6 +147,11 @@ class Simple_Author_Box {
 
 		if ( ! is_single() and ! is_page() and ! is_author() and ! is_archive() ) {
 			return;
+		}
+
+		$suffix = '.min';
+		if ( SIMPLE_AUTHOR_SCRIPT_DEBUG ) {
+			$suffix = '';
 		}
 
 		$sab_protocol   = is_ssl() ? 'https' : 'http';
@@ -178,7 +188,7 @@ class Simple_Author_Box {
 			wp_enqueue_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' );
 		}
 
-		wp_enqueue_style( 'sab-plugin', SIMPLE_AUTHOR_BOX_ASSETS . 'css/dev/simple-author-box.css', false, SIMPLE_AUTHOR_BOX_VERSION );
+		wp_enqueue_style( 'sab-plugin', SIMPLE_AUTHOR_BOX_ASSETS . 'css/simple-author-box' . $suffix . '.css', false, SIMPLE_AUTHOR_BOX_VERSION );
 
 	}
 

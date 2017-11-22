@@ -178,11 +178,15 @@ class Simple_Author_Box_Admin_Page {
 					'group' => 'saboxplugin_options',
 				),
 				'sab_visibility'        => array(
-					'label'   => __( 'Show author box on:', 'saboxplugin' ),
-					'type'    => 'multiplecheckbox',
-					'choices' => Simple_Author_Box_Helper::get_custom_post_type(),
-					'default' => array_keys( Simple_Author_Box_Helper::get_custom_post_type() ),
-					'group'   => 'saboxplugin_options',
+					'label'  => __( 'Show author box on:', 'saboxplugin' ),
+					'type'   => 'multiplecheckbox',
+					'handle' => array( 'Simple_Author_Box_Helper', 'get_custom_post_type' ),
+					'group'  => 'saboxplugin_options',
+				),
+				'co_authors'            => array(
+					'label' => __( 'Use Guest Authors as Co Authors:', 'saboxplugin' ),
+					'type'  => 'toggle',
+					'group' => 'saboxplugin_options',
 				),
 			),
 			'color-options'         => array(
@@ -408,8 +412,11 @@ class Simple_Author_Box_Admin_Page {
 			?>
 			</form>
 
-			<div class="col-fulwidth">
-		<h3><?php esc_html_e( 'Lend a hand & share your thoughts', 'saboxplugin' ); ?></h3>
+			<div class="col-fulwidth feedback-box">
+		<h3>
+			<?php esc_html_e( 'Lend a hand & share your thoughts', 'saboxplugin' ); ?>
+			<img src="<?php echo SIMPLE_AUTHOR_BOX_ASSETS; ?>/img/handshake.png">	
+		</h3>
 		<p>
 			<?php
 			echo vsprintf(
@@ -569,11 +576,19 @@ class Simple_Author_Box_Admin_Page {
 				echo '</div>';
 				break;
 			case 'multiplecheckbox':
-				$values = isset( $this->options[ $field_name ] ) ? $this->options[ $field_name ] : $field['default'];
 				echo '<div class="sabox-multicheckbox">';
+				if ( ! isset( $field['choices'] ) && isset( $field['handle'] ) && is_array( $field['handle'] ) ) {
+					if ( class_exists( $field['handle'][0] ) ) {
+						$field['choices'] = $field['handle'][0]::{$field['handle'][1]}();
+					}
+				}
+
+				$field['default'] = array_keys( $field['choices'] );
+
+				$values = isset( $this->options[ $field_name ] ) ? $this->options[ $field_name ] : $field['default'];
 				foreach ( $field['choices'] as $key => $choice ) {
 					echo '<div>';
-					echo '<input type="checkbox" value="' . $key . '" ' . checked( 1, in_array( $key, $values ), false ) . ' name="' . esc_attr( $name ) . '[]"><span>' . $choice . '</span>';
+					echo '<input type="checkbox" value="' . $key . '" ' . checked( 1, in_array( $key, $values ), false ) . ' name="' . esc_attr( $name ) . '[]"><span class="checkbox-label">' . $choice . '</span>';
 					echo '</div>';
 				}
 				echo '</div>';

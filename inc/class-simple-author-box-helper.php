@@ -42,6 +42,7 @@ class Simple_Author_Box_Helper {
 		'xing'          => 'Xing',
 		'mixcloud'      => 'MixCloud',
 		'goodreads'     => 'Goodreads',
+		'twitch'        => 'Twitch',
 		'user_email'    => 'Email',
 	);
 
@@ -798,8 +799,8 @@ class Simple_Author_Box_Helper {
 	public static function get_custom_post_type() {
 		$post_types = get_post_types(
 			array(
-				'public'   => true,
-				'_builtin' => false,
+				'publicly_queryable' => true,
+				'_builtin'           => false,
 			)
 		);
 

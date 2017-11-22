@@ -70,7 +70,6 @@
 
 .saboxplugin-wrap .saboxplugin-socials {
   position:relative;
-  z-index:50;
   display:block;
   background: #FCFCFC;
   padding:0 15px;
@@ -359,8 +358,16 @@
     content: '\f2a6';
 }
 
+.saboxplugin-socials .saboxplugin-icon-grey.saboxplugin-icon-twitch:before,
+.saboxplugin-socials .saboxplugin-icon-color.saboxplugin-icon-twitch:before {
+    content: '\f1e8';
+}
+
 /*  COLORED BACKGROUND AND LONG SHADOW EFFECT FOR SOCIAL ICONS
 -------------------------------------------------------------- */
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-twitch {
+  background-color: #6441a5;
+}
 .saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-addthis {
   background:#FF8662;
   border: 1px solid #D5644B;
