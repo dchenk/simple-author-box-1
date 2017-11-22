@@ -579,7 +579,9 @@ class Simple_Author_Box_Admin_Page {
 				echo '<div class="sabox-multicheckbox">';
 				if ( ! isset( $field['choices'] ) && isset( $field['handle'] ) && is_array( $field['handle'] ) ) {
 					if ( class_exists( $field['handle'][0] ) ) {
-						$field['choices'] = $field['handle'][0]::{$field['handle'][1]}();
+						$class  = $field['handle'][0];
+						$method = $field['handle'][1];
+						$field['choices'] = $class::$method();
 					}
 				}
 
