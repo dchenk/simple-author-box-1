@@ -12,7 +12,10 @@ class Simple_Author_Box_Admin_Page {
 		$this->tab        = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'general-options';
 		$default_sections = array(
 			'general-options'       => array(
-				'label' => __( 'General', 'saboxplugin' ),
+				'label' => __( 'Settings', 'saboxplugin' ),
+			),
+			'appearance-options'    => array(
+				'label' => __( 'Appearance', 'saboxplugin' ),
 			),
 			'color-options'         => array(
 				'label' => __( 'Color', 'saboxplugin' ),
@@ -20,200 +23,224 @@ class Simple_Author_Box_Admin_Page {
 			'typography-options'    => array(
 				'label' => __( 'Typography', 'saboxplugin' ),
 			),
+			'guest-author-options'  => array(
+				'label' => __( 'Guest Author', 'saboxplugin' ),
+			),
 			'miscellaneous-options' => array(
-				'label' => __( 'Miscellaneous', 'saboxplugin' ),
+				'label' => __( 'Misc', 'saboxplugin' ),
 			),
 		);
 
 		$settings = array(
 			'general-options'       => array(
-				'sab_autoinsert'        => array(
-					'label' => __( 'Manually insert the Simple Author Box:', 'saboxplugin' ),
-					'type'  => 'toggle',
-					'group' => 'saboxplugin_options',
+				'sab_autoinsert'     => array(
+					'label'       => __( 'Manually insert the Simple Author Box:', 'saboxplugin' ),
+					'description' => __( 'Check this and the author box will no longer be automatically added to your post. You\'ll need to add it using shortcodes or a php function', 'saboxplugin' ),
+					'type'        => 'toggle',
+					'group'       => 'saboxplugin_options',
 				),
-				'plugin_code'           => array(
+				'plugin_code'        => array(
 					'label'     => __( 'If you want to manually insert the Simple Author Box in your template file (single post view), you can use the following code snippet:', 'saboxplugin' ),
 					'type'      => 'readonly',
 					'value'     => '&lt;?php if ( function_exists( \'wpsabox_author_box\' ) ) echo wpsabox_author_box(); ?&gt;',
 					'condition' => 'sab_autoinsert',
 				),
-				'plugin_shortcode'      => array(
+				'plugin_shortcode'   => array(
 					'label'     => __( 'If you want to manually insert the Simple Author Box in your post content, you can use the following shortcode:', 'saboxplugin' ),
 					'type'      => 'readonly',
 					'value'     => '[ simple-author-box ]',
 					'condition' => 'sab_autoinsert',
 				),
-				'sab_box_margin_top'    => array(
-					'label'   => __( 'Top margin of author box:', 'saboxplugin' ),
-					'type'    => 'slider',
-					'choices' => array(
-						'min'       => 0,
-						'max'       => 100,
-						'increment' => 1,
-					),
-					'default' => '0',
+				'sab_no_description' => array(
+					'label'       => __( 'Hide the author box if author description is empty:', 'saboxplugin' ),
+					'description' => __( 'If this is checked the author box will no longer appear if the user doesn\'t have a description', 'saboxplugin' ),
+					'type'        => 'toggle',
+					'group'       => 'saboxplugin_options',
 				),
-				'sab_box_margin_bottom' => array(
-					'label'   => __( 'Bottom margin of author box:', 'saboxplugin' ),
-					'type'    => 'slider',
-					'choices' => array(
-						'min'       => 0,
-						'max'       => 100,
-						'increment' => 1,
-					),
-					'default' => '0',
-				),
-				'sab_no_description'    => array(
-					'label' => __( 'Hide the author box if author description is empty:', 'saboxplugin' ),
-					'type'  => 'toggle',
-					'group' => 'saboxplugin_options',
-				),
-				'sab_avatar_style'      => array(
-					'label'   => __( 'Author avatar image style:', 'saboxplugin' ),
-					'type'    => 'select',
-					'choices' => array(
-						0 => __( 'Square', 'saboxplugin' ),
-						1 => __( 'Circle', 'saboxplugin' ),
-					),
-					'default' => '0',
-					'group'   => 'saboxplugin_options',
-				),
-				'sab_avatar_hover'      => array(
-					'label' => __( 'Rotate effect on author avatar hover:', 'saboxplugin' ),
-					'type'  => 'toggle',
-					'group' => 'saboxplugin_options',
-				),
-				'sab_author_link'       => array(
-					'label'   => __( 'Author name should link to:', 'saboxplugin' ),
-					'type'    => 'select',
-					'choices' => array(
+				'sab_author_link'    => array(
+					'label'       => __( 'Author name should link to:', 'saboxplugin' ),
+					'description' => __( 'You can choose were to link the author\'s name. It can link to the author\'s page or link to the author\'s website. Also you have the option to remove the link if you select none', 'saboxplugin' ),
+					'type'        => 'select',
+					'choices'     => array(
 						'author-page'    => __( 'Author\'s Page', 'saboxplugin' ),
 						'author-website' => __( 'Author\'s Website', 'saboxplugin' ),
 						'none'           => __( 'None', 'saboxplugin' ),
 					),
-					'default' => 'author-page',
-					'group'   => 'saboxplugin_options',
+					'default'     => 'author-page',
+					'group'       => 'saboxplugin_options',
 				),
-				'sab_web'               => array(
-					'label' => __( 'Show author website:', 'saboxplugin' ),
-					'type'  => 'toggle',
-					'group' => 'saboxplugin_options',
+
+				'sab_web_target'     => array(
+					'label'       => __( 'Open author website link in a new tab:', 'saboxplugin' ),
+					'description' => __( 'If you check this the author\'s link will open in a new tab', 'saboxplugin' ),
+					'type'        => 'toggle',
+					'condition'   => 'sab_web',
+					'group'       => 'saboxplugin_options',
 				),
-				'sab_web_position'      => array(
-					'label'     => __( 'Author website position:', 'saboxplugin' ),
-					'type'      => 'select',
-					'choices'   => array(
-						0 => __( 'Left', 'saboxplugin' ),
-						1 => __( 'Right', 'saboxplugin' ),
-					),
-					'default'   => '0',
-					'condition' => 'sab_web',
-					'group'     => 'saboxplugin_options',
-				),
-				'sab_web_target'        => array(
-					'label'     => __( 'Open author website link in a new tab:', 'saboxplugin' ),
-					'type'      => 'toggle',
-					'condition' => 'sab_web',
-					'group'     => 'saboxplugin_options',
-				),
-				'sab_web_rel'           => array(
+				'sab_web_rel'        => array(
 					'label'     => __( 'Add "nofollow" attribute on author website link:', 'saboxplugin' ),
 					'type'      => 'toggle',
 					'condition' => 'sab_web',
 					'group'     => 'saboxplugin_options',
 				),
-				'sab_email'             => array(
-					'label' => __( 'Show author email:', 'saboxplugin' ),
-					'type'  => 'toggle',
-					'group' => 'saboxplugin_options',
+				'sab_email'          => array(
+					'label'       => __( 'Show author email:', 'saboxplugin' ),
+					'description' => __( 'If you check this it will add the email to social icons', 'saboxplugin' ),
+					'type'        => 'toggle',
+					'group'       => 'saboxplugin_options',
 				),
-				'sab_colored'           => array(
-					'label'   => __( 'Social icons type (colored background or symbols only):', 'saboxplugin' ),
-					'type'    => 'select',
-					'choices' => array(
-						0 => __( 'Symbols', 'saboxplugin' ),
-						1 => __( 'Colored', 'saboxplugin' ),
-					),
-					'default' => '0',
-					'group'   => 'saboxplugin_options',
+				'sab_link_target'    => array(
+					'label'       => __( 'Open social icon links in a new tab:', 'saboxplugin' ),
+					'description' => __( 'If you check this the social links will open in a new tab', 'saboxplugin' ),
+					'type'        => 'toggle',
+					'group'       => 'saboxplugin_options',
 				),
-				'sab_icons_style'       => array(
-					'label'     => __( 'Social icons style:', 'saboxplugin' ),
-					'type'      => 'select',
-					'choices'   => array(
-						0 => __( 'Squares', 'saboxplugin' ),
-						1 => __( 'Circle', 'saboxplugin' ),
-					),
-					'default'   => '0',
-					'condition' => 'sab_colored',
-					'group'     => 'saboxplugin_options',
-				),
-				'sab_social_hover'      => array(
-					'label'     => __( 'Rotate effect on social icons hover:', 'saboxplugin' ),
-					'type'      => 'toggle',
-					'condition' => 'sab_colored',
-					'group'     => 'saboxplugin_options',
-				),
-				'sab_box_long_shadow'   => array(
-					'label'     => __( 'Use flat long shadow effect:', 'saboxplugin' ),
-					'type'      => 'toggle',
-					'condition' => 'sab_colored',
-					'group'     => 'saboxplugin_options',
-				),
-				'sab_box_thin_border'   => array(
-					'label'     => __( 'Show a thin border on colored social icons:', 'saboxplugin' ),
-					'type'      => 'toggle',
-					'condition' => 'sab_colored',
-					'group'     => 'saboxplugin_options',
-				),
-				'sab_link_target'       => array(
-					'label' => __( 'Open social icon links in a new tab:', 'saboxplugin' ),
-					'type'  => 'toggle',
-					'group' => 'saboxplugin_options',
-				),
-				'sab_hide_socials'      => array(
+				'sab_hide_socials'   => array(
 					'label' => __( 'Hide the social icons on author box:', 'saboxplugin' ),
 					'type'  => 'toggle',
 					'group' => 'saboxplugin_options',
 				),
-				'sab_visibility'        => array(
-					'label'  => __( 'Show author box on:', 'saboxplugin' ),
-					'type'   => 'multiplecheckbox',
-					'handle' => array( 'Simple_Author_Box_Helper', 'get_custom_post_type' ),
-					'group'  => 'saboxplugin_options',
+				'sab_visibility'     => array(
+					'label'       => __( 'Show author box on:', 'saboxplugin' ),
+					'description' => __( 'Check each custom post to show the author box', 'saboxplugin' ),
+					'type'        => 'multiplecheckbox',
+					'handle'      => array( 'Simple_Author_Box_Helper', 'get_custom_post_type' ),
+					'group'       => 'saboxplugin_options',
 				),
-				'co_authors'            => array(
-					'label' => __( 'Use Guest Authors as Co Authors:', 'saboxplugin' ),
-					'type'  => 'toggle',
-					'group' => 'saboxplugin_options',
+			),
+			'appearance-options'    => array(
+				'sab_box_margin_top'    => array(
+					'label'       => __( 'Top margin of author box:', 'saboxplugin' ),
+					'description' => __( 'Choose how much space to add above the author box', 'saboxplugin' ),
+					'type'        => 'slider',
+					'choices'     => array(
+						'min'       => 0,
+						'max'       => 100,
+						'increment' => 1,
+					),
+					'default'     => '0',
+				),
+				'sab_box_margin_bottom' => array(
+					'label'       => __( 'Bottom margin of author box:', 'saboxplugin' ),
+					'description' => __( 'Choose how much space to add below the author box', 'saboxplugin' ),
+					'type'        => 'slider',
+					'choices'     => array(
+						'min'       => 0,
+						'max'       => 100,
+						'increment' => 1,
+					),
+					'default'     => '0',
+				),
+				'sab_avatar_style'      => array(
+					'label'       => __( 'Author avatar image style:', 'saboxplugin' ),
+					'description' => __( 'Change the shape of the avatar image', 'saboxplugin' ),
+					'type'        => 'select',
+					'choices'     => array(
+						0 => __( 'Square', 'saboxplugin' ),
+						1 => __( 'Circle', 'saboxplugin' ),
+					),
+					'default'     => '0',
+					'group'       => 'saboxplugin_options',
+				),
+				'sab_avatar_hover'      => array(
+					'label'       => __( 'Rotate effect on author avatar hover:', 'saboxplugin' ),
+					'description' => __( 'Add a rotate effect when you hover over the author\'s avatar', 'saboxplugin' ),
+					'type'        => 'toggle',
+					'group'       => 'saboxplugin_options',
+				),
+				'sab_web'               => array(
+					'label'       => __( 'Show author website:', 'saboxplugin' ),
+					'description' => __( 'Check this in order to show the author website.', 'saboxplugin' ),
+					'type'        => 'toggle',
+					'group'       => 'saboxplugin_options',
+				),
+				'sab_web_position'      => array(
+					'label'       => __( 'Author website position:', 'saboxplugin' ),
+					'description' => __( 'Select where you want to show the website ( left or right )', 'saboxplugin' ),
+					'type'        => 'select',
+					'choices'     => array(
+						0 => __( 'Left', 'saboxplugin' ),
+						1 => __( 'Right', 'saboxplugin' ),
+					),
+					'default'     => '0',
+					'condition'   => 'sab_web',
+					'group'       => 'saboxplugin_options',
+				),
+				'sab_colored'           => array(
+					'label'       => __( 'Social icons type (colored background or symbols only):', 'saboxplugin' ),
+					'description' => __( 'Select how you want the social icons to look : colored or grey', 'saboxplugin' ),
+					'type'        => 'select',
+					'choices'     => array(
+						0 => __( 'Symbols', 'saboxplugin' ),
+						1 => __( 'Colored', 'saboxplugin' ),
+					),
+					'default'     => '0',
+					'group'       => 'saboxplugin_options',
+				),
+				'sab_icons_style'       => array(
+					'label'       => __( 'Social icons style:', 'saboxplugin' ),
+					'description' => __( 'Select the shape of social icons\' container', 'saboxplugin' ),
+					'type'        => 'select',
+					'choices'     => array(
+						0 => __( 'Squares', 'saboxplugin' ),
+						1 => __( 'Circle', 'saboxplugin' ),
+					),
+					'default'     => '0',
+					'condition'   => 'sab_colored',
+					'group'       => 'saboxplugin_options',
+				),
+				'sab_social_hover'      => array(
+					'label'       => __( 'Rotate effect on social icons hover:', 'saboxplugin' ),
+					'description' => __( 'Add a rotate effect when you hover on social icons hover', 'saboxplugin' ),
+					'type'        => 'toggle',
+					'condition'   => 'sab_colored',
+					'group'       => 'saboxplugin_options',
+				),
+				'sab_box_long_shadow'   => array(
+					'label'       => __( 'Use flat long shadow effect:', 'saboxplugin' ),
+					'description' => __( 'Check this if you want a flat shodow for social icons', 'saboxplugin' ),
+					'type'        => 'toggle',
+					'condition'   => 'sab_colored',
+					'group'       => 'saboxplugin_options',
+				),
+				'sab_box_thin_border'   => array(
+					'label'       => __( 'Show a thin border on colored social icons:', 'saboxplugin' ),
+					'description' => __( 'Add a border to social icons container.', 'saboxplugin' ),
+					'type'        => 'toggle',
+					'condition'   => 'sab_colored',
+					'group'       => 'saboxplugin_options',
 				),
 			),
 			'color-options'         => array(
 				'sab_box_author_color' => array(
-					'label' => __( 'Author name color:', 'saboxplugin' ),
-					'type'  => 'color',
-					'group' => 'saboxplugin_options',
+					'label'       => __( 'Author name color:', 'saboxplugin' ),
+					'description' => __( 'Select the color for author\'s name text', 'saboxplugin' ),
+					'type'        => 'color',
+					'group'       => 'saboxplugin_options',
 				),
 				'sab_box_web_color'    => array(
-					'label' => __( 'Author website link color:', 'saboxplugin' ),
-					'type'  => 'color',
-					'group' => 'saboxplugin_options',
+					'label'       => __( 'Author website link color:', 'saboxplugin' ),
+					'description' => __( 'Select the color for author\'s website link', 'saboxplugin' ),
+					'type'        => 'color',
+					'group'       => 'saboxplugin_options',
 				),
 				'sab_box_border'       => array(
-					'label' => __( 'Border color of Simple Author Box:', 'saboxplugin' ),
-					'type'  => 'color',
-					'group' => 'saboxplugin_options',
+					'label'       => __( 'Border color of Simple Author Box:', 'saboxplugin' ),
+					'description' => __( 'Select the color for author box border', 'saboxplugin' ),
+					'type'        => 'color',
+					'group'       => 'saboxplugin_options',
 				),
 				'sab_box_icons_back'   => array(
-					'label' => __( 'Background color of social icons bar:', 'saboxplugin' ),
-					'type'  => 'color',
-					'group' => 'saboxplugin_options',
+					'label'       => __( 'Background color of social icons bar:', 'saboxplugin' ),
+					'description' => __( 'Select the color for social icons\' bar background', 'saboxplugin' ),
+					'type'        => 'color',
+					'group'       => 'saboxplugin_options',
 				),
 				'sab_box_icons_color'  => array(
-					'label' => __( 'Social icons color (for symbols only):', 'saboxplugin' ),
-					'type'  => 'color',
-					'group' => 'saboxplugin_options',
+					'label'       => __( 'Social icons color (for symbols only):', 'saboxplugin' ),
+					'description' => __( 'Select the color for social icons when you have selected symbols for social icons type', 'saboxplugin' ),
+					'type'        => 'color',
+					'group'       => 'saboxplugin_options',
 				),
 			),
 			'typography-options'    => array(
@@ -225,26 +252,29 @@ class Simple_Author_Box_Admin_Page {
 					'default'     => 'none',
 				),
 				'sab_box_name_font' => array(
-					'label'   => __( 'Author name font family:', 'saboxplugin' ),
-					'type'    => 'select',
-					'choices' => Simple_Author_Box_Helper::get_google_fonts(),
-					'default' => 'None',
+					'label'       => __( 'Author name font family:', 'saboxplugin' ),
+					'description' => __( 'Select the font family for the author\'s name', 'saboxplugin' ),
+					'type'        => 'select',
+					'choices'     => Simple_Author_Box_Helper::get_google_fonts(),
+					'default'     => 'None',
 				),
 				'sab_box_web_font'  => array(
-					'label'   => __( 'Author website font family:', 'saboxplugin' ),
-					'type'    => 'select',
-					'choices' => Simple_Author_Box_Helper::get_google_fonts(),
-					'default' => 'None',
+					'label'       => __( 'Author website font family:', 'saboxplugin' ),
+					'description' => __( 'Select the font family for the author\'s website', 'saboxplugin' ),
+					'type'        => 'select',
+					'choices'     => Simple_Author_Box_Helper::get_google_fonts(),
+					'default'     => 'None',
 				),
 				'sab_box_desc_font' => array(
-					'label'   => __( 'Author description font family:', 'saboxplugin' ),
-					'type'    => 'select',
-					'choices' => Simple_Author_Box_Helper::get_google_fonts(),
-					'default' => 'None',
+					'label'       => __( 'Author description font family:', 'saboxplugin' ),
+					'description' => __( 'Select the font family for the author\'s description', 'saboxplugin' ),
+					'type'        => 'select',
+					'choices'     => Simple_Author_Box_Helper::get_google_fonts(),
+					'default'     => 'None',
 				),
 				'sab_box_name_size' => array(
 					'label'       => __( 'Author name font size:', 'saboxplugin' ),
-					'description' => __( 'Default font size of author name is 18px.', 'saboxplugin' ),
+					'description' => __( 'Default font size for author name is 18px.', 'saboxplugin' ),
 					'type'        => 'slider',
 					'choices'     => array(
 						'min'       => 10,
@@ -255,7 +285,7 @@ class Simple_Author_Box_Admin_Page {
 				),
 				'sab_box_web_size'  => array(
 					'label'       => __( 'Author website font size:', 'saboxplugin' ),
-					'description' => __( 'Default font size of author website is 14px.', 'saboxplugin' ),
+					'description' => __( 'Default font size for author website is 14px.', 'saboxplugin' ),
 					'type'        => 'slider',
 					'choices'     => array(
 						'min'       => 10,
@@ -266,7 +296,7 @@ class Simple_Author_Box_Admin_Page {
 				),
 				'sab_box_desc_size' => array(
 					'label'       => __( 'Author description font size:', 'saboxplugin' ),
-					'description' => __( 'Default font size of author description is 14px.', 'saboxplugin' ),
+					'description' => __( 'Default font size for author description is 14px.', 'saboxplugin' ),
 					'type'        => 'slider',
 					'choices'     => array(
 						'min'       => 10,
@@ -277,7 +307,7 @@ class Simple_Author_Box_Admin_Page {
 				),
 				'sab_box_icon_size' => array(
 					'label'       => __( 'Size of social icons:', 'saboxplugin' ),
-					'description' => __( 'Default font size of social icons is 18px.', 'saboxplugin' ),
+					'description' => __( 'Default font size for social icons is 18px.', 'saboxplugin' ),
 					'type'        => 'slider',
 					'choices'     => array(
 						'min'       => 10,
@@ -287,14 +317,15 @@ class Simple_Author_Box_Admin_Page {
 					'default'     => '18',
 				),
 				'sab_desc_style'    => array(
-					'label'   => __( 'Author description font style:', 'saboxplugin' ),
-					'type'    => 'select',
-					'choices' => array(
+					'label'       => __( 'Author description font style:', 'saboxplugin' ),
+					'description' => __( 'Select the font style for the author\'s description', 'saboxplugin' ),
+					'type'        => 'select',
+					'choices'     => array(
 						0 => __( 'Normal', 'saboxplugin' ),
 						1 => __( 'Italic', 'saboxplugin' ),
 					),
-					'default' => '0',
-					'group'   => 'saboxplugin_options',
+					'default'     => '0',
+					'group'       => 'saboxplugin_options',
 				),
 			),
 			'miscellaneous-options' => array(
@@ -309,6 +340,21 @@ class Simple_Author_Box_Admin_Page {
 					'description' => __( 'This option is useful ONLY if you run a plugin that optimizes your CSS delivery or moves your stylesheets to the footer, to get a higher score on speed testing services. However, the plugin style is loaded only on single post and single page.', 'saboxplugin' ),
 					'type'        => 'toggle',
 					'group'       => 'saboxplugin_options',
+				),
+			),
+			'guest-author-options'  => array(
+				'enable_guest_authors' => array(
+					'label'       => __( 'Enable Guest Authors:', 'saboxplugin' ),
+					'description' => __( 'If you check this you\'ll be able to select guest authors for each post', 'saboxplugin' ),
+					'type'        => 'toggle',
+					'group'       => 'saboxplugin_options',
+				),
+				'co_authors'           => array(
+					'label'       => __( 'Use Guest Authors as Co Authors:', 'saboxplugin' ),
+					'description' => __( 'If you check this the guest authors will be transformed in co authors and they will be shown next under author.', 'saboxplugin' ),
+					'type'        => 'toggle',
+					'group'       => 'saboxplugin_options',
+					'condition'   => 'enable_guest_authors',
 				),
 			),
 		);
@@ -406,7 +452,9 @@ class Simple_Author_Box_Admin_Page {
 					$this->generate_setting_field( $field_name, $field );
 				}
 				echo '</table>';
-				submit_button();
+				echo '<div class="sabox-sumit-form">';
+				submit_button( esc_html__( 'Submit', 'saboxplugin' ), 'primary', '', false );
+				echo '</div>';
 			}
 
 			?>
@@ -441,7 +489,7 @@ class Simple_Author_Box_Admin_Page {
 
 		if ( isset( $_POST['sabox_plugin_settings_page'] ) && wp_verify_nonce( $_POST['sabox_plugin_settings_page'], 'sabox-plugin-settings' ) ) {
 			$tab      = $_POST['sabox-setting-tab'];
-			$settings = $_POST['sabox-settings'];
+			$settings = isset( $_POST['sabox-settings'] ) ? $_POST['sabox-settings'] : array();
 			$groups   = array();
 
 			foreach ( $this->settings[ $tab ] as $key => $setting ) {
@@ -565,7 +613,7 @@ class Simple_Author_Box_Admin_Page {
 			case 'slider':
 				$value = isset( $this->options[ $field_name ] ) ? $this->options[ $field_name ] : $field['default'];
 				echo '<div class="sabox-slider-container slider-container">';
-				echo '<input type="text" id="' . esc_attr( $field_name ) . '" class="saboxfield" name="' . esc_attr( $name ) . '" data-min="' . absint( $field['choices']['min'] ) . '" data-max="' . absint( $field['choices']['max'] ) . '" data-step="' . absint( $field['choices']['increment'] ) . '" value="' . esc_attr( $value ) . '">';
+				echo '<input type="text" id="' . esc_attr( $field_name ) . '" class="saboxfield" name="' . esc_attr( $name ) . '" data-min="' . absint( $field['choices']['min'] ) . '" data-max="' . absint( $field['choices']['max'] ) . '" data-step="' . absint( $field['choices']['increment'] ) . '" value="' . esc_attr( $value ) . 'px">';
 				echo '<div class="sabox-slider"></div>';
 				echo '</div>';
 				break;
@@ -579,8 +627,8 @@ class Simple_Author_Box_Admin_Page {
 				echo '<div class="sabox-multicheckbox">';
 				if ( ! isset( $field['choices'] ) && isset( $field['handle'] ) && is_array( $field['handle'] ) ) {
 					if ( class_exists( $field['handle'][0] ) ) {
-						$class  = $field['handle'][0];
-						$method = $field['handle'][1];
+						$class            = $field['handle'][0];
+						$method           = $field['handle'][1];
 						$field['choices'] = $class::$method();
 					}
 				}

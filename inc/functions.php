@@ -59,7 +59,7 @@ if ( ! function_exists( 'wpsabox_author_box' ) ) {
 			$co_authors         = get_post_meta( $post->ID, 'sabox-coauthors', true );
 			$sabox_guest_author = false;
 
-			if ( ! empty( $co_authors ) ) {
+			if ( ! empty( $co_authors ) && isset( $sabox_options['enable_guest_authors'] ) ) {
 				if ( isset( $sabox_options['co_authors'] ) ) {
 					$sabox_author_id = $post->post_author;
 					include( $template );
@@ -69,7 +69,7 @@ if ( ! function_exists( 'wpsabox_author_box' ) ) {
 				include( $template );
 			}
 
-			if ( ! empty( $co_authors ) ) {
+			if ( ! empty( $co_authors ) && isset( $sabox_options['enable_guest_authors'] ) ) {
 				if ( isset( $sabox_options['co_authors'] ) ) {
 					echo '<h2 class="sabox-guest-authors">' . esc_html__( 'Co Authors :', 'saboxplugin' ) . '</h2>';
 				} else {

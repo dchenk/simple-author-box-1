@@ -47,7 +47,7 @@
             max = input.data( 'max' ),
             min = input.data( 'min' ),
             step = input.data( 'step' ),
-            value = input.val();
+            value = parseInt(input.val());
 
         $( $slider ).slider( {
           value: value,
@@ -55,7 +55,7 @@
           max: max,
           step: step,
           slide: function( event, ui ) {
-            input.val( ui.value ).trigger( 'change' );
+            input.val( ui.value + 'px' ).trigger( 'change' );
           }
         } );
       } );

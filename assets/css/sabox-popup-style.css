@@ -60,17 +60,25 @@ div#sabox-add-user {
 	display: block;
 	clear: both;
 }
+.sabox-popup-container .input-container {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+.sabox-popup-container .input-col {
+    padding: 0 15px;
+    box-sizing: border-box;
+}
 .sabox-popup-container .input-col {
 	float: left;
 }
 .sabox-popup-container .input-col input {
-	width: 90%;
+	width: 100%;
 }
 .sabox-popup-container .input-col input.error {
     border-color: #dc3232;
 }
 .sabox-popup-container .personal-info .input-col {
-	width: 33%;
+	width: 33.33%;
 }
 .sabox-popup-container .contact-info .input-col {
 	width: 50%;
@@ -81,7 +89,6 @@ div#sabox-add-user {
 }
 .sabox-popup-container .biographical-info {
 	position: relative;
-	margin-top: 1.5em;
 }
 .sabox-popup-container .biographical-info h3 {
 	position: absolute;
@@ -189,4 +196,13 @@ div#sabox-add-user {
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
     border-right: 1px solid #ddd;
+}
+.sabox-popup-container .personal-info,
+.sabox-popup-container .contact-info,
+.sabox-popup-container .biographical-info {
+    margin-top: 40px;
+}
+.sabox-popup-container .personal-info h3,
+.sabox-popup-container .contact-info h3 {
+    margin-bottom: 25px;
 }

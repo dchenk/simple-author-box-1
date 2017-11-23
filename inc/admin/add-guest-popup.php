@@ -49,40 +49,15 @@
 						</div>
 					</div>
 				</div>
-				<div class="social-media-info">
-					<h3><?php esc_html_e( 'Social Media Links', 'saboxplugin' ); ?></h3>
-					<div class="sabox-media-links">
-						<?php
-							$social_icons = apply_filters( 'sabox_social_icons', Simple_Author_Box_Helper::$social_icons );
-							unset( $social_icons['user_email'] );
-						?>
-						<div class="social-link-item">
-							<select name="sabox-user[social-platform][]" class="sabox-select">
-								<?php
 
-								foreach ( $social_icons as $key => $social_icon ) {
-									echo '<option value="' . $key . '">' . $social_icon . '</option>';
-								}
+				<?php do_action( 'sabox_guest_author_popup_fields' ); ?>
 
-								?>
-							</select>
-							<div class="social-link-container">
-								<input type="text" name="sabox-user[social-links][]" class="sabox-input" value="" placeholder="<?php esc_html_e( 'Social link ...', 'saboxplugin' ); ?>">
-								<span class="dashicons dashicons-no"></span>
-							</div>
-						</div>
-					</div>
-					<div class="sabox-add-social-link">
-						<span class="dashicons dashicons-plus"></span>
-						<span><?php esc_html_e( 'Add new social platform', 'saboxplugin' ); ?></span>
-					</div>
-				</div>
 			</div>
 			<div class="sabox-popup-foter">
 				<?php wp_nonce_field( 'sabox-create-ajax-user', 'sabox-nonce' ); ?>
 				<div class="sabox-button-container">
 					<div class="spinner"></div>
-					<?php submit_button( __( 'Add Guest Author', 'saboxplugin' ), 'primary', 'saboxcreateguestauthor', true, array( 'id' => 'sabox-submit' ) ); ?>
+					<?php submit_button( __( 'Add Guest Author', 'saboxplugin' ), 'secondary', 'saboxcreateguestauthor', true, array( 'id' => 'sabox-submit' ) ); ?>
 				</div>
 			</div>
 		</form>

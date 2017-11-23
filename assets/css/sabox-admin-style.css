@@ -198,12 +198,12 @@
 .sabox-add-social-link:hover {
   border-color: #000;
 }
-#sabox-social-table .dashicons-no {
+#sabox-social-table .dashicons-trash {
     vertical-align: middle;
     cursor: pointer;
     color: #a00;
 }
-#sabox-social-table .dashicons-no:hover {
+#sabox-social-table .dashicons-trash:hover {
   color: #dc3232;
 }
 
@@ -222,6 +222,7 @@
     padding: 40px;
     text-align: center;
     margin-top: 15px;
+    box-sizing: border-box;
 }
 .sabox-wrap .col-fulwidth .button.button-feedback {
     padding: 10px 40px;
@@ -246,4 +247,8 @@
 
 .checkbox-label {
   text-transform: capitalize;
+}
+
+.sabox-sumit-form {
+  text-align: right;
 }

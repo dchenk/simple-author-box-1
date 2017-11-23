@@ -86,6 +86,7 @@ class Simple_Author_Box {
 		}
 
 		add_shortcode( 'simple-author-box', array( $this, 'shortcode' ) );
+		add_filter( 'sabox_hide_social_icons', array( $this, 'show_social_media_icons' ), 10, 2 );
 
 	}
 
@@ -380,6 +381,14 @@ class Simple_Author_Box {
 			delete_user_meta( $user_id, 'sabox-profile-image' );
 		}
 
+	}
+
+	public function show_social_media_icons( $return, $user ) {
+		if ( in_array( 'sab-guest-author', (array) $user->roles ) ) {
+			return false;
+		}
+
+		return true;
 	}
 
 }

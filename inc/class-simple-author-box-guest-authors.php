@@ -4,31 +4,39 @@ class Simple_Author_Box_Guest_Authors {
 
 	function __construct() {
 
+		$this->options = get_option( 'saboxplugin_options', array() );
+
 		// Hooks
-		add_action( 'admin_menu', array( $this, 'register_guest_submenu_items' ) );
-		add_action( 'admin_menu', array( $this, 'disable_add_guest_author_menu' ), 99 );
-		add_action( 'init', array( $this, 'add_guest_role' ) );
-		add_action( 'admin_init', array( $this, 'creat_edit_guests' ) );
-		add_action( 'wp_ajax_sabox_create_user', array( $this, 'create_user' ) );
-
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_style_and_scripts' ) );
-
-		add_action( 'add_meta_boxes', array( $this, 'author_meta_box' ) );
-
-		add_action( 'save_post', array( $this, 'save_coauthors' ), 10, 2 );
-
 		add_action( 'show_user_profile', array( $this, 'add_social_area' ) );
 		add_action( 'edit_user_profile', array( $this, 'add_social_area' ) );
 
 		add_action( 'personal_options_update', array( $this, 'save_social_links' ) );
 		add_action( 'edit_user_profile_update', array( $this, 'save_social_links' ) );
 
-		add_action( 'admin_footer-post.php', array( $this, 'display_guest_author_popup' ) );
-		add_action( 'admin_footer-post-new.php', array( $this, 'display_guest_author_popup' ) );
+		if ( isset( $this->options['enable_guest_authors'] ) && '' != $this->options['enable_guest_authors'] ) {
 
-		add_filter( 'users_list_table_query_args', array( $this, 'remove_guest_authors' ) );
-		add_filter( 'views_users', array( $this, 'remove_guest_authors_from_roles' ) );
-		add_filter( 'show_password_fields', array( $this, 'remove_guest_author_passwords' ), 10, 2 );
+			add_action( 'admin_menu', array( $this, 'register_guest_submenu_items' ) );
+			add_action( 'admin_menu', array( $this, 'disable_add_guest_author_menu' ), 99 );
+			add_action( 'init', array( $this, 'add_guest_role' ) );
+			add_action( 'admin_init', array( $this, 'creat_edit_guests' ) );
+			add_action( 'wp_ajax_sabox_create_user', array( $this, 'create_user' ) );
+
+			add_action( 'admin_enqueue_scripts', array( $this, 'admin_style_and_scripts' ) );
+
+			add_action( 'add_meta_boxes', array( $this, 'author_meta_box' ) );
+
+			add_action( 'save_post', array( $this, 'save_coauthors' ), 10, 2 );
+
+			add_action( 'admin_footer-post.php', array( $this, 'display_guest_author_popup' ) );
+			add_action( 'admin_footer-post-new.php', array( $this, 'display_guest_author_popup' ) );
+
+			add_filter( 'users_list_table_query_args', array( $this, 'remove_guest_authors' ) );
+			add_filter( 'views_users', array( $this, 'remove_guest_authors_from_roles' ) );
+			add_filter( 'show_password_fields', array( $this, 'remove_guest_author_passwords' ), 10, 2 );
+
+			add_filter( 'sabox_hide_social_media', array( $this, 'check_if_guest_author' ), 10, 2 );
+
+		}
 
 	}
 
@@ -231,6 +239,10 @@ class Simple_Author_Box_Guest_Authors {
 		$social_icons = apply_filters( 'sabox_social_icons', Simple_Author_Box_Helper::$social_icons );
 		unset( $social_icons['user_email'] );
 
+		if ( apply_filters( 'sabox_hide_social_media', false, $profileuser ) ) {
+			return;
+		}
+
 		?>
 
 		<h2><?php _e( 'Social Media Links', 'saboxplugin' ); ?></h2>
@@ -250,7 +262,7 @@ class Simple_Author_Box_Guest_Authors {
 						</th>
 						<td>
 							<input name="sabox-social-links[]" type="text" class="regular-text" value="<?php echo esc_url( $social_link ); ?>">
-							<span class="dashicons dashicons-no"></span>
+							<span class="dashicons dashicons-trash"></span>
 						<td>
 					</tr>
 					<?php
@@ -267,7 +279,7 @@ class Simple_Author_Box_Guest_Authors {
 					</th>
 					<td>
 						<input name="sabox-social-links[]" type="text" class="regular-text" value="">
-						<span class="dashicons dashicons-no"></span>
+						<span class="dashicons dashicons-trash"></span>
 					<td>
 				</tr>
 				<?php
@@ -485,6 +497,14 @@ class Simple_Author_Box_Guest_Authors {
 			delete_post_meta( $post_id, 'sabox-coauthors' );
 		}
 
+	}
+
+	public function check_if_guest_author( $return, $user ) {
+		if ( in_array( 'sab-guest-author', (array) $user->roles ) ) {
+			return true;
+		}
+
+		return false;
 	}
 
 }

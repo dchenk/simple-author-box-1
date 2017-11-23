@@ -81,7 +81,7 @@
         $.each( SABHerlper.socialIcons, function( key, name ) {
           SABox.html = SABox.html + '<option value="' + key + '">' + name + '</option>';
         } );
-        SABox.html = SABox.html + '</select></th><td><input name="sabox-social-links[]" type="text" class="regular-text"><td></tr>';
+        SABox.html = SABox.html + '</select></th><td><input name="sabox-social-links[]" type="text" class="regular-text"><span class="dashicons dashicons-trash"></span><td></tr>';
       }
 
       $( '#sabox-social-table' ).append( SABox.html );
@@ -89,7 +89,7 @@
     } );
 
     // Remove Social Link
-    $( '#sabox-social-table' ).on( 'click', '.dashicons-no', function() {
+    $( '#sabox-social-table' ).on( 'click', '.dashicons-trash', function() {
       var row = $( this ).parents( 'tr' );
       row.fadeOut( 'slow', function() {
         row.remove();
