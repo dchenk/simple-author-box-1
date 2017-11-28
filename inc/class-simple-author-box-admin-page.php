@@ -35,7 +35,7 @@ class Simple_Author_Box_Admin_Page {
 			'general-options'       => array(
 				'sab_autoinsert'     => array(
 					'label'       => __( 'Manually insert the Simple Author Box:', 'saboxplugin' ),
-					'description' => __( 'Check this and the author box will no longer be automatically added to your post. You\'ll need to add it using shortcodes or a php function', 'saboxplugin' ),
+					'description' => __( 'When turned ON, the author box will no longer be automatically added to your post. You\'ll need to manually add it using shortcodes or a PHP function.', 'saboxplugin' ),
 					'type'        => 'toggle',
 					'group'       => 'saboxplugin_options',
 				),
@@ -53,13 +53,13 @@ class Simple_Author_Box_Admin_Page {
 				),
 				'sab_no_description' => array(
 					'label'       => __( 'Hide the author box if author description is empty:', 'saboxplugin' ),
-					'description' => __( 'If this is checked the author box will no longer appear if the user doesn\'t have a description', 'saboxplugin' ),
+					'description' => __( 'When turned ON, the author box will not appear for users without a description', 'saboxplugin' ),
 					'type'        => 'toggle',
 					'group'       => 'saboxplugin_options',
 				),
 				'sab_author_link'    => array(
 					'label'       => __( 'Author name should link to:', 'saboxplugin' ),
-					'description' => __( 'You can choose were to link the author\'s name. It can link to the author\'s page or link to the author\'s website. Also you have the option to remove the link if you select none', 'saboxplugin' ),
+					'description' => __( 'Use the drop-down to select where the author name should link to. You can also select None to remove the link.', 'saboxplugin' ),
 					'type'        => 'select',
 					'choices'     => array(
 						'author-page'    => __( 'Author\'s Page', 'saboxplugin' ),
@@ -85,13 +85,13 @@ class Simple_Author_Box_Admin_Page {
 				),
 				'sab_email'          => array(
 					'label'       => __( 'Show author email:', 'saboxplugin' ),
-					'description' => __( 'If you check this it will add the email to social icons', 'saboxplugin' ),
+					'description' => __( 'When turned ON, the plugin all add an email option next to the social icons.', 'saboxplugin' ),
 					'type'        => 'toggle',
 					'group'       => 'saboxplugin_options',
 				),
 				'sab_link_target'    => array(
 					'label'       => __( 'Open social icon links in a new tab:', 'saboxplugin' ),
-					'description' => __( 'If you check this the social links will open in a new tab', 'saboxplugin' ),
+					'description' => __( 'When turned ON, the author’s social links will open in a new tab.', 'saboxplugin' ),
 					'type'        => 'toggle',
 					'group'       => 'saboxplugin_options',
 				),
@@ -102,7 +102,7 @@ class Simple_Author_Box_Admin_Page {
 				),
 				'sab_visibility'     => array(
 					'label'       => __( 'Show author box on:', 'saboxplugin' ),
-					'description' => __( 'Check each custom post to show the author box', 'saboxplugin' ),
+					'description' => __( 'Choose which post types to display the author box on', 'saboxplugin' ),
 					'type'        => 'multiplecheckbox',
 					'handle'      => array( 'Simple_Author_Box_Helper', 'get_custom_post_type' ),
 					'group'       => 'saboxplugin_options',
@@ -133,7 +133,7 @@ class Simple_Author_Box_Admin_Page {
 				),
 				'sab_avatar_style'      => array(
 					'label'       => __( 'Author avatar image style:', 'saboxplugin' ),
-					'description' => __( 'Change the shape of the avatar image', 'saboxplugin' ),
+					'description' => __( 'Change the shape of the author’s avatar image', 'saboxplugin' ),
 					'type'        => 'select',
 					'choices'     => array(
 						0 => __( 'Square', 'saboxplugin' ),
@@ -144,13 +144,13 @@ class Simple_Author_Box_Admin_Page {
 				),
 				'sab_avatar_hover'      => array(
 					'label'       => __( 'Rotate effect on author avatar hover:', 'saboxplugin' ),
-					'description' => __( 'Add a rotate effect when you hover over the author\'s avatar', 'saboxplugin' ),
+					'description' => __( 'When turned ON, this adds a rotate effect when hovering over the author\'s avatar', 'saboxplugin' ),
 					'type'        => 'toggle',
 					'group'       => 'saboxplugin_options',
 				),
 				'sab_web'               => array(
 					'label'       => __( 'Show author website:', 'saboxplugin' ),
-					'description' => __( 'Check this in order to show the author website.', 'saboxplugin' ),
+					'description' => __( 'When turned ON, the box will include the author\'s website', 'saboxplugin' ),
 					'type'        => 'toggle',
 					'group'       => 'saboxplugin_options',
 				),
@@ -168,7 +168,7 @@ class Simple_Author_Box_Admin_Page {
 				),
 				'sab_colored'           => array(
 					'label'       => __( 'Social icons type (colored background or symbols only):', 'saboxplugin' ),
-					'description' => __( 'Select how you want the social icons to look : colored or grey', 'saboxplugin' ),
+					'description' => __( 'Colored background adds a background behind the social icon symbol', 'saboxplugin' ),
 					'type'        => 'select',
 					'choices'     => array(
 						0 => __( 'Symbols', 'saboxplugin' ),
@@ -232,13 +232,13 @@ class Simple_Author_Box_Admin_Page {
 				),
 				'sab_box_icons_back'   => array(
 					'label'       => __( 'Background color of social icons bar:', 'saboxplugin' ),
-					'description' => __( 'Select the color for social icons\' bar background', 'saboxplugin' ),
+					'description' => __( 'Select the color for the social icons bar background', 'saboxplugin' ),
 					'type'        => 'color',
 					'group'       => 'saboxplugin_options',
 				),
 				'sab_box_icons_color'  => array(
 					'label'       => __( 'Social icons color (for symbols only):', 'saboxplugin' ),
-					'description' => __( 'Select the color for social icons when you have selected symbols for social icons type', 'saboxplugin' ),
+					'description' => __( 'Select the color for social icons when using the symbols only social icon type', 'saboxplugin' ),
 					'type'        => 'color',
 					'group'       => 'saboxplugin_options',
 				),
@@ -246,7 +246,7 @@ class Simple_Author_Box_Admin_Page {
 			'typography-options'    => array(
 				'sab_box_subset'    => array(
 					'label'       => __( 'Google font characters subset:', 'saboxplugin' ),
-					'description' => __( 'Please note that some Google fonts does not support particular subsets!', 'saboxplugin' ),
+					'description' => __( 'Note - Some Google Fonts do not support particular subsets', 'saboxplugin' ),
 					'type'        => 'select',
 					'choices'     => Simple_Author_Box_Helper::get_google_font_subsets(),
 					'default'     => 'none',
@@ -331,7 +331,7 @@ class Simple_Author_Box_Admin_Page {
 			'miscellaneous-options' => array(
 				'sab_load_fa'             => array(
 					'label'       => __( 'Disable Font Awesome stylesheet:', 'saboxplugin' ),
-					'description' => __( 'Switch to "Yes" to prevent Font Awesome from loading its stylesheet, ONLY if your theme or another plugin already does.', 'saboxplugin' ),
+					'description' => __( 'Turn ON to prevent Font Awesome from loading its stylesheet. ONLY do this if your theme or another plugin already loads the Font Awesome stylesheet.', 'saboxplugin' ),
 					'type'        => 'toggle',
 					'group'       => 'saboxplugin_options',
 				),
@@ -345,7 +345,7 @@ class Simple_Author_Box_Admin_Page {
 			'guest-author-options'  => array(
 				'enable_guest_authors' => array(
 					'label'       => __( 'Enable Guest Authors:', 'saboxplugin' ),
-					'description' => __( 'If you check this you\'ll be able to select guest authors for each post', 'saboxplugin' ),
+					'description' => __( 'When turned ON, you will be able to select guest authors for each post.', 'saboxplugin' ),
 					'type'        => 'toggle',
 					'group'       => 'saboxplugin_options',
 				),
@@ -428,7 +428,7 @@ class Simple_Author_Box_Admin_Page {
 			<div class="about-text">
 				<?php
 				/* Translators: Welcome Screen Description. */
-				echo esc_html__( 'Simple Author Box is now installed and ready to use! Get ready to create beautiful author boxes. We hope you enjoy it! We want to make sure you have the best experience using Simple Author Box and that is why we gathered here all the necessary information for you. We hope you will enjoy using Simple Author Box, as much as we enjoy creating great products.', 'saboxplugin' );
+				echo esc_html__( 'Simple Author Box is now installed and ready to use! Get ready to create beautiful author boxes. We want to make sure you have the best experience using Simple Author Box, which is why we\'ve gathered all the necessary information below. We hope you enjoy using Simple Author Box as much as we enjoy creating great products.', 'saboxplugin' );
 				?>
 			</div>
 			<div class="wp-badge epsilon-welcome-logo"></div>
