@@ -814,18 +814,11 @@ class Simple_Author_Box_Helper {
 
 		$template = '';
 
-		$theme_path       = get_template_directory();
-		$child_theme_path = get_stylesheet_directory();
-
-		if ( $child_theme_path != $theme_path ) {
-			$template = locate_template( $child_theme_path . '/sab/' . $template_name );
+		if ( ! $template ) {
+			$template = locate_template( array( 'sab/' . $template_name ) );
 		}
 
-		if ( ! $template ) {
-			$template = locate_template( $theme_path . '/sab/' . $template_name );
-		}
-
-		if ( ! $template ) {
+		if ( ! $template && file_exists( SIMPLE_AUTHOR_BOX_PATH . 'template/' . $template_name ) ) {
 			$template = SIMPLE_AUTHOR_BOX_PATH . 'template/' . $template_name;
 		}
 
@@ -834,11 +827,116 @@ class Simple_Author_Box_Helper {
 		}
 
 		// Allow 3rd party plugins to filter template file from their plugin.
-		$template = apply_filters( 'sabox_get_template_part', $template );
+		$template = apply_filters( 'sabox_get_template_part', $template, $template_name );
 		if ( $template ) {
 			return $template;
 		}
 
+	}
+
+	public static function generate_inline_css() {
+
+		$padding_top_bottom  = get_option( 'sab_box_padding_top_bottom', 0 );
+		$padding_left_right  = get_option( 'sab_box_padding_left_right', 0 );
+		$sabox_top_margin    = get_option( 'sab_box_margin_top', 0 );
+		$sabox_bottom_margin = get_option( 'sab_box_margin_bottom', 0 );
+		$sabox_name_size     = get_option( 'sab_box_name_size', 18 );
+		$sabox_desc_size     = get_option( 'sab_box_desc_size', 14 );
+		$sabox_icon_size     = get_option( 'sab_box_icon_size', 14 );
+		$sabox_options       = get_option( 'saboxplugin_options', array() );
+
+		if ( isset( $sabox_options['sab_web'] ) and get_option( 'sab_box_web_size' ) ) {
+			$sabox_web_size = get_option( 'sab_box_web_size' );
+		} else {
+			$sabox_web_size = 14;
+		}
+
+		$style = '';
+
+		// Border color of Simple Author Box
+		if ( isset( $sabox_options['sab_box_border'] ) && ! empty( $sabox_options['sab_box_border'] ) ) {
+			$style .= '.saboxplugin-wrap {border-color:' . esc_html( $sabox_options['sab_box_border'] ) . ';}';
+			$style .= '.saboxplugin-wrap .saboxplugin-socials {-webkit-box-shadow: 0 0.05em 0 0 ' . esc_html( $sabox_options['sab_box_border'] ) . ' inset; -moz-box-shadow:0 0.05em 0 0 ' . esc_html( $sabox_options['sab_box_border'] ) . ' inset;box-shadow:0 0.05em 0 0 ' . esc_html( $sabox_options['sab_box_border'] ) . ' inset;}';
+		}
+		// Avatar image style
+		if ( isset( $sabox_options['sab_avatar_style'] ) && '0' != $sabox_options['sab_avatar_style'] ) {
+			$style .= '.saboxplugin-wrap .saboxplugin-gravatar img {-webkit-border-radius:50%;-moz-border-radius:50%;-ms-border-radius:50%;-o-border-radius:50%;border-radius:50%;}';
+		}
+		// Social icons style
+		if ( isset( $sabox_options['sab_colored'] ) && '0' != $sabox_options['sab_colored'] && isset( $sabox_options['sab_icons_style'] ) && '0' != $sabox_options['sab_icons_style'] ) {
+			$style .= '.saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-color {-webkit-border-radius:50%;-moz-border-radius:50%;-ms-border-radius:50%;-o-border-radius:50%;border-radius:50%;}';
+		}
+		// Long Shadow
+		if ( isset( $sabox_options['sab_colored'] ) && '0' != $sabox_options['sab_colored'] && ! isset( $sabox_options['sab_box_long_shadow'] ) ) {
+			$style .= '.saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-color:before {text-shadow: none;}';
+		}
+		// Avatar hover effect
+		if ( isset( $sabox_options['sab_avatar_style'] ) && '0' != $sabox_options['sab_avatar_style'] && isset( $sabox_options['sab_avatar_hover'] ) ) {
+			$style .= '.saboxplugin-wrap .saboxplugin-gravatar img {-webkit-transition:all .5s ease;-moz-transition:all .5s ease;-o-transition:all .5s ease;transition:all .5s ease;}';
+			$style .= '.saboxplugin-wrap .saboxplugin-gravatar img:hover {-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-o-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg);}';
+		}
+		// Social icons hover effect
+		if ( isset( $sabox_options['sab_icons_style'] ) && '0' != $sabox_options['sab_icons_style'] && isset( $sabox_options['sab_social_hover'] ) ) {
+			$style .= '.saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-color, .saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-grey {-webkit-transition: all 0.3s ease-in-out;-moz-transition: all 0.3s ease-in-out;-o-transition: all 0.3s ease-in-out;-ms-transition: all 0.3s ease-in-out;transition: all 0.3s ease-in-out;}.saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-color:hover,.saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-grey:hover {-webkit-transform: rotate(360deg);-moz-transform: rotate(360deg);-o-transform: rotate(360deg);-ms-transform: rotate(360deg);transform: rotate(360deg);}';
+		}
+		// Thin border
+		if ( isset( $sabox_options['sab_colored'] ) && '0' != $sabox_options['sab_colored'] && ! isset( $sabox_options['sab_box_thin_border'] ) ) {
+			$style .= '.saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-color {border: medium none !important;}';
+		}
+		// Background color of social icons bar
+		if ( isset( $sabox_options['sab_box_icons_back'] ) && ! empty( $sabox_options['sab_box_icons_back'] ) ) {
+			$style .= '.saboxplugin-wrap .saboxplugin-socials{background-color:' . esc_html( $sabox_options['sab_box_icons_back'] ) . ';}';
+		}
+		// Color of social icons (for symbols only):
+		if ( isset( $sabox_options['sab_box_icons_color'] ) && ! empty( $sabox_options['sab_box_icons_color'] ) ) {
+			$style .= '.saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-grey {color:' . esc_html( $sabox_options['sab_box_icons_color'] ) . ';}';
+		}
+		// Author name color
+		if ( isset( $sabox_options['sab_box_author_color'] ) && ! empty( $sabox_options['sab_box_author_color'] ) ) {
+			$style .= '.saboxplugin-wrap .saboxplugin-authorname a {color:' . esc_html( $sabox_options['sab_box_author_color'] ) . ';}';
+		}
+
+		// Author web color
+		if ( isset( $sabox_options['sab_web'] ) && isset( $sabox_options['sab_box_web_color'] ) && ! empty( $sabox_options['sab_box_web_color'] ) ) {
+			$style .= '.saboxplugin-wrap .saboxplugin-web a {color:' . esc_html( $sabox_options['sab_box_web_color'] ) . ';}';
+		}
+
+		// Author name font family
+		if ( get_option( 'sab_box_name_font' ) != 'none' ) {
+			$author_name_font = get_option( 'sab_box_name_font' );
+			$style           .= '.saboxplugin-wrap .saboxplugin-authorname {font-family:"' . esc_html( $author_name_font ) . '";}';
+		}
+
+		// Author description font family
+		if ( get_option( 'sab_box_desc_font' ) != 'none' ) {
+			$author_desc_font = get_option( 'sab_box_desc_font' );
+			$style           .= '.saboxplugin-wrap .saboxplugin-desc {font-family:' . esc_html( $author_desc_font ) . ';}';
+		}
+
+		// Author web font family
+		if ( isset( $sabox_options['sab_web'] ) && get_option( 'sab_box_web_font' ) != 'none' ) {
+			$author_web_font = get_option( 'sab_box_web_font' );
+			$style          .= '.saboxplugin-wrap .saboxplugin-web {font-family:"' . esc_html( $author_web_font ) . '";}';
+		}
+
+		// Author description font style
+		if ( isset( $sabox_options['sab_desc_style'] ) && '0' != $sabox_options['sab_desc_style'] ) {
+			$style .= '.saboxplugin-wrap .saboxplugin-desc {font-style:italic;}';
+		}
+		// Margin top & bottom, Padding
+		$style .= '.saboxplugin-wrap {margin-top:' . absint( $sabox_top_margin ) . 'px; margin-bottom:' . absint( $sabox_bottom_margin ) . 'px; padding: ' . absint( $padding_top_bottom ) . 'px ' . absint( $padding_left_right ) . 'px }';
+		// Author name text size
+		$style .= '.saboxplugin-wrap .saboxplugin-authorname {font-size:' . absint( $sabox_name_size ) . 'px; line-height:' . absint( $sabox_name_size + 7 ) . 'px;}';
+		// Author description font size
+		$style .= '.saboxplugin-wrap .saboxplugin-desc {font-size:' . absint( $sabox_desc_size ) . 'px; line-height:' . absint( $sabox_desc_size + 7 ) . 'px;}';
+		// Author website text size
+		$style .= '.saboxplugin-wrap .saboxplugin-web {font-size:' . absint( $sabox_web_size ) . 'px;}';
+		// Icons size
+		$style .= '.saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-color {font-size:' . absint( $sabox_icon_size + 3 ) . 'px;}';
+		$style .= '.saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-color:before {width:' . absint( $sabox_icon_size + $sabox_icon_size ) . 'px; height:' . absint( $sabox_icon_size + $sabox_icon_size ) . 'px; line-height:' . absint( $sabox_icon_size + $sabox_icon_size + 1 ) . 'px; }';
+		$style .= '.saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-grey {font-size:' . absint( $sabox_icon_size ) . 'px;}';
+
+		return $style;
 	}
 
 }

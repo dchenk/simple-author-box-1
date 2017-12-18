@@ -77,7 +77,7 @@
     $( '.sabox-add-social-link' ).click( function() {
 
       if ( undefined === SABox.html ) {
-        SABox.html = '<tr> <th> <select name="sabox-social-icons[]">';
+        SABox.html = '<tr> <th><span class="sabox-drag"></span><select name="sabox-social-icons[]">';
         $.each( SABHerlper.socialIcons, function( key, name ) {
           SABox.html = SABox.html + '<option value="' + key + '">' + name + '</option>';
         } );

@@ -23,9 +23,6 @@ class Simple_Author_Box_Admin_Page {
 			'typography-options'    => array(
 				'label' => __( 'Typography', 'saboxplugin' ),
 			),
-			'guest-author-options'  => array(
-				'label' => __( 'Guest Author', 'saboxplugin' ),
-			),
 			'miscellaneous-options' => array(
 				'label' => __( 'Misc', 'saboxplugin' ),
 			),
@@ -100,16 +97,9 @@ class Simple_Author_Box_Admin_Page {
 					'type'  => 'toggle',
 					'group' => 'saboxplugin_options',
 				),
-				'sab_visibility'     => array(
-					'label'       => __( 'Show author box on:', 'saboxplugin' ),
-					'description' => __( 'Choose which post types to display the author box on', 'saboxplugin' ),
-					'type'        => 'multiplecheckbox',
-					'handle'      => array( 'Simple_Author_Box_Helper', 'get_custom_post_type' ),
-					'group'       => 'saboxplugin_options',
-				),
 			),
 			'appearance-options'    => array(
-				'sab_box_margin_top'    => array(
+				'sab_box_margin_top'         => array(
 					'label'       => __( 'Top margin of author box:', 'saboxplugin' ),
 					'description' => __( 'Choose how much space to add above the author box', 'saboxplugin' ),
 					'type'        => 'slider',
@@ -120,7 +110,7 @@ class Simple_Author_Box_Admin_Page {
 					),
 					'default'     => '0',
 				),
-				'sab_box_margin_bottom' => array(
+				'sab_box_margin_bottom'      => array(
 					'label'       => __( 'Bottom margin of author box:', 'saboxplugin' ),
 					'description' => __( 'Choose how much space to add below the author box', 'saboxplugin' ),
 					'type'        => 'slider',
@@ -131,7 +121,29 @@ class Simple_Author_Box_Admin_Page {
 					),
 					'default'     => '0',
 				),
-				'sab_avatar_style'      => array(
+				'sab_box_padding_top_bottom' => array(
+					'label'       => __( 'Padding top and bottom of author box:', 'saboxplugin' ),
+					'description' => '',
+					'type'        => 'slider',
+					'choices'     => array(
+						'min'       => 0,
+						'max'       => 100,
+						'increment' => 1,
+					),
+					'default'     => '0',
+				),
+				'sab_box_padding_left_right' => array(
+					'label'       => __( 'Padding left and right of author box:', 'saboxplugin' ),
+					'description' => '',
+					'type'        => 'slider',
+					'choices'     => array(
+						'min'       => 0,
+						'max'       => 100,
+						'increment' => 1,
+					),
+					'default'     => '0',
+				),
+				'sab_avatar_style'           => array(
 					'label'       => __( 'Author avatar image style:', 'saboxplugin' ),
 					'description' => __( 'Change the shape of the author’s avatar image', 'saboxplugin' ),
 					'type'        => 'select',
@@ -142,19 +154,19 @@ class Simple_Author_Box_Admin_Page {
 					'default'     => '0',
 					'group'       => 'saboxplugin_options',
 				),
-				'sab_avatar_hover'      => array(
+				'sab_avatar_hover'           => array(
 					'label'       => __( 'Rotate effect on author avatar hover:', 'saboxplugin' ),
 					'description' => __( 'When turned ON, this adds a rotate effect when hovering over the author\'s avatar', 'saboxplugin' ),
 					'type'        => 'toggle',
 					'group'       => 'saboxplugin_options',
 				),
-				'sab_web'               => array(
+				'sab_web'                    => array(
 					'label'       => __( 'Show author website:', 'saboxplugin' ),
 					'description' => __( 'When turned ON, the box will include the author\'s website', 'saboxplugin' ),
 					'type'        => 'toggle',
 					'group'       => 'saboxplugin_options',
 				),
-				'sab_web_position'      => array(
+				'sab_web_position'           => array(
 					'label'       => __( 'Author website position:', 'saboxplugin' ),
 					'description' => __( 'Select where you want to show the website ( left or right )', 'saboxplugin' ),
 					'type'        => 'select',
@@ -166,7 +178,7 @@ class Simple_Author_Box_Admin_Page {
 					'condition'   => 'sab_web',
 					'group'       => 'saboxplugin_options',
 				),
-				'sab_colored'           => array(
+				'sab_colored'                => array(
 					'label'       => __( 'Social icons type (colored background or symbols only):', 'saboxplugin' ),
 					'description' => __( 'Colored background adds a background behind the social icon symbol', 'saboxplugin' ),
 					'type'        => 'select',
@@ -177,7 +189,7 @@ class Simple_Author_Box_Admin_Page {
 					'default'     => '0',
 					'group'       => 'saboxplugin_options',
 				),
-				'sab_icons_style'       => array(
+				'sab_icons_style'            => array(
 					'label'       => __( 'Social icons style:', 'saboxplugin' ),
 					'description' => __( 'Select the shape of social icons\' container', 'saboxplugin' ),
 					'type'        => 'select',
@@ -189,21 +201,21 @@ class Simple_Author_Box_Admin_Page {
 					'condition'   => 'sab_colored',
 					'group'       => 'saboxplugin_options',
 				),
-				'sab_social_hover'      => array(
+				'sab_social_hover'           => array(
 					'label'       => __( 'Rotate effect on social icons hover:', 'saboxplugin' ),
 					'description' => __( 'Add a rotate effect when you hover on social icons hover', 'saboxplugin' ),
 					'type'        => 'toggle',
 					'condition'   => 'sab_colored',
 					'group'       => 'saboxplugin_options',
 				),
-				'sab_box_long_shadow'   => array(
+				'sab_box_long_shadow'        => array(
 					'label'       => __( 'Use flat long shadow effect:', 'saboxplugin' ),
 					'description' => __( 'Check this if you want a flat shodow for social icons', 'saboxplugin' ),
 					'type'        => 'toggle',
 					'condition'   => 'sab_colored',
 					'group'       => 'saboxplugin_options',
 				),
-				'sab_box_thin_border'   => array(
+				'sab_box_thin_border'        => array(
 					'label'       => __( 'Show a thin border on colored social icons:', 'saboxplugin' ),
 					'description' => __( 'Add a border to social icons container.', 'saboxplugin' ),
 					'type'        => 'toggle',
@@ -342,25 +354,10 @@ class Simple_Author_Box_Admin_Page {
 					'group'       => 'saboxplugin_options',
 				),
 			),
-			'guest-author-options'  => array(
-				'enable_guest_authors' => array(
-					'label'       => __( 'Enable Guest Authors:', 'saboxplugin' ),
-					'description' => __( 'When turned ON, you will be able to select guest authors for each post.', 'saboxplugin' ),
-					'type'        => 'toggle',
-					'group'       => 'saboxplugin_options',
-				),
-				'co_authors'           => array(
-					'label'       => __( 'Use Guest Authors as Co Authors:', 'saboxplugin' ),
-					'description' => __( 'If you check this the guest authors will be transformed in co authors and they will be shown next under author.', 'saboxplugin' ),
-					'type'        => 'toggle',
-					'group'       => 'saboxplugin_options',
-					'condition'   => 'enable_guest_authors',
-				),
-			),
 		);
 
 		$this->settings = apply_filters( 'sabox_admin_settings', $settings );
-		$this->sections = apply_filters( 'sabox_admin_tabs', $default_sections );
+		$this->sections = apply_filters( 'sabox_admin_sections', $default_sections );
 
 		$this->get_all_options();
 
@@ -408,6 +405,9 @@ class Simple_Author_Box_Admin_Page {
 		if ( $sab_box_desc_size ) {
 			$this->options['sab_box_desc_size'] = $sab_box_desc_size;
 		}
+
+		$this->options['sab_box_padding_top_bottom'] = get_option( 'sab_box_padding_top_bottom', 0 );
+		$this->options['sab_box_padding_left_right'] = get_option( 'sab_box_padding_left_right', 0 );
 
 	}
 
