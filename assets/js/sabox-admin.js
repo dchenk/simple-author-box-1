@@ -47,7 +47,7 @@
             max = input.data( 'max' ),
             min = input.data( 'min' ),
             step = input.data( 'step' ),
-            value = parseInt(input.val());
+            value = parseInt( input.val(), 10 );
 
         $( $slider ).slider( {
           value: value,
