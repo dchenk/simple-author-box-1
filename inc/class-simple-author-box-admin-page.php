@@ -54,19 +54,6 @@ class Simple_Author_Box_Admin_Page {
 					'type'        => 'toggle',
 					'group'       => 'saboxplugin_options',
 				),
-				'sab_author_link'    => array(
-					'label'       => __( 'Author name should link to:', 'saboxplugin' ),
-					'description' => __( 'Use the drop-down to select where the author name should link to. You can also select None to remove the link.', 'saboxplugin' ),
-					'type'        => 'select',
-					'choices'     => array(
-						'author-page'    => __( 'Author\'s Page', 'saboxplugin' ),
-						'author-website' => __( 'Author\'s Website', 'saboxplugin' ),
-						'none'           => __( 'None', 'saboxplugin' ),
-					),
-					'default'     => 'author-page',
-					'group'       => 'saboxplugin_options',
-				),
-
 				'sab_web_target'     => array(
 					'label'       => __( 'Open author website link in a new tab:', 'saboxplugin' ),
 					'description' => __( 'If you check this the author\'s link will open in a new tab', 'saboxplugin' ),
@@ -638,7 +625,7 @@ class Simple_Author_Box_Admin_Page {
 				$values = isset( $this->options[ $field_name ] ) ? $this->options[ $field_name ] : $field['default'];
 				foreach ( $field['choices'] as $key => $choice ) {
 					echo '<div>';
-					echo '<input type="checkbox" value="' . $key . '" ' . checked( 1, in_array( $key, $values ), false ) . ' name="' . esc_attr( $name ) . '[]"><span class="checkbox-label">' . $choice . '</span>';
+					echo '<input id="' . $key . '-' . $field_name . '" type="checkbox" value="' . $key . '" ' . checked( 1, in_array( $key, $values ), false ) . ' name="' . esc_attr( $name ) . '[]"><label for="' . $key . '-' . $field_name . '" class="checkbox-label">' . $choice . '</label>';
 					echo '</div>';
 				}
 				echo '</div>';

@@ -23,17 +23,7 @@ if ( isset( $sabox_options['sab_web_rel'] ) ) {
 	$sab_web_rel = '';
 }
 
-if ( isset( $sabox_options['sab_author_link'] ) ) {
-	if ( 'author-page' == $sabox_options['sab_author_link'] ) {
-		$sab_author_link = sprintf( '<a href="%s">%s</a>', esc_url( get_author_posts_url( $sabox_author_id ) ), esc_html( get_the_author_meta( 'display_name', $sabox_author_id ) ) );
-	} elseif ( 'author-website' == $sabox_options['sab_author_link'] ) {
-		$sab_author_link = sprintf( '<a href="%s">%s</a>', esc_url( get_author_posts_url( $sabox_author_id ) ), esc_html( get_the_author_meta( 'display_name', $sabox_author_id ) ) );
-	} else {
-		$sab_author_link = sprintf( '<span>%s</span>', esc_html( get_the_author_meta( 'display_name', $sabox_author_id ) ) );
-	}
-} else {
-	$sab_author_link = sprintf( '<a href="%s">%s</a>', esc_url( get_author_posts_url( $sabox_author_id ) ), esc_html( get_the_author_meta( 'display_name', $sabox_author_id ) ) );
-}
+$sab_author_link = sprintf( '<a href="%s">%s</a>', esc_url( get_author_posts_url( $sabox_author_id ) ), esc_html( get_the_author_meta( 'display_name', $sabox_author_id ) ) );
 
 if ( get_the_author_meta( 'description' ) != '' || ! isset( $sabox_options['sab_no_description'] ) ) { // hide the author box if no description is provided
 
@@ -52,7 +42,7 @@ if ( get_the_author_meta( 'description' ) != '' || ! isset( $sabox_options['sab_
 
 	// author box name
 	echo '<div class="saboxplugin-authorname">';
-	echo $sab_author_link;
+	echo apply_filters( 'sabox_author_html', $sab_author_link, $sabox_options, $sabox_author_id );
 	echo '</div>';
 
 
@@ -82,8 +72,6 @@ if ( get_the_author_meta( 'description' ) != '' || ! isset( $sabox_options['sab_
 			echo '</div>';
 		}
 	}
-
-
 
 	// author box clearfix
 	echo '<div class="clearfix"></div>';
