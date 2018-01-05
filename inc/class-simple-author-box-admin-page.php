@@ -26,6 +26,10 @@ class Simple_Author_Box_Admin_Page {
 			'miscellaneous-options' => array(
 				'label' => __( 'Misc', 'saboxplugin' ),
 			),
+			'support' => array(
+				'label' => __( 'Support', 'saboxplugin-plus' ),
+				'path' => SIMPLE_AUTHOR_BOX_PATH . 'inc/admin/support.php',
+			),
 		);
 
 		$settings = array(
