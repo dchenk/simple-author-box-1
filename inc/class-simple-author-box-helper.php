@@ -936,7 +936,7 @@ class Simple_Author_Box_Helper {
 		$style .= '.saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-color:before {width:' . absint( $sabox_icon_size + $sabox_icon_size ) . 'px; height:' . absint( $sabox_icon_size + $sabox_icon_size ) . 'px; line-height:' . absint( $sabox_icon_size + $sabox_icon_size + 1 ) . 'px; }';
 		$style .= '.saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-grey {font-size:' . absint( $sabox_icon_size ) . 'px;}';
 
-		return $style;
+		return apply_filters( 'sabox_inline_css', $style );
 	}
 
 }

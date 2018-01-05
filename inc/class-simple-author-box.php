@@ -166,6 +166,8 @@ class Simple_Author_Box {
 			$google_fonts[] = str_replace( ' ', '+', esc_attr( $sab_web_font ) ) . ':400,700,400italic,700italic';
 		}
 
+		$google_fonts = apply_filters( 'sabox_google_fonts', $google_fonts );
+
 		if ( ! empty( $google_fonts ) ) {
 			wp_register_style( 'sab-font', $sab_protocol . '://fonts.googleapis.com/css?family=' . implode( '|', $google_fonts ) . $sab_subset, array(), null );
 		}
