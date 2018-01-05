@@ -412,7 +412,7 @@ class Simple_Author_Box_Admin_Page {
 	}
 
 	public function menu_page() {
-		add_menu_page( __( 'Simple Author Box', 'saboxplugin' ), __( 'Simple Author', 'saboxplugin' ), 'manage_options', 'simple-author-box-options', array( $this, 'setting_page' ), 'dashicons-id' );
+		add_menu_page( __( 'Simple Author Box', 'saboxplugin' ), __( 'Simple Author', 'saboxplugin' ), 'manage_options', 'simple-author-box-options', array( $this, 'setting_page' ), SIMPLE_AUTHOR_BOX_ASSETS . 'img/sab-icon.png' );
 	}
 
 	public function setting_page() {
@@ -431,7 +431,7 @@ class Simple_Author_Box_Admin_Page {
 				echo esc_html__( 'Simple Author Box is now installed and ready to use! Get ready to create beautiful author boxes. We want to make sure you have the best experience using Simple Author Box, which is why we\'ve gathered all the necessary information below. We hope you enjoy using Simple Author Box as much as we enjoy creating great products.', 'saboxplugin' );
 				?>
 			</div>
-			<div class="wp-badge epsilon-welcome-logo"></div>
+			<div class="wp-badge sab-welcome-logo"></div>
 
 			<h2 class="nav-tab-wrapper wp-clearfix">
 				<?php foreach ( $this->sections as $id => $section ) { ?>

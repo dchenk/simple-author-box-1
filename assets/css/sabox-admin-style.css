@@ -208,9 +208,9 @@
 }
 
 /* Simple Author Box Badge */
-.wp-badge.epsilon-welcome-logo {
-    background-color: #191e22;
-    background-image: url(../img/macho-themes-logo.svg);
+.wp-badge.sab-welcome-logo {
+    background-color: #5915ba;
+    background-image: url(../img/sab-big-icon.png);
     background-position: center center;
     background-size: 70%;
     background-repeat: no-repeat;

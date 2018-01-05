@@ -90,6 +90,8 @@ class Simple_Author_Box {
 			$suffix = '';
 		}
 
+		wp_enqueue_style( 'sabox-css', SIMPLE_AUTHOR_BOX_ASSETS . 'css/sabox.css' );
+
 		if ( 'toplevel_page_simple-author-box-options' == $hook ) {
 
 			// Styles
