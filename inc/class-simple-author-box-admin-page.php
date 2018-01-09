@@ -26,14 +26,14 @@ class Simple_Author_Box_Admin_Page {
 			'miscellaneous-options' => array(
 				'label' => __( 'Misc', 'saboxplugin' ),
 			),
-			'support' => array(
+			'support'               => array(
 				'label' => __( 'Support', 'saboxplugin' ),
-				'path' => SIMPLE_AUTHOR_BOX_PATH . 'inc/admin/support.php',
+				'path'  => SIMPLE_AUTHOR_BOX_PATH . 'inc/admin/support.php',
 			),
-			'plugins' => array(
+			'plugins'               => array(
 				'label' => __( 'Other Great Plugins', 'saboxplugin' ),
-				'path' => SIMPLE_AUTHOR_BOX_PATH . 'inc/admin/plugins.php',
-			)
+				'path'  => SIMPLE_AUTHOR_BOX_PATH . 'inc/admin/plugins.php',
+			),
 		);
 
 		$settings = array(
