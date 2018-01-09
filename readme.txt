@@ -3,7 +3,7 @@ Contributors: machothemes
 Tags: author box, responsive author box, author profile fields, author social icons, profile fields, author bio, author description, author profile, user profile, post author, rtl author box
 Requires at least: 3.6
 Tested up to: 4.9
-Stable tag: 2.0
+Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,13 +52,14 @@ We are a young team of WordPress aficionados who love building WordPress plugins
 
 == Changelog ==
 
+= 2.0.1 =
+Removed simple author box from pages.
+Added new tab in setting page
+
 = 2.0 =
 Included the option to add html to a user's description ( https://github.com/MachoThemes/simple-author-box/issues/23 )
 Fixed Google fonts error ( https://github.com/MachoThemes/simple-author-box/issues/14 )
 Added new features ( https://github.com/MachoThemes/simple-author-box/issues/7 )
-Added the posibility to select where to show the author box ( https://github.com/MachoThemes/simple-author-box/issues/5 )
-Added the option to link the author's name to its website ( https://github.com/MachoThemes/simple-author-box/issues/4 )
-Added the posibility to add guest authors
 Added the posibility to add custom profile images
 Created a shortcode that can be placed inside the posts' content wherever a user wants
 Improved how you add social links

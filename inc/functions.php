@@ -13,7 +13,7 @@ if ( ! function_exists( 'wpsabox_author_box' ) ) {
 
 	function wpsabox_author_box( $saboxmeta = null ) {
 
-		$show = ( is_single() || is_page() || is_author() || is_archive() );
+		$show = ( is_single() || is_author() || is_archive() );
 		$show = apply_filters( 'sabox_check_if_show', $show );
 
 		if ( $show ) {

@@ -101,6 +101,7 @@ class Simple_Author_Box {
 
 			// Scripts
 			wp_enqueue_script( 'sabox-admin-js', SIMPLE_AUTHOR_BOX_ASSETS . 'js/sabox-admin.js', array( 'jquery-ui-slider', 'wp-color-picker' ), false, true );
+			wp_enqueue_script( 'sabox-plugin-install', SIMPLE_AUTHOR_BOX_ASSETS . 'js/plugin-install.js', array( 'jquery', 'updates' ), '1.0.0', 'all' );
 
 		} elseif ( 'profile.php' == $hook || 'user-edit.php' == $hook ) {
 

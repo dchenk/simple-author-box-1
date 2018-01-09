@@ -30,6 +30,10 @@ class Simple_Author_Box_Admin_Page {
 				'label' => __( 'Support', 'saboxplugin' ),
 				'path' => SIMPLE_AUTHOR_BOX_PATH . 'inc/admin/support.php',
 			),
+			'plugins' => array(
+				'label' => __( 'Other Great Plugins', 'saboxplugin' ),
+				'path' => SIMPLE_AUTHOR_BOX_PATH . 'inc/admin/plugins.php',
+			)
 		);
 
 		$settings = array(
