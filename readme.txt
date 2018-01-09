@@ -53,16 +53,16 @@ We are a young team of WordPress aficionados who love building WordPress plugins
 == Changelog ==
 
 = 2.0.1 =
-Removed simple author box from pages.
-Added new tab in setting page
+* Removed simple author box from pages.
+* Added new tab in setting page
 
 = 2.0 =
-Included the option to add html to a user's description ( https://github.com/MachoThemes/simple-author-box/issues/23 )
-Fixed Google fonts error ( https://github.com/MachoThemes/simple-author-box/issues/14 )
-Added new features ( https://github.com/MachoThemes/simple-author-box/issues/7 )
-Added the posibility to add custom profile images
-Created a shortcode that can be placed inside the posts' content wherever a user wants
-Improved how you add social links
+* Included the option to add html to a user's description ( https://github.com/MachoThemes/simple-author-box/issues/23 )
+* Fixed Google fonts error ( https://github.com/MachoThemes/simple-author-box/issues/14 )
+* Added new features ( https://github.com/MachoThemes/simple-author-box/issues/7 )
+* Added the posibility to add custom profile images
+* Created a shortcode that can be placed inside the posts' content wherever a user wants
+* Improved how you add social links
 
 
 = 1.9 =
