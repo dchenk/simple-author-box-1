@@ -362,6 +362,10 @@
 .saboxplugin-socials .saboxplugin-icon-color.saboxplugin-icon-twitch:before {
     content: '\f1e8';
 }
+.saboxplugin-socials .saboxplugin-icon-grey.saboxplugin-icon-vk:before,
+.saboxplugin-socials .saboxplugin-icon-color.saboxplugin-icon-vk:before {
+    content: '\f189';
+}
 
 /*  COLORED BACKGROUND AND LONG SHADOW EFFECT FOR SOCIAL ICONS
 -------------------------------------------------------------- */
@@ -1555,6 +1559,10 @@
   rgb(27, 149, 194) 28px 28px,
   rgb(27, 149, 194) 29px 29px,
   rgb(27, 149, 194) 30px 30px;
+}
+
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-vk {
+  background-color: #45668e;
 }
 
 .saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-goodreads {

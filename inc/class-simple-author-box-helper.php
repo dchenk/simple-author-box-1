@@ -43,6 +43,7 @@ class Simple_Author_Box_Helper {
 		'mixcloud'      => 'MixCloud',
 		'goodreads'     => 'Goodreads',
 		'twitch'        => 'Twitch',
+		'vk'            => 'VK',
 		'user_email'    => 'Email',
 	);
 
@@ -902,19 +903,19 @@ class Simple_Author_Box_Helper {
 		}
 
 		// Author name font family
-		if ( get_option( 'sab_box_name_font' ) != 'none' ) {
+		if ( get_option( 'sab_box_name_font', 'None' ) != 'None' ) {
 			$author_name_font = get_option( 'sab_box_name_font' );
 			$style           .= '.saboxplugin-wrap .saboxplugin-authorname {font-family:"' . esc_html( $author_name_font ) . '";}';
 		}
 
 		// Author description font family
-		if ( get_option( 'sab_box_desc_font' ) != 'none' ) {
+		if ( get_option( 'sab_box_desc_font', 'None' ) != 'None' ) {
 			$author_desc_font = get_option( 'sab_box_desc_font' );
 			$style           .= '.saboxplugin-wrap .saboxplugin-desc {font-family:' . esc_html( $author_desc_font ) . ';}';
 		}
 
 		// Author web font family
-		if ( isset( $sabox_options['sab_web'] ) && get_option( 'sab_box_web_font' ) != 'none' ) {
+		if ( isset( $sabox_options['sab_web'] ) && get_option( 'sab_box_web_font', 'None' ) != 'None' ) {
 			$author_web_font = get_option( 'sab_box_web_font' );
 			$style          .= '.saboxplugin-wrap .saboxplugin-web {font-family:"' . esc_html( $author_web_font ) . '";}';
 		}

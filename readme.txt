@@ -3,7 +3,7 @@ Contributors: machothemes
 Tags: author box, responsive author box, author profile fields, author social icons, profile fields, author bio, author description, author profile, user profile, post author, rtl author box
 Requires at least: 3.6
 Tested up to: 4.9
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -51,6 +51,10 @@ We are a young team of WordPress aficionados who love building WordPress plugins
 14. Plugin options page, simple view (v1.2)
 
 == Changelog ==
+
+= 2.0.2 =
+* Fixed a typography issue
+* Added VK
 
 = 2.0.1 =
 * Removed simple author box from pages.
