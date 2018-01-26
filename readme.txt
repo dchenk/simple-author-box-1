@@ -52,6 +52,9 @@ We are a young team of WordPress aficionados who love building WordPress plugins
 
 == Changelog ==
 
+= 2.0.3 =
+* Fixed again the typography issue.
+
 = 2.0.2 =
 * Fixed a typography issue
 * Added VK

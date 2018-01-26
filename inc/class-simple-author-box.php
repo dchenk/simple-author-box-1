@@ -149,21 +149,21 @@ class Simple_Author_Box {
 			$sab_subset = '&amp;subset=latin';
 		}
 
-		$sab_author_font = get_option( 'sab_box_name_font' );
-		$sab_desc_font   = get_option( 'sab_box_desc_font' );
-		$sab_web_font    = get_option( 'sab_box_web_font' );
+		$sab_author_font = get_option( 'sab_box_name_font', 'None' );
+		$sab_desc_font   = get_option( 'sab_box_desc_font', 'None' );
+		$sab_web_font    = get_option( 'sab_box_web_font', 'None' );
 
 		$google_fonts = array();
 
-		if ( $sab_author_font ) {
+		if ( $sab_author_font && 'None' != $sab_author_font && 'none' != $sab_author_font ) {
 			$google_fonts[] = str_replace( ' ', '+', esc_attr( $sab_author_font ) ) . ':400,700,400italic,700italic';
 		}
 
-		if ( $sab_desc_font ) {
+		if ( $sab_desc_font && 'None' != $sab_desc_font && 'none' != $sab_desc_font ) {
 			$google_fonts[] = str_replace( ' ', '+', esc_attr( $sab_desc_font ) ) . ':400,700,400italic,700italic';
 		}
 
-		if ( isset( $this->options['sab_web'] ) && $sab_web_font ) {
+		if ( isset( $this->options['sab_web'] ) && $sab_web_font && 'None' != $sab_web_font && 'none' != $sab_web_font ) {
 			$google_fonts[] = str_replace( ' ', '+', esc_attr( $sab_web_font ) ) . ':400,700,400italic,700italic';
 		}
 
