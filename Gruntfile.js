@@ -77,7 +77,7 @@ module.exports = function( grunt ) {
           '!composer.json',
           '!composer.lock',
           '!set_tags.sh',
-          '!illdy-companion.zip',
+          '!simple-author-box.zip',
           '!nbproject/**' ],
         dest: 'build/'
       }
@@ -108,4 +108,11 @@ module.exports = function( grunt ) {
     'clean:css',
     'cssmin'
   ] );
+  // Build task
+  grunt.registerTask( 'build-archive', [
+      'clean:init',
+      'copy',
+      'compress:build',
+      'clean:init'
+  ]);
 };
