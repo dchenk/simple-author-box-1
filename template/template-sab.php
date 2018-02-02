@@ -81,7 +81,7 @@ if ( get_the_author_meta( 'description' ) != '' || ! isset( $sabox_options['sab_
 	$show_social_icons = apply_filters( 'sabox_hide_social_icons', true, $author );
 	if ( ! isset( $sabox_options['sab_hide_socials'] ) && $show_social_icons ) { // hide social icons div option
 		echo '<div class="saboxplugin-socials ' . esc_attr( $sabox_color ) . '">';
-		$social_links = Simple_Author_Box_Helper::get_user_social_links( $sabox_author_id );
+		$social_links = Simple_Author_Box_Helper::get_user_social_links( $sabox_author_id, true );
 		foreach ( $social_links as $social_platform => $social_link ) {
 
 			if ( 'user_email' == $social_platform ) {
