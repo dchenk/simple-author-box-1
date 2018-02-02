@@ -44,6 +44,9 @@ class Simple_Author_Box_Helper {
 		'goodreads'     => 'Goodreads',
 		'twitch'        => 'Twitch',
 		'vk'            => 'VK',
+		'medium'		=> 'Medium',
+		'quora'		    => 'Quora',
+		'meetup'		=> 'Meetup',
 		'user_email'    => 'Email',
 	);
 

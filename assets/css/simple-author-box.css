@@ -366,6 +366,18 @@
 .saboxplugin-socials .saboxplugin-icon-color.saboxplugin-icon-vk:before {
     content: '\f189';
 }
+.saboxplugin-socials .saboxplugin-icon-grey.saboxplugin-icon-medium:before,
+.saboxplugin-socials .saboxplugin-icon-color.saboxplugin-icon-medium:before {
+  content:'\f23a';
+}
+.saboxplugin-socials .saboxplugin-icon-grey.saboxplugin-icon-quora:before,
+.saboxplugin-socials .saboxplugin-icon-color.saboxplugin-icon-quora:before {
+  content:'\f2c4';
+}
+.saboxplugin-socials .saboxplugin-icon-grey.saboxplugin-icon-meetup:before,
+.saboxplugin-socials .saboxplugin-icon-color.saboxplugin-icon-meetup:before {
+  content:'\f2e0';
+}
 
 /*  COLORED BACKGROUND AND LONG SHADOW EFFECT FOR SOCIAL ICONS
 -------------------------------------------------------------- */
@@ -1563,6 +1575,15 @@
 
 .saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-vk {
   background-color: #45668e;
+}
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-medium {
+  background-color: #00ab6c;
+}
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-quora {
+  background-color: #a82400;
+}
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-meetup {
+  background-color: #e0393e;
 }
 
 .saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-goodreads {

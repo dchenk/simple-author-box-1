@@ -55,6 +55,7 @@ We are a young team of WordPress aficionados who love building WordPress plugins
 = 2.0.3 =
 * Fixed again the typography issue.
 * Fixed email in social icons
+* Add Meetup, Quora & Medium social icons
 
 = 2.0.2 =
 * Fixed a typography issue
