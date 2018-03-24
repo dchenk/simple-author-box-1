@@ -48,6 +48,7 @@ class Simple_Author_Box_Helper {
 		'quora'		    => 'Quora',
 		'meetup'		=> 'Meetup',
 		'user_email'    => 'Email',
+		'snapchat'      => 'Snapchat'
 	);
 
 	public static function get_sabox_social_icon( $url, $icon_name ) {

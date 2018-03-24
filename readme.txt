@@ -52,6 +52,12 @@ We are a young team of WordPress aficionados who love building WordPress plugins
 
 == Changelog ==
 
+= 2.0.4 =
+* Added Snapchat icon:  https://github.com/MachoThemes/simple-author-box/issues/35
+* Added Gab (gab.ai) network icon:  https://github.com/MachoThemes/simple-author-box/issues/39
+* Fixed Shortcode issue: https://github.com/MachoThemes/simple-author-box/issues/33
+* Added plugin uninstall feedback: https://github.com/MachoThemes/simple-author-box/issues/40
+
 = 2.0.3 =
 * Fixed again the typography issue.
 * Fixed email in social icons

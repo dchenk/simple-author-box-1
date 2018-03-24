@@ -379,6 +379,12 @@
   content:'\f2e0';
 }
 
+.saboxplugin-socials .saboxplugin-icon-grey.saboxplugin-icon-snapchat:before,
+.saboxplugin-socials .saboxplugin-icon-color.saboxplugin-icon-snapchat:before {
+  content:'\f2ab';
+}
+
+
 /*  COLORED BACKGROUND AND LONG SHADOW EFFECT FOR SOCIAL ICONS
 -------------------------------------------------------------- */
 .saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-twitch {

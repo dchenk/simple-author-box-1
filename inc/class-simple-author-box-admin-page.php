@@ -53,7 +53,7 @@ class Simple_Author_Box_Admin_Page {
 				'plugin_shortcode'   => array(
 					'label'     => __( 'If you want to manually insert the Simple Author Box in your post content, you can use the following shortcode:', 'saboxplugin' ),
 					'type'      => 'readonly',
-					'value'     => '[ simple-author-box ]',
+					'value'     => '[simple-author-box]',
 					'condition' => 'sab_autoinsert',
 				),
 				'sab_no_description' => array(
