@@ -56,7 +56,7 @@ class Simple_Author_Box {
 	private function define_public_hooks() {
 
 		if ( ! isset( $this->options['sab_autoinsert'] ) ) {
-			add_filter( 'the_content', 'wpsabox_author_box' );
+			add_filter( 'the_content', 'wpsabox_author_box', 11 );
 		}
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'saboxplugin_author_box_style' ), 10 );
