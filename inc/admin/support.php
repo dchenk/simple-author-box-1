@@ -48,3 +48,20 @@ if ( ! defined( 'WPINC' ) ) {
 		</div><!--/.col-->
 	</div>
 </div><!--/.feature-section-->
+
+<div class="col-fulwidth feedback-box">
+	<h3>
+		<?php esc_html_e( 'Lend a hand & share your thoughts', 'saboxplugin' ); ?>
+		<img src="<?php echo SIMPLE_AUTHOR_BOX_ASSETS; ?>/img/handshake.png">
+	</h3>
+	<p>
+		<?php
+		echo vsprintf( // Translators: 1 is Theme Name, 2 is opening Anchor, 3 is closing.
+			__( 'We\'ve been working hard on making %1$s the best one out there. We\'re interested in hearing your thoughts about %1$s and what we could do to <u>make it even better</u>.<br/> <br/> %2$sHave your say%3$s', 'saboxplugin' ), array(
+			'Simple Author Box',
+			'<a class="button button-feedback" target="_blank" href="http://bit.ly/feedback-simple-author-box">',
+			'</a>',
+		) );
+		?>
+	</p>
+</div>

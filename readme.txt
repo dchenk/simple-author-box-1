@@ -57,6 +57,10 @@ We are a young team of WordPress aficionados who love building WordPress plugins
 * Added Gab (gab.ai) network icon:  https://github.com/MachoThemes/simple-author-box/issues/39
 * Fixed Shortcode issue: https://github.com/MachoThemes/simple-author-box/issues/33
 * Added plugin uninstall feedback: https://github.com/MachoThemes/simple-author-box/issues/40
+* Fixes #45 (400 Error Loading Fonts)
+* Fixes #47 (Replace button in user profile for add social media)
+* Fixes #48 (Move feedback box only to support tab)
+* Fixes #49 (Display plugin version)
 
 = 2.0.3 =
 * Fixed again the typography issue.
