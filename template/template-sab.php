@@ -27,6 +27,7 @@ $sab_author_link = sprintf( '<a href="%s">%s</a>', esc_url( get_author_posts_url
 
 if ( get_the_author_meta( 'description' ) != '' || ! isset( $sabox_options['sab_no_description'] ) ) { // hide the author box if no description is provided
 
+
 	echo '<div class="saboxplugin-wrap">'; // start saboxplugin-wrap div
 
 	// author box gravatar
@@ -43,6 +44,9 @@ if ( get_the_author_meta( 'description' ) != '' || ! isset( $sabox_options['sab_
 	// author box name
 	echo '<div class="saboxplugin-authorname">';
 	echo apply_filters( 'sabox_author_html', $sab_author_link, $sabox_options, $sabox_author_id );
+	if ( is_user_logged_in() ) {
+		echo '<a  class="sab-profile-edit" target="_blank" href="' . get_edit_user_link() . '"> ' . __( 'Edit profile', 'saboxplugin' ) . '</a>';
+	}
 	echo '</div>';
 
 
@@ -52,7 +56,7 @@ if ( get_the_author_meta( 'description' ) != '' || ! isset( $sabox_options['sab_
 	$description = get_the_author_meta( 'description', $sabox_author_id );
 	$description = wptexturize( $description );
 	$description = wpautop( $description );
-	echo  wp_kses_post( $description );
+	echo wp_kses_post( $description );
 	echo '</div></div>';
 	echo '</div>';
 
@@ -79,8 +83,18 @@ if ( get_the_author_meta( 'description' ) != '' || ! isset( $sabox_options['sab_
 	// author box social icons
 	$author            = get_userdata( $sabox_author_id );
 	$show_social_icons = apply_filters( 'sabox_hide_social_icons', true, $author );
+
+
 	if ( ! isset( $sabox_options['sab_hide_socials'] ) && $show_social_icons ) { // hide social icons div option
 		echo '<div class="saboxplugin-socials ' . esc_attr( $sabox_color ) . '">';
+
+		if ( is_user_logged_in() ) {
+			echo '<div class="sab-edit-settings">';
+			echo '<a target="_blank" href="'.admin_url().'admin.php?page=simple-author-box-options">' . __( 'Settings', 'saboxplugin' ) . '<i class="dashicons dashicons-admin-settings"></i></a>';
+			echo '</div>';
+		}
+
+
 		$social_links = Simple_Author_Box_Helper::get_user_social_links( $sabox_author_id, true );
 		foreach ( $social_links as $social_platform => $social_link ) {
 
@@ -96,6 +110,7 @@ if ( get_the_author_meta( 'description' ) != '' || ! isset( $sabox_options['sab_
 				echo Simple_Author_Box_Helper::get_sabox_social_icon( $social_link, $social_platform );
 			}
 		}
+
 
 		echo '</div>';
 	} // end of social icons

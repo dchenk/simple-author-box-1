@@ -53,7 +53,7 @@ class Simple_Author_Box_Admin_Page {
 				'plugin_shortcode'   => array(
 					'label'     => __( 'If you want to manually insert the Simple Author Box in your post content, you can use the following shortcode:', 'saboxplugin' ),
 					'type'      => 'readonly',
-					'value'     => '[ simple-author-box ]',
+					'value'     => '[simple-author-box]',
 					'condition' => 'sab_autoinsert',
 				),
 				'sab_no_description' => array(
@@ -407,7 +407,10 @@ class Simple_Author_Box_Admin_Page {
 	}
 
 	public function menu_page() {
-		add_menu_page( __( 'Simple Author Box', 'saboxplugin' ), __( 'Simple Author', 'saboxplugin' ), 'manage_options', 'simple-author-box-options', array( $this, 'setting_page' ), SIMPLE_AUTHOR_BOX_ASSETS . 'img/sab-icon.png' );
+		add_menu_page( __( 'Simple Author Box', 'saboxplugin' ), __( 'Simple Author', 'saboxplugin' ), 'manage_options', 'simple-author-box-options', array(
+			$this,
+			'setting_page',
+		), SIMPLE_AUTHOR_BOX_ASSETS . 'img/sab-icon.png' );
 	}
 
 	public function setting_page() {
@@ -419,14 +422,18 @@ class Simple_Author_Box_Admin_Page {
 				/* Translators: Welcome Screen Title. */
 				echo esc_html__( 'Welcome to Simple Author Box', 'saboxplugin' );
 				?>
+				<a class="page-title-action" target="_blank" href="<?php echo get_edit_user_link(); ?>"><?php _e('Edit your user profile', 'saboxplugin'); ?></a>
 			</h1>
+
 			<div class="about-text">
 				<?php
 				/* Translators: Welcome Screen Description. */
 				echo esc_html__( 'Simple Author Box is now installed and ready to use! Get ready to create beautiful author boxes. We want to make sure you have the best experience using Simple Author Box, which is why we\'ve gathered all the necessary information below. We hope you enjoy using Simple Author Box as much as we enjoy creating great products.', 'saboxplugin' );
 				?>
 			</div>
-			<div class="wp-badge sab-welcome-logo"></div>
+			<div class="wp-badge sab-welcome-logo">
+				<span class="sabox-plugin-version"><?php echo esc_html( SIMPLE_AUTHOR_BOX_VERSION ); ?></span>
+			</div>
 
 			<h2 class="nav-tab-wrapper wp-clearfix">
 				<?php foreach ( $this->sections as $id => $section ) { ?>
@@ -434,46 +441,30 @@ class Simple_Author_Box_Admin_Page {
 				<?php } ?>
 			</h2>
 			<form method="post" id="sabox-cotnainer">
-			<?php
+				<?php
 
-			wp_nonce_field( 'sabox-plugin-settings', 'sabox_plugin_settings_page' );
-			echo '<input type="hidden" name="sabox-setting-tab" value="' . $this->tab . '">';
+				wp_nonce_field( 'sabox-plugin-settings', 'sabox_plugin_settings_page' );
+				echo '<input type="hidden" name="sabox-setting-tab" value="' . $this->tab . '">';
 
-			if ( isset( $this->sections[ $this->tab ]['path'] ) ) {
-				require_once $this->sections[ $this->tab ]['path'];
-			} else {
-				echo '<table class="form-table sabox-table">';
-				foreach ( $this->settings[ $this->tab ] as $field_name => $field ) {
-					$this->generate_setting_field( $field_name, $field );
+				if ( isset( $this->sections[ $this->tab ]['path'] ) ) {
+					require_once $this->sections[ $this->tab ]['path'];
+				} else {
+					echo '<table class="form-table sabox-table">';
+					foreach ( $this->settings[ $this->tab ] as $field_name => $field ) {
+						$this->generate_setting_field( $field_name, $field );
+					}
+					echo '</table>';
+					echo '<hr /><br />';
+					echo '<div class="textright">';
+					submit_button( esc_html__( 'Save Settings', 'saboxplugin' ), 'button button-primary button-hero', '', false );
+					echo '</div>';
+
 				}
-				echo '</table>';
-				echo '<div class="sabox-sumit-form">';
-				submit_button( esc_html__( 'Submit', 'saboxplugin' ), 'primary', '', false );
-				echo '</div>';
-			}
 
-			?>
+				?>
 			</form>
 
-			<div class="col-fulwidth feedback-box">
-		<h3>
-			<?php esc_html_e( 'Lend a hand & share your thoughts', 'saboxplugin' ); ?>
-			<img src="<?php echo SIMPLE_AUTHOR_BOX_ASSETS; ?>/img/handshake.png">	
-		</h3>
-		<p>
-			<?php
-			echo vsprintf(
-				// Translators: 1 is Theme Name, 2 is opening Anchor, 3 is closing.
-				__( 'We\'ve been working hard on making %1$s the best one out there. We\'re interested in hearing your thoughts about %1$s and what we could do to <u>make it even better</u>.<br/> <br/> %2$sHave your say%3$s', 'saboxplugin' ),
-				array(
-					'Simple Author Box',
-					'<a class="button button-feedback" target="_blank" href="http://bit.ly/feedback-simple-author-box">',
-					'</a>',
-				)
-			);
-			?>
-		</p>
-	</div>
+
 
 		</div>
 
@@ -588,10 +579,10 @@ class Simple_Author_Box_Admin_Page {
 		switch ( $field['type'] ) {
 			case 'toggle':
 				echo '<div class="checkbox_switch">';
-					echo '<div class="onoffswitch">';
-						echo '<input type="checkbox" id="' . esc_attr( $field_name ) . '" name="' . esc_attr( $name ) . '" class="onoffswitch-checkbox saboxfield" ' . checked( 1, isset( $this->options[ $field_name ] ), false ) . ' value="1">';
-						echo '<label class="onoffswitch-label" for="' . esc_attr( $field_name ) . '"></label>';
-					echo '</div>';
+				echo '<div class="onoffswitch">';
+				echo '<input type="checkbox" id="' . esc_attr( $field_name ) . '" name="' . esc_attr( $name ) . '" class="onoffswitch-checkbox saboxfield" ' . checked( 1, isset( $this->options[ $field_name ] ), false ) . ' value="1">';
+				echo '<label class="onoffswitch-label" for="' . esc_attr( $field_name ) . '"></label>';
+				echo '</div>';
 				echo '</div>';
 				break;
 			case 'select':

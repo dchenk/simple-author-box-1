@@ -10,7 +10,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Adds a cool responsive author box with social icons on your posts.
 
 == Description ==
-
+a
 **Simple Author Box** adds a responsive author box at the end of your posts, showing the author name, author gravatar and author description. It also adds over 30 social profile fields on WordPress user profile screen, allowing to display the author social icons.
 
 = Main Features =
@@ -51,6 +51,15 @@ We are a young team of WordPress aficionados who love building WordPress plugins
 14. Plugin options page, simple view (v1.2)
 
 == Changelog ==
+
+= 2.0.4 =
+* Added Snapchat icon:  https://github.com/MachoThemes/simple-author-box/issues/35
+* Fixed Shortcode issue: https://github.com/MachoThemes/simple-author-box/issues/33
+* Added plugin uninstall feedback: https://github.com/MachoThemes/simple-author-box/issues/40
+* Fixes #45 (400 Error Loading Fonts)
+* Fixes #47 (Replace button in user profile for add social media)
+* Fixes #48 (Move feedback box only to support tab)
+* Fixes #49 (Display plugin version)
 
 = 2.0.3 =
 * Fixed again the typography issue.
