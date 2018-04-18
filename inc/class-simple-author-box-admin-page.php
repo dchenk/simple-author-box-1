@@ -420,7 +420,7 @@ class Simple_Author_Box_Admin_Page {
 			<h1>
 				<?php
 				/* Translators: Welcome Screen Title. */
-				echo esc_html__( 'Welcome to Simple Author Box', 'saboxplugin' );
+				echo esc_html__( 'Simple Author Box', 'saboxplugin' );
 				?>
 				<a class="page-title-action" target="_blank" href="<?php echo get_edit_user_link(); ?>"><?php _e('Edit your user profile', 'saboxplugin'); ?></a>
 			</h1>
