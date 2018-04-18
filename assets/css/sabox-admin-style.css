@@ -4,11 +4,14 @@
 	width: 400px;
 }
 
+<<<<<<< HEAD
 .epsilon-wrap .about-text {
 	color: rgba(85, 93, 102, 0.61);
 	margin: 0.5em 200px 0.5em 0;
 }
 
+=======
+>>>>>>> 66e6eed5e89d6e6bb0ccef3a33f3f6d39d8b73cf
 .hide {
 	display: none;
 }
@@ -353,8 +356,12 @@
 	}
 }
 
+<<<<<<< HEAD
 /*  @Since 2.0.4
 -------------------------------------------------------------- */
+=======
+/* Added in: v2.0.4 */
+>>>>>>> 66e6eed5e89d6e6bb0ccef3a33f3f6d39d8b73cf
 .sabox-plugin-version {
 	font-size: 12px;
 	background-color: #FAFAFA;

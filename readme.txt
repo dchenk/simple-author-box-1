@@ -1,7 +1,7 @@
 === Simple Author Box ===
 Contributors: machothemes
 Tags: author box, responsive author box, author profile fields, author social icons, profile fields, author bio, author description, author profile, user profile, post author, rtl author box
-Requires at least: 3.6
+Requires at least: 4.6
 Tested up to: 4.9
 Stable tag: 2.0.3
 License: GPLv2 or later
@@ -54,6 +54,10 @@ We are a young team of WordPress aficionados who love building WordPress plugins
 
 = 2.0.4 =
 * Added Snapchat icon:  https://github.com/MachoThemes/simple-author-box/issues/35
+<<<<<<< HEAD
+=======
+* Added Gab (gab.ai) network icon:  https://github.com/MachoThemes/simple-author-box/issues/39
+>>>>>>> 66e6eed5e89d6e6bb0ccef3a33f3f6d39d8b73cf
 * Fixed Shortcode issue: https://github.com/MachoThemes/simple-author-box/issues/33
 * Added plugin uninstall feedback: https://github.com/MachoThemes/simple-author-box/issues/40
 * Fixes #45 (400 Error Loading Fonts)

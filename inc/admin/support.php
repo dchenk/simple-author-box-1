@@ -49,8 +49,11 @@ if ( ! defined( 'WPINC' ) ) {
 	</div>
 </div><!--/.feature-section-->
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 66e6eed5e89d6e6bb0ccef3a33f3f6d39d8b73cf
 <div class="col-fulwidth feedback-box">
 	<h3>
 		<?php esc_html_e( 'Lend a hand & share your thoughts', 'saboxplugin' ); ?>
@@ -58,6 +61,7 @@ if ( ! defined( 'WPINC' ) ) {
 	</h3>
 	<p>
 		<?php
+<<<<<<< HEAD
 		echo vsprintf(
 		// Translators: 1 is Theme Name, 2 is opening Anchor, 3 is closing.
 			__( 'We\'ve been working hard on making %1$s the best one out there. We\'re interested in hearing your thoughts about %1$s and what we could do to <u>make it even better</u>.<br/> <br/> %2$sHave your say%3$s', 'saboxplugin' ),
@@ -67,6 +71,14 @@ if ( ! defined( 'WPINC' ) ) {
 				'</a>',
 			)
 		);
+=======
+		echo vsprintf( // Translators: 1 is Theme Name, 2 is opening Anchor, 3 is closing.
+			__( 'We\'ve been working hard on making %1$s the best one out there. We\'re interested in hearing your thoughts about %1$s and what we could do to <u>make it even better</u>.<br/> <br/> %2$sHave your say%3$s', 'saboxplugin' ), array(
+			'Simple Author Box',
+			'<a class="button button-feedback" target="_blank" href="http://bit.ly/feedback-simple-author-box">',
+			'</a>',
+		) );
+>>>>>>> 66e6eed5e89d6e6bb0ccef3a33f3f6d39d8b73cf
 		?>
 	</p>
 </div>

@@ -28,6 +28,27 @@ $sab_author_link = sprintf( '<a href="%s">%s</a>', esc_url( get_author_posts_url
 if ( get_the_author_meta( 'description' ) != '' || ! isset( $sabox_options['sab_no_description'] ) ) { // hide the author box if no description is provided
 
 
+<<<<<<< HEAD
+=======
+	/**
+	 * Add a link that opens up the user description panel
+	 *
+	 * @since 2.0.4
+	 */
+
+	if ( is_user_logged_in() ) {
+		echo '<div class="saboxplugin-edit-wrap">';
+		echo '<a target="_blank" href="' . get_edit_user_link() . '"> ' . __( 'Edit user profile/description', 'saboxplugin' ) . '</a>';
+		echo '&middot;';
+		echo '<a target="_blank" href="">' . __( 'Edit Simple Author Box Settings', 'saboxplugin' ) . '</a>';
+		echo '</div>';
+	}
+
+	/**
+	 * end
+	 */
+
+>>>>>>> 66e6eed5e89d6e6bb0ccef3a33f3f6d39d8b73cf
 	echo '<div class="saboxplugin-wrap">'; // start saboxplugin-wrap div
 
 	// author box gravatar
