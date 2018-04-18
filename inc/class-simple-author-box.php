@@ -182,10 +182,10 @@ class Simple_Author_Box {
 
 		$google_fonts = apply_filters( 'sabox_google_fonts', $google_fonts );
 
-
 		$google_fonts = array_unique( $google_fonts );
 
-		if ( ! empty( $google_fonts ) && is_array( $google_fonts ) ) {
+
+		if ( ! empty( $google_fonts )  ) { // let's check the array's not empty before actually loading; we want to avoid loading 'none' font-familes
 			$final_google_fonts = array();
 
 			foreach ( $google_fonts as $v ) {
@@ -194,8 +194,6 @@ class Simple_Author_Box {
 
 			wp_register_style( 'sab-font', $sab_protocol . '://fonts.googleapis.com/css?family=' . implode( '|', $final_google_fonts ) . $sab_subset, array(), null );
 
-		} else if ( ! is_array( $google_fonts ) ) {
-			wp_register_style( 'sab-font', $sab_protocol . '://fonts.googleapis.com/css?family=' . implode( '|', $google_fonts ) . ':400,700,400italic,700italic' . $sab_subset, array(), null );
 		}
 		/**
 		 * end changes introduced in 2.0.4
