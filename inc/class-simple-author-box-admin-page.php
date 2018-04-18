@@ -376,6 +376,12 @@ class Simple_Author_Box_Admin_Page {
 		if ( $sab_box_icon_size ) {
 			$this->options['sab_box_icon_size'] = $sab_box_icon_size;
 		}
+
+		$sab_box_author_font_size = get_option( 'sab_box_name_size' );
+		if ( $sab_box_author_font_size ) {
+			$this->options['sab_box_name_size'] = $sab_box_author_font_size;
+		}
+
 		$sab_box_web_size = get_option( 'sab_box_web_size' );
 		if ( $sab_box_web_size ) {
 			$this->options['sab_box_web_size'] = $sab_box_web_size;
@@ -422,7 +428,7 @@ class Simple_Author_Box_Admin_Page {
 				/* Translators: Welcome Screen Title. */
 				echo esc_html__( 'Simple Author Box', 'saboxplugin' );
 				?>
-				<a class="page-title-action" target="_blank" href="<?php echo get_edit_user_link(); ?>"><?php _e('Edit your user profile', 'saboxplugin'); ?></a>
+				<a class="page-title-action" target="_blank" href="<?php echo get_edit_user_link(); ?>"><?php _e( 'Edit your user profile', 'saboxplugin' ); ?></a>
 			</h1>
 
 			<div class="about-text">
@@ -463,8 +469,6 @@ class Simple_Author_Box_Admin_Page {
 
 				?>
 			</form>
-
-
 
 		</div>
 

@@ -1623,6 +1623,11 @@ body .saboxplugin-authorname a {
 	-webkit-box-shadow: none;
 }
 
+a.sab-profile-edit {
+	font-size: 16px !important;
+	line-height: 1 !important;
+}
+
 	a.sab-profile-edit,
 	.sab-edit-settings a{
 		color: #0073aa !important; /* default WP link color */
