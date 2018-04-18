@@ -3,14 +3,14 @@ Contributors: machothemes
 Tags: author box, responsive author box, author profile fields, author social icons, profile fields, author bio, author description, author profile, user profile, post author, rtl author box
 Requires at least: 4.6
 Tested up to: 4.9
-Stable tag: 2.0.3
+Stable tag: 2.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Adds a cool responsive author box with social icons on your posts.
 
 == Description ==
-a
+
 **Simple Author Box** adds a responsive author box at the end of your posts, showing the author name, author gravatar and author description. It also adds over 30 social profile fields on WordPress user profile screen, allowing to display the author social icons.
 
 = Main Features =
@@ -61,6 +61,7 @@ We are a young team of WordPress aficionados who love building WordPress plugins
 * Fixes #48 (Move feedback box only to support tab)
 * Fixes #49 (Display plugin version)
 * Fixes #43 (Add 500px icon)
+* Added various UI fixes (edit user profile button in plugin settings page, edit user profile/sab settings visible in author box _Only if user is logged in_ on the frontend)
 
 = 2.0.3 =
 * Fixed again the typography issue.
@@ -83,7 +84,6 @@ We are a young team of WordPress aficionados who love building WordPress plugins
 * Created a shortcode that can be placed inside the posts' content wherever a user wants
 * Improved how you add social links
 
-
 = 1.9 =
 * Removed lang folder, translations are now being handled by GlotPress on w.org
 * Fixed a CSS bug ( https://github.com/MachoThemes/simple-author-box/issues/11 )
@@ -94,7 +94,6 @@ We are a young team of WordPress aficionados who love building WordPress plugins
 * Fixed oEmbed bug on front-end ( https://github.com/MachoThemes/simple-author-box/issues/2 )
 * Added MixCloud Icon ( https://github.com/MachoThemes/simple-author-box/issues/3 )
 * Added GoodReads Icon ( https://github.com/MachoThemes/simple-author-box/issues/6 )
-
 
 = 1.8 =
 * Changed plugin authorship
