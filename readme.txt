@@ -62,6 +62,8 @@ We are a young team of WordPress aficionados who love building WordPress plugins
 * Fixes #49 (Display plugin version)
 * Fixes #43 (Add 500px icon)
 * Added various UI fixes (edit user profile button in plugin settings page, edit user profile/sab settings visible in author box _Only if user is logged in_ on the frontend)
+* Fixes incompatibility with SiteOrigin PageBuilder (fixed in: 406f569dd1eaee54801e1b5359bf101a9e6fd1ea); thanks @AlexGStapleton)
+
 
 = 2.0.3 =
 * Fixed again the typography issue.
