@@ -422,11 +422,7 @@ class Simple_Author_Box_Admin_Page {
 				/* Translators: Welcome Screen Title. */
 				echo esc_html__( 'Welcome to Simple Author Box', 'saboxplugin' );
 				?>
-<<<<<<< HEAD
 				<a class="page-title-action" target="_blank" href="<?php echo get_edit_user_link(); ?>"><?php _e('Edit your user profile', 'saboxplugin'); ?></a>
-=======
-
->>>>>>> 66e6eed5e89d6e6bb0ccef3a33f3f6d39d8b73cf
 			</h1>
 
 			<div class="about-text">
@@ -450,7 +446,6 @@ class Simple_Author_Box_Admin_Page {
 				wp_nonce_field( 'sabox-plugin-settings', 'sabox_plugin_settings_page' );
 				echo '<input type="hidden" name="sabox-setting-tab" value="' . $this->tab . '">';
 
-
 				if ( isset( $this->sections[ $this->tab ]['path'] ) ) {
 					require_once $this->sections[ $this->tab ]['path'];
 				} else {
@@ -463,19 +458,6 @@ class Simple_Author_Box_Admin_Page {
 					echo '<div class="textright">';
 					submit_button( esc_html__( 'Save Settings', 'saboxplugin' ), 'button button-primary button-hero', '', false );
 					echo '</div>';
-
-				if ( isset( $this->sections[ $this->tab ]['path'] ) ) {
-					require_once $this->sections[ $this->tab ]['path'];
-				} else {
-					echo '<table class="form-table sabox-table">';
-					foreach ( $this->settings[ $this->tab ] as $field_name => $field ) {
-						$this->generate_setting_field( $field_name, $field );
-					}
-					echo '</table>';
-					echo '<div class="textright">';
-					submit_button( esc_html__( 'Save Settings', 'saboxplugin' ), 'button button-primary button-hero', '', false );
-					echo '</div>';
-					
 
 				}
 
