@@ -1,10 +1,16 @@
 (function( $ ) {
 
+
 	'use strict';
 	var context = $( '#sabox-container' );
-	context.find( '.saboxfield' ).change( function() {
-		var value = getElementValue( $( this ) ),
-			elements = context.find( '.show_if_' + $( this ).attr( 'id' ) );
+
+
+	context.find( '.saboxfield' ).on( 'change', function() {
+
+		var value = getElementValue( $( this ) );
+
+		var elements = context.find( '.show_if_' + $( this ).attr( 'id' ) );
+
 		if ( value && '0' !== value ) {
 			elements.show();
 		} else {
@@ -14,6 +20,7 @@
 
 	function getElementValue( $element ) {
 		var type = $element.attr( 'type' );
+		var name = $element.attr( 'name' );
 
 		if ( 'checkbox' === type ) {
 			if ( $element.is( ':checked' ) ) {
@@ -25,6 +32,9 @@
 			return $element.val();
 		}
 	}
+
+
+
 
 	/**
 	 * Handle UI tab switching via jQuery instead of relying on CSS only
@@ -80,16 +90,7 @@
 			sliders = context.find( '.sabox-slider' ),
 			colorpickers = context.find( '.sabox-color' );
 
-		elements.each( function( $index, $element ) {
-			var element = $( $element ),
-				value = getElementValue( element ),
-				elements = context.find( '.show_if_' + element.attr( 'id' ) );
-			if ( value && '0' !== value ) {
-				elements.removeClass( 'hide' );
-			} else {
-				elements.addClass( 'hide' );
-			}
-		} );
+
 		if ( sliders.length > 0 ) {
 			sliders.each( function( $index, $slider ) {
 				var input = $( $slider ).parent().find( '.saboxfield' ),
@@ -118,5 +119,6 @@
 		admin_tab_switching();
 
 	} );
+
 
 })( jQuery );

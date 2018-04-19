@@ -643,6 +643,16 @@ class Simple_Author_Box_Admin_Page {
 				}
 				echo '</div>';
 				break;
+			case 'radio-group':
+				echo '<div class="sabox-radio-group">';
+				echo '<fieldset>';
+				foreach ( $field['choices'] as $key => $choice ) {
+					echo '<input type="radio" id="' . esc_attr( $field_name . '_' . $key ) . '" name="' . esc_attr( $name ) . '" class="saboxfield" ' . checked( $key, $this->options[ $field_name ], false ) . ' value="' . esc_attr( $key ) . '">';
+					echo '<label for="' . esc_attr( $field_name . '_' . $key ) . '">' . esc_attr( $choice ) . '</label>';
+				}
+				echo '</fieldset>';
+				echo '</div>';
+				break;
 			default:
 				do_action( "sabox_field_{$field['type']}_output", $field_name, $field );
 				break;

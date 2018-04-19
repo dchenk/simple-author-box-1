@@ -69,7 +69,7 @@ class Simple_Author_Box {
 				$class[] = $args['class'];
 			}
 		}
-		
+
 		if ( $custom_profile_image !== '' && $args['force_default'] !== true ) {
 
 			$avatar = sprintf(
