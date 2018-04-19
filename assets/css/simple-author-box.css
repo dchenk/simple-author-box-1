@@ -95,6 +95,8 @@
 	-moz-transition: opacity 0.4s;
 	-o-transition: opacity 0.4s;
 	transition: opacity 0.4s;
+	box-shadow: none !important;
+	-webkit-box-shadow: none !important;
 }
 
 .saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-color:before {
@@ -1649,3 +1651,6 @@ a.sab-profile-edit {
 	.saboxplugin-socials {
 		line-height: 1 !important;
 	}
+
+
+	
