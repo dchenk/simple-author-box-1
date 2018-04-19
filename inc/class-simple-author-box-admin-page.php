@@ -99,7 +99,7 @@ class Simple_Author_Box_Admin_Page {
 				),
 				'sab_box_padding_top_bottom' => array(
 					'label'       => __( 'Padding top and bottom of author box', 'saboxplugin' ),
-					'description' => '',
+					'description' => __('This controls the padding top & bottom of the author box', 'saboxplugin'),
 					'type'        => 'slider',
 					'choices'     => array(
 						'min'       => 0,
@@ -110,7 +110,7 @@ class Simple_Author_Box_Admin_Page {
 				),
 				'sab_box_padding_left_right' => array(
 					'label'       => __( 'Padding left and right of author box', 'saboxplugin' ),
-					'description' => '',
+					'description' => __('This controls the padding left & right of the author box', 'saboxplugin'),
 					'type'        => 'slider',
 					'choices'     => array(
 						'min'       => 0,
