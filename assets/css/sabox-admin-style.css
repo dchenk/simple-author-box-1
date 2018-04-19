@@ -442,3 +442,7 @@
 		}
 
 		.sabox-radio-group {text-align: right;}
+
+
+		.sabox-multicheckbox {text-align: right;}
+		.sabox-multicheckbox > div {display: inline-block; margin-left: 10px;}
