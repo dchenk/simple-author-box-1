@@ -18,7 +18,7 @@ class Simple_Author_Box_Admin_Page {
 				'label' => __( 'Appearance', 'saboxplugin' ),
 			),
 			'color-options'         => array(
-				'label' => __( 'Color', 'saboxplugin' ),
+				'label' => __( 'Colors', 'saboxplugin' ),
 			),
 			'typography-options'    => array(
 				'label' => __( 'Typography', 'saboxplugin' ),
