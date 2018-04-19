@@ -1618,7 +1618,8 @@
 
 /*  @Since 2.0.4
 -------------------------------------------------------------- */
-body .saboxplugin-authorname a {
+body .saboxplugin-authorname a,
+body .saboxplugin-authorname a:hover {
 	box-shadow: none;
 	-webkit-box-shadow: none;
 }
