@@ -63,6 +63,7 @@ We are a young team of WordPress aficionados who love building WordPress plugins
 * Fixes #43 (Add 500px icon)
 * Added various UI fixes (edit user profile button in plugin settings page, edit user profile/sab settings visible in author box _Only if user is logged in_ on the frontend)
 * Fixes incompatibility with SiteOrigin PageBuilder (fixed in: 406f569dd1eaee54801e1b5359bf101a9e6fd1ea); thanks @AlexGStapleton)
+* There was a bug that prevented the following options: "Open author website link in a new tab" && "Add "nofollow" attribute on author website link" when the "show author website" option was toggled to ON. Now it's fixed - yay.
 
 
 = 2.0.3 =

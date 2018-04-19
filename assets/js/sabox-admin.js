@@ -1,7 +1,7 @@
 (function( $ ) {
 
 	'use strict';
-	var context = $( '#sabox-cotnainer' );
+	var context = $( '#sabox-container' );
 	context.find( '.saboxfield' ).change( function() {
 		var value = getElementValue( $( this ) ),
 			elements = context.find( '.show_if_' + $( this ).attr( 'id' ) );
@@ -26,8 +26,56 @@
 		}
 	}
 
-	$( document ).ready( function() {
+	/**
+	 * Handle UI tab switching via jQuery instead of relying on CSS only
+	 */
+	function admin_tab_switching() {
 
+		var nav_tab_selector = '.nav-tab-wrapper a';
+
+		/**
+		 * Default tab handling
+		 */
+
+		// make the first tab active by default
+		$( nav_tab_selector + ':first' ).addClass( 'nav-tab-active' );
+
+		// get the first tab href
+		var initial_tab_href = $( nav_tab_selector + ':first' ).attr( 'href' );
+
+		// make all the tabs, except the first one hidden
+		$( '.epfw-turn-into-tab' ).each( function( index, value ) {
+			if ( '#' + $( this ).attr( 'id' ) !== initial_tab_href ) {
+				$( this ).hide();
+			}
+		} );
+
+		/**
+		 * Listen for click events on nav-tab links
+		 */
+		$( nav_tab_selector ).click( function( event ) {
+
+			$( nav_tab_selector ).removeClass( 'nav-tab-active' ); // remove class from previous selector
+			$( this ).addClass( 'nav-tab-active' ).blur(); // add class to currently clicked selector
+
+			var clicked_tab = $( this ).attr( 'href' );
+
+			$( '.epfw-turn-into-tab' ).each( function( index, value ) {
+				if ( '#' + $( this ).attr( 'id' ) !== clicked_tab ) {
+					$( this ).hide();
+				}
+
+				$( clicked_tab ).fadeIn();
+
+			} );
+
+			// prevent default behavior
+			event.preventDefault();
+
+		} );
+	}
+
+	$( document ).ready( function() {
 		var elements = context.find( '.saboxfield' ),
 			sliders = context.find( '.sabox-slider' ),
 			colorpickers = context.find( '.sabox-color' );
@@ -66,6 +114,8 @@
 				$( $colorpicker ).wpColorPicker();
 			} );
 		}
+
+		admin_tab_switching();
 
 	} );
 
