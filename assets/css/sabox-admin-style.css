@@ -15,6 +15,7 @@
 	margin-right: 10px;
 }
 .sabox-table .wp-picker-container {text-align: right;}
+.sabox-table .wp-picker-holder {position: absolute; }
 
 .sabox-table select {float: right;}
 
@@ -42,7 +43,7 @@
     display: none;
 }*/
 .sabox-slider-container {
-	max-width: 400px;
+	max-width: 390px;
 	padding-bottom: 5px;
 	box-sizing: border-box;
 }

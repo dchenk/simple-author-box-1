@@ -13,7 +13,6 @@ class Simple_Author_Box {
 		$this->options = get_option( 'saboxplugin_options', array() );
 
 		$this->load_dependencies();
-		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 
@@ -38,9 +37,6 @@ class Simple_Author_Box {
 		}
 	}
 
-	private function set_locale() {
-		load_plugin_textdomain( 'saboxplugin', false, SIMPLE_AUTHOR_BOX_PATH . 'lang/' );
-	}
 
 	private function define_admin_hooks() {
 
@@ -51,7 +47,44 @@ class Simple_Author_Box {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_style_and_scripts' ) );
 		add_filter( 'user_contactmethods', array( $this, 'add_extra_fields' ) );
 		add_filter( 'plugin_action_links_' . SIMPLE_AUTHOR_BOX_SLUG, array( $this, 'settings_link' ) );
+		add_filter( 'get_avatar', array( $this, 'replace_gravatar_image' ), 10, 6 );
+	}
 
+
+	public function replace_gravatar_image( $avatar, $id_or_email, $size, $default, $alt, $args ) {
+
+
+		$custom_profile_image = get_the_author_meta( 'sabox-profile-image', get_current_user_id() );
+		$alt                  = get_the_author();
+		$class = array( 'avatar', 'avatar-' . (int) $args['size'], 'photo' );
+
+		if ( ! $args['found_avatar'] || $args['force_default'] ) {
+			$class[] = 'avatar-default';
+		}
+
+		if ( $args['class'] ) {
+			if ( is_array( $args['class'] ) ) {
+				$class = array_merge( $class, $args['class'] );
+			} else {
+				$class[] = $args['class'];
+			}
+		}
+		
+		if ( $custom_profile_image !== '' && $args['force_default'] !== true ) {
+
+			$avatar = sprintf(
+				"<img alt='%s' src='%s' srcset='%s' class='%s' height='%d' width='%d' %s/>",
+				esc_attr( $alt ),
+				esc_url( $custom_profile_image ),
+				esc_url( $custom_profile_image ) . ' 2x',
+				esc_attr( join( ' ', $class ) ),
+				(int) $args['height'],
+				(int) $args['width'],
+				$args['extra_attr']
+			);
+		}
+
+		return $avatar;
 	}
 
 	private function define_public_hooks() {
@@ -147,7 +180,7 @@ class Simple_Author_Box {
 			$suffix = '';
 		}
 
-		$sab_protocol = is_ssl() ? 'https' : 'http';
+		$sab_protocol   = is_ssl() ? 'https' : 'http';
 		$sab_box_subset = get_option( 'sab_box_subset' );
 
 
@@ -185,7 +218,7 @@ class Simple_Author_Box {
 		$google_fonts = array_unique( $google_fonts );
 
 
-		if ( ! empty( $google_fonts )  ) { // let's check the array's not empty before actually loading; we want to avoid loading 'none' font-familes
+		if ( ! empty( $google_fonts ) ) { // let's check the array's not empty before actually loading; we want to avoid loading 'none' font-familes
 			$final_google_fonts = array();
 
 			foreach ( $google_fonts as $v ) {
