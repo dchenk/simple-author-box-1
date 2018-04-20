@@ -10,6 +10,7 @@
 	display: block;
 	overflow: hidden;
 	word-wrap: break-word;
+	position: relative;
 }
 
 .saboxplugin-wrap .saboxplugin-gravatar {
@@ -1634,14 +1635,17 @@ a.sab-profile-edit {
 	a.sab-profile-edit,
 	.sab-edit-settings a{
 		color: #0073aa !important; /* default WP link color */
+		box-shadow: none !important;
+		-webkit-box-shadow: none !important;
 	}
 
 .sab-edit-settings {
+	margin-right: 15px;
 	position: absolute;
 	right: 0;
-	top: 50%;
-	margin-top: -10px;
-	margin-right: 15px;
+	z-index: 2;
+	bottom: 10px;
+	line-height: 20px;
 }
 
 	.sab-edit-settings i {
@@ -1653,4 +1657,3 @@ a.sab-profile-edit {
 	}
 
 
-	

@@ -85,14 +85,16 @@ if ( get_the_author_meta( 'description' ) != '' || ! isset( $sabox_options['sab_
 	$show_social_icons = apply_filters( 'sabox_hide_social_icons', true, $author );
 
 
+
+	if ( is_user_logged_in() ) {
+		echo '<div class="sab-edit-settings">';
+		echo '<a target="_blank" href="'.admin_url().'admin.php?page=simple-author-box-options">' . __( 'Settings', 'saboxplugin' ) . '<i class="dashicons dashicons-admin-settings"></i></a>';
+		echo '</div>';
+	}
+
+
 	if ( ! isset( $sabox_options['sab_hide_socials'] ) && $show_social_icons ) { // hide social icons div option
 		echo '<div class="saboxplugin-socials ' . esc_attr( $sabox_color ) . '">';
-
-		if ( is_user_logged_in() ) {
-			echo '<div class="sab-edit-settings">';
-			echo '<a target="_blank" href="'.admin_url().'admin.php?page=simple-author-box-options">' . __( 'Settings', 'saboxplugin' ) . '<i class="dashicons dashicons-admin-settings"></i></a>';
-			echo '</div>';
-		}
 
 
 		$social_links = Simple_Author_Box_Helper::get_user_social_links( $sabox_author_id, true );
