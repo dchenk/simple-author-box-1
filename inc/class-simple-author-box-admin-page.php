@@ -229,9 +229,10 @@ class Simple_Author_Box_Admin_Page {
 					'description' => __( 'Select the color for author\'s website link', 'saboxplugin' ),
 					'type'        => 'color',
 					'group'       => 'saboxplugin_options',
+					'condition'   => 'sab_web',
 				),
 				'sab_box_border'       => array(
-					'label'       => __( 'Border color of Simple Author Box', 'saboxplugin' ),
+					'label'       => __( 'Border color', 'saboxplugin' ),
 					'description' => __( 'Select the color for author box border', 'saboxplugin' ),
 					'type'        => 'color',
 					'group'       => 'saboxplugin_options',
@@ -247,6 +248,7 @@ class Simple_Author_Box_Admin_Page {
 					'description' => __( 'Select the color for social icons when using the symbols only social icon type', 'saboxplugin' ),
 					'type'        => 'color',
 					'group'       => 'saboxplugin_options',
+					'condition'   => 'sab_colored',
 				),
 			),
 			'typography-options'    => array(
@@ -270,6 +272,7 @@ class Simple_Author_Box_Admin_Page {
 					'type'        => 'select',
 					'choices'     => Simple_Author_Box_Helper::get_google_fonts(),
 					'default'     => 'None',
+					'condition'   => 'sab_web',
 				),
 				'sab_box_desc_font' => array(
 					'label'       => __( 'Author description font family', 'saboxplugin' ),
@@ -299,6 +302,7 @@ class Simple_Author_Box_Admin_Page {
 						'increment' => 1,
 					),
 					'default'     => '14',
+					'condition'   => 'sab_web',
 				),
 				'sab_box_desc_size' => array(
 					'label'       => __( 'Author description font size', 'saboxplugin' ),
@@ -436,13 +440,13 @@ class Simple_Author_Box_Admin_Page {
 						/* Translators: Welcome Screen Title. */
 						echo esc_html__( 'Simple Author Box', 'saboxplugin' );
 						?>
-						<a href="<?php echo get_edit_user_link(); ?>" class="page-title-action"><?php _e('Edit user profile', 'saboxplugin'); ?></a>
+						<a target="_blank" href="<?php echo get_edit_user_link(); ?>" class="page-title-action"><?php _e( 'Edit user profile', 'saboxplugin' ); ?></a>
 					</h1>
 
 				</div>
 
 				<div class="sabox-masthead-right">
-					<a href="https://www.machothemes.com/support/?utm_source=sab&utm_medium=about-page&utm_campaign=support-button"><?php _e( 'Support', 'saboxplugin' ); ?>&nbsp; &nbsp;<i class="dashicons dashicons-sos"></i></a>
+					<a target="_blank" href="https://www.machothemes.com/support/?utm_source=sab&utm_medium=about-page&utm_campaign=support-button"><?php _e( 'Support', 'saboxplugin' ); ?>&nbsp; &nbsp;<i class="dashicons dashicons-sos"></i></a>
 				</div>
 				<div class="wp-clearfix"></div>
 			</div>
@@ -481,11 +485,10 @@ class Simple_Author_Box_Admin_Page {
 
 		</div>
 
-			<span class="sabox-version">
-				<?php echo _e('Version: ', 'saboxplugin') . esc_html( SIMPLE_AUTHOR_BOX_VERSION ); ?>&nbsp; &middot; &nbsp;
-				<?php echo '<a href="https://github.com/MachoThemes/simple-author-box/blob/master/readme.txt">' . __('Changelog', 'saboxplugin') . '</a>'; ?>
+		<span class="sabox-version">
+				<?php echo _e( 'Version: ', 'saboxplugin' ) . esc_html( SIMPLE_AUTHOR_BOX_VERSION ); ?>&nbsp; &middot; &nbsp;
+			<?php echo '<a target="_blank" href="https://github.com/MachoThemes/simple-author-box/blob/master/readme.txt">' . __( 'Changelog', 'saboxplugin' ) . '</a>'; ?>
 			</span>
-
 
 		<?php
 	}
