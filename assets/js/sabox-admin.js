@@ -10,9 +10,9 @@
 		var elements = context.find( '.show_if_' + $( this ).attr( 'id' ) );
 
 		if ( value && '0' !== value ) {
-			elements.show();
+			elements.show(300);
 		} else {
-			elements.hide();
+			elements.hide(250);
 		}
 	} );
 

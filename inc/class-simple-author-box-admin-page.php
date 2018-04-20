@@ -99,7 +99,7 @@ class Simple_Author_Box_Admin_Page {
 				),
 				'sab_box_padding_top_bottom' => array(
 					'label'       => __( 'Padding top and bottom of author box', 'saboxplugin' ),
-					'description' => __('This controls the padding top & bottom of the author box', 'saboxplugin'),
+					'description' => __( 'This controls the padding top & bottom of the author box', 'saboxplugin' ),
 					'type'        => 'slider',
 					'choices'     => array(
 						'min'       => 0,
@@ -110,7 +110,7 @@ class Simple_Author_Box_Admin_Page {
 				),
 				'sab_box_padding_left_right' => array(
 					'label'       => __( 'Padding left and right of author box', 'saboxplugin' ),
-					'description' => __('This controls the padding left & right of the author box', 'saboxplugin'),
+					'description' => __( 'This controls the padding left & right of the author box', 'saboxplugin' ),
 					'type'        => 'slider',
 					'choices'     => array(
 						'min'       => 0,
@@ -135,6 +135,7 @@ class Simple_Author_Box_Admin_Page {
 					'description' => __( 'When turned ON, this adds a rotate effect when hovering over the author\'s avatar', 'saboxplugin' ),
 					'type'        => 'toggle',
 					'group'       => 'saboxplugin_options',
+					'condition'   => 'sab_avatar_style',
 				),
 				'sab_web'                    => array(
 					'label'       => __( 'Show author website', 'saboxplugin' ),
@@ -195,7 +196,7 @@ class Simple_Author_Box_Admin_Page {
 					'group'       => 'saboxplugin_options',
 				),
 				'sab_social_hover'    => array(
-					'label'       => __( 'Rotate effect on social icons hover', 'saboxplugin' ),
+					'label'       => __( 'Rotate effect on social icons hover (works only for circle icons)', 'saboxplugin' ),
 					'description' => __( 'Add a rotate effect when you hover on social icons hover', 'saboxplugin' ),
 					'type'        => 'toggle',
 					'condition'   => 'sab_colored',
