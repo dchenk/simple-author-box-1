@@ -1,9 +1,9 @@
 === Simple Author Box ===
 Contributors: machothemes
 Tags: author box, responsive author box, author profile fields, author social icons, profile fields, author bio, author description, author profile, user profile, post author, rtl author box
-Requires at least: 3.6
+Requires at least: 4.6
 Tested up to: 4.9
-Stable tag: 2.0.3
+Stable tag: 2.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,6 +52,22 @@ We are a young team of WordPress aficionados who love building WordPress plugins
 
 == Changelog ==
 
+= 2.0.4 =
+* Added Snapchat icon:  https://github.com/MachoThemes/simple-author-box/issues/35
+* Fixed Shortcode issue: https://github.com/MachoThemes/simple-author-box/issues/33
+* Added plugin uninstall feedback: https://github.com/MachoThemes/simple-author-box/issues/40
+* Fixes #45 (400 Error Loading Fonts)
+* Fixes #47 (Replace button in user profile for add social media)
+* Fixes #48 (Move feedback box only to support tab)
+* Fixes #49 (Display plugin version)
+* Fixes #43 (Add 500px icon)
+* Added various UI fixes (edit user profile button in plugin settings page, edit user profile/sab settings visible in author box _Only if user is logged in_ on the frontend)
+* Fixes incompatibility with SiteOrigin PageBuilder (fixed in: 406f569dd1eaee54801e1b5359bf101a9e6fd1ea); thanks @AlexGStapleton)
+* There was a bug that prevented the following options: "Open author website link in a new tab" && "Add "nofollow" attribute on author website link" when the "show author website" option was toggled to ON. Now it's fixed - yay.
+* Fixes #50 (Replace all gravatar instances in wp-admin with SAB custom image)
+* Introduces new, simplified UI
+
+
 = 2.0.3 =
 * Fixed again the typography issue.
 * Fixed email in social icons
@@ -73,7 +89,6 @@ We are a young team of WordPress aficionados who love building WordPress plugins
 * Created a shortcode that can be placed inside the posts' content wherever a user wants
 * Improved how you add social links
 
-
 = 1.9 =
 * Removed lang folder, translations are now being handled by GlotPress on w.org
 * Fixed a CSS bug ( https://github.com/MachoThemes/simple-author-box/issues/11 )
@@ -84,7 +99,6 @@ We are a young team of WordPress aficionados who love building WordPress plugins
 * Fixed oEmbed bug on front-end ( https://github.com/MachoThemes/simple-author-box/issues/2 )
 * Added MixCloud Icon ( https://github.com/MachoThemes/simple-author-box/issues/3 )
 * Added GoodReads Icon ( https://github.com/MachoThemes/simple-author-box/issues/6 )
-
 
 = 1.8 =
 * Changed plugin authorship

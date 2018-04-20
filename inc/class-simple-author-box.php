@@ -1,8 +1,8 @@
 <?php
 
 /**
-*
-*/
+ *
+ */
 class Simple_Author_Box {
 
 	private static $instance = null;
@@ -13,7 +13,6 @@ class Simple_Author_Box {
 		$this->options = get_option( 'saboxplugin_options', array() );
 
 		$this->load_dependencies();
-		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 
@@ -23,6 +22,7 @@ class Simple_Author_Box {
 		if ( is_null( self::$instance ) ) {
 			self::$instance = new self();
 		}
+
 		return self::$instance;
 	}
 
@@ -37,9 +37,6 @@ class Simple_Author_Box {
 		}
 	}
 
-	private function set_locale() {
-		load_plugin_textdomain( 'saboxplugin', false, SIMPLE_AUTHOR_BOX_PATH . 'lang/' );
-	}
 
 	private function define_admin_hooks() {
 
@@ -50,24 +47,59 @@ class Simple_Author_Box {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_style_and_scripts' ) );
 		add_filter( 'user_contactmethods', array( $this, 'add_extra_fields' ) );
 		add_filter( 'plugin_action_links_' . SIMPLE_AUTHOR_BOX_SLUG, array( $this, 'settings_link' ) );
+		add_filter( 'get_avatar', array( $this, 'replace_gravatar_image' ), 10, 6 );
+	}
 
+
+	public function replace_gravatar_image( $avatar, $id_or_email, $size, $default, $alt, $args ) {
+
+
+		$custom_profile_image = get_the_author_meta( 'sabox-profile-image', get_current_user_id() );
+		$alt                  = get_the_author();
+		$class = array( 'avatar', 'avatar-' . (int) $args['size'], 'photo' );
+
+		if ( ! $args['found_avatar'] || $args['force_default'] ) {
+			$class[] = 'avatar-default';
+		}
+
+		if ( $args['class'] ) {
+			if ( is_array( $args['class'] ) ) {
+				$class = array_merge( $class, $args['class'] );
+			} else {
+				$class[] = $args['class'];
+			}
+		}
+
+		if ( $custom_profile_image !== '' && $args['force_default'] !== true ) {
+
+			$avatar = sprintf(
+				"<img alt='%s' src='%s' srcset='%s' class='%s' height='%d' width='%d' %s/>",
+				esc_attr( $alt ),
+				esc_url( $custom_profile_image ),
+				esc_url( $custom_profile_image ) . ' 2x',
+				esc_attr( join( ' ', $class ) ),
+				(int) $args['height'],
+				(int) $args['width'],
+				$args['extra_attr']
+			);
+		}
+
+		return $avatar;
 	}
 
 	private function define_public_hooks() {
 
 		if ( ! isset( $this->options['sab_autoinsert'] ) ) {
-			add_filter( 'the_content', 'wpsabox_author_box', 11 );
+			add_filter( 'the_content', 'wpsabox_author_box' );
 		}
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'saboxplugin_author_box_style' ), 10 );
 
 		if ( isset( $this->options['sab_footer_inline_style'] ) ) {
-			add_action(
-				'wp_footer', array(
-					$this,
-					'inline_style',
-				), 13
-			);
+			add_action( 'wp_footer', array(
+				$this,
+				'inline_style',
+			), 13 );
 		} else {
 			add_action( 'wp_head', array( $this, 'inline_style' ), 15 );
 		}
@@ -80,6 +112,7 @@ class Simple_Author_Box {
 	public function settings_link( $links ) {
 		$settings_link = '<a href="' . admin_url( 'admin.php?page=simple-author-box-options' ) . '">' . __( 'Settings', 'saboxplugin' ) . '</a>';
 		array_unshift( $links, $settings_link );
+
 		return $links;
 	}
 
@@ -100,8 +133,14 @@ class Simple_Author_Box {
 			wp_enqueue_style( 'saboxplugin-admin-style', SIMPLE_AUTHOR_BOX_ASSETS . 'css/sabox-admin-style' . $suffix . '.css' );
 
 			// Scripts
-			wp_enqueue_script( 'sabox-admin-js', SIMPLE_AUTHOR_BOX_ASSETS . 'js/sabox-admin.js', array( 'jquery-ui-slider', 'wp-color-picker' ), false, true );
-			wp_enqueue_script( 'sabox-plugin-install', SIMPLE_AUTHOR_BOX_ASSETS . 'js/plugin-install.js', array( 'jquery', 'updates' ), '1.0.0', 'all' );
+			wp_enqueue_script( 'sabox-admin-js', SIMPLE_AUTHOR_BOX_ASSETS . 'js/sabox-admin.js', array(
+				'jquery-ui-slider',
+				'wp-color-picker',
+			), false, true );
+			wp_enqueue_script( 'sabox-plugin-install', SIMPLE_AUTHOR_BOX_ASSETS . 'js/plugin-install.js', array(
+				'jquery',
+				'updates',
+			), '1.0.0', 'all' );
 
 		} elseif ( 'profile.php' == $hook || 'user-edit.php' == $hook ) {
 
@@ -143,8 +182,15 @@ class Simple_Author_Box {
 
 		$sab_protocol   = is_ssl() ? 'https' : 'http';
 		$sab_box_subset = get_option( 'sab_box_subset' );
-		if ( 'none' != $sab_box_subset ) {
-			$sab_subset = '&amp;subset=' . $sab_box_subset;
+
+
+		/**
+		 * Check for duplicate font families, remove duplicates & re-work the font enqueue procedure
+		 *
+		 * @since 2.0.4
+		 */
+		if ( 'none' != strtolower( $sab_box_subset ) ) {
+			$sab_subset = '&amp;subset=' . strtolower( $sab_box_subset );
 		} else {
 			$sab_subset = '&amp;subset=latin';
 		}
@@ -155,23 +201,37 @@ class Simple_Author_Box {
 
 		$google_fonts = array();
 
-		if ( $sab_author_font && 'None' != $sab_author_font && 'none' != $sab_author_font ) {
-			$google_fonts[] = str_replace( ' ', '+', esc_attr( $sab_author_font ) ) . ':400,700,400italic,700italic';
+		if ( $sab_author_font && 'none' != strtolower( $sab_author_font ) ) {
+			$google_fonts[] = str_replace( ' ', '+', esc_attr( $sab_author_font ) );
 		}
 
-		if ( $sab_desc_font && 'None' != $sab_desc_font && 'none' != $sab_desc_font ) {
-			$google_fonts[] = str_replace( ' ', '+', esc_attr( $sab_desc_font ) ) . ':400,700,400italic,700italic';
+		if ( $sab_desc_font && 'none' != strtolower( $sab_desc_font ) ) {
+			$google_fonts[] = str_replace( ' ', '+', esc_attr( $sab_desc_font ) );
 		}
 
-		if ( isset( $this->options['sab_web'] ) && $sab_web_font && 'None' != $sab_web_font && 'none' != $sab_web_font ) {
-			$google_fonts[] = str_replace( ' ', '+', esc_attr( $sab_web_font ) ) . ':400,700,400italic,700italic';
+		if ( isset( $this->options['sab_web'] ) && $sab_web_font && 'none' != strtolower( $sab_web_font ) ) {
+			$google_fonts[] = str_replace( ' ', '+', esc_attr( $sab_web_font ) );
 		}
 
 		$google_fonts = apply_filters( 'sabox_google_fonts', $google_fonts );
 
-		if ( ! empty( $google_fonts ) ) {
-			wp_register_style( 'sab-font', $sab_protocol . '://fonts.googleapis.com/css?family=' . implode( '|', $google_fonts ) . $sab_subset, array(), null );
+		$google_fonts = array_unique( $google_fonts );
+
+
+		if ( ! empty( $google_fonts ) ) { // let's check the array's not empty before actually loading; we want to avoid loading 'none' font-familes
+			$final_google_fonts = array();
+
+			foreach ( $google_fonts as $v ) {
+				$final_google_fonts[] = $v . ':400,700,400italic,700italic';
+			}
+
+			wp_register_style( 'sab-font', $sab_protocol . '://fonts.googleapis.com/css?family=' . implode( '|', $final_google_fonts ) . $sab_subset, array(), null );
+
 		}
+		/**
+		 * end changes introduced in 2.0.4
+		 */
+
 
 		if ( ! isset( $this->options['sab_load_fa'] ) ) {
 			wp_register_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' );
@@ -201,7 +261,7 @@ class Simple_Author_Box {
 			return;
 		}
 
-		$style  = '<style type="text/css">';
+		$style = '<style type="text/css">';
 		$style .= Simple_Author_Box_Helper::generate_inline_css();
 		$style .= '</style>';
 
@@ -210,9 +270,9 @@ class Simple_Author_Box {
 
 	public function shortcode( $atts ) {
 		$html = wpsabox_author_box();
+
 		return $html;
 	}
-
 
 
 	public function show_social_media_icons( $return, $user ) {
