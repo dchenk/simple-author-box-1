@@ -429,21 +429,20 @@ class Simple_Author_Box_Admin_Page {
 		?>
 
 		<div class="masthead">
-			<div class="sabox-wrap">
+			<div class="wrap sabox-wrap">
 				<div class="sabox-masthead-left">
-					<h1>
+					<h1 class="wp-heading-inline">
 						<?php
 						/* Translators: Welcome Screen Title. */
 						echo esc_html__( 'Simple Author Box', 'saboxplugin' );
 						?>
+						<a href="<?php echo get_edit_user_link(); ?>" class="page-title-action"><?php _e('Edit user profile', 'saboxplugin'); ?></a>
 					</h1>
-					<span class="sabox-version">
-						<?php echo esc_html( SIMPLE_AUTHOR_BOX_VERSION ); ?>
-					</span>
+
 				</div>
 
 				<div class="sabox-masthead-right">
-					<a href="#"><?php _e( 'Support', 'saboxplugin' ); ?></a>
+					<a href="https://www.machothemes.com/support/?utm_source=sab&utm_medium=about-page&utm_campaign=support-button"><?php _e( 'Support', 'saboxplugin' ); ?>&nbsp; &nbsp;<i class="dashicons dashicons-sos"></i></a>
 				</div>
 				<div class="wp-clearfix"></div>
 			</div>
@@ -481,6 +480,12 @@ class Simple_Author_Box_Admin_Page {
 			</form>
 
 		</div>
+
+			<span class="sabox-version">
+				<?php echo _e('Version: ', 'saboxplugin') . esc_html( SIMPLE_AUTHOR_BOX_VERSION ); ?>&nbsp; &middot; &nbsp;
+				<?php echo '<a href="https://github.com/MachoThemes/simple-author-box/blob/master/readme.txt">' . __('Changelog', 'saboxplugin') . '</a>'; ?>
+			</span>
+
 
 		<?php
 	}

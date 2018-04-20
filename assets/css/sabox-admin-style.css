@@ -14,7 +14,9 @@
 	color: #b8cad7;
 	margin-right: 10px;
 }
+
 .sabox-table .wp-picker-container {text-align: right;}
+
 .sabox-table .wp-picker-holder {position: absolute; }
 
 .sabox-table select {float: right;}
@@ -262,187 +264,183 @@
 	text-transform: capitalize;
 }
 
-
-
 /*  EPFW Styles
 *
 *   @since 2.0.4
 *
 -------------------------------------------------------------- */
 
-	/* tab styling */
-	.epfw-tab-wrapper.nav-tab-wrapper {
-		background: #fff;
-		padding: 0;
-		border: 1px solid #ddd;
-		text-align: center;
-		margin-bottom: 40px;
-	}
+/* tab styling */
+.epfw-tab-wrapper.nav-tab-wrapper {
+	background: #fff;
+	padding: 0;
+	border: 1px solid #ddd;
+	text-align: center;
+	margin-bottom: 40px;
+}
 
-	.epfw-tab.nav-tab {
-		background: #fff;
-		border: 0;
-		display: inline-block;
-		margin-right: 20px;
-		margin-left: 0;
-		padding: 10px;
-		border-bottom: 2px solid transparent;
-		color: #0073aa;
-		font-weight: 400;
-	}
+.epfw-tab.nav-tab {
+	background: #fff;
+	border: 0;
+	display: inline-block;
+	margin-right: 20px;
+	margin-left: 0;
+	padding: 10px;
+	border-bottom: 2px solid transparent;
+	color: #0073aa;
+	font-weight: 400;
+}
 
-	.epfw-tab.nav-tab.nav-tab-active {
-		border-bottom: 2px solid #2e4453;
-		color: #2e4453;
-	}
+.epfw-tab.nav-tab.nav-tab-active {
+	border-bottom: 2px solid #2e4453;
+	color: #2e4453;
+}
 
-	/* admin options page styling */
-	.masthead {
-		background-color: #fff;
-		text-align: center;
-		box-shadow: 0 1px 0 rgba(200, 215, 225, 0.5), 0 1px 2px #ddd;
-		margin-bottom: 40px;
-		padding: 20px;
-	}
+/* admin options page styling */
+.masthead {
+	background-color: #fff;
+	text-align: center;
+	box-shadow: 0 1px 0 rgba(200, 215, 225, 0.5), 0 1px 2px #ddd;
+	margin-bottom: 40px;
+	padding: 20px;
+}
 
-	.masthead h1 {
-		margin: 0;
-		padding: 0;
-		display: inline-block;
-		font-size: 20px;
-		color: #000;
-		font-weight: 500;
-	}
+.masthead h1 {
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+	font-size: 20px;
+	color: #000;
+	font-weight: 500;
+}
 
-	.masthead a {
-		display: inline-block;
-		margin: 0 10px;
-		text-decoration: none;
-	}
+.masthead a {
+	display: inline-block;
+	margin: 0 10px;
+	text-decoration: none;
+}
 
-	.masthead .sabox-version {
-		display: inline-block;
-		background: #efefef;
-		padding: 1px 3px;
-		border-radius: 2px;
-		font-size: 11px;
-		vertical-align: top;
-		margin-left: 5px;
-	}
+.sabox-version {
+	margin: 20px auto;
+	padding: 20px 0;
+	display: block;
+	text-align: center;
+	border-bottom: 1px solid #ddd;
+	border-top: 1px solid #ddd;
+}
 
-	body.toplevel_page_simple-author-box-options {
-		background-color: #f3f6f8;
-	}
+body.toplevel_page_simple-author-box-options {
+	background-color: #f3f6f8;
+}
 
-	body.toplevel_page_simple-author-box-options #wpcontent {
-		padding-left: 0;
-	}
+body.toplevel_page_simple-author-box-options #wpcontent {
+	padding-left: 0;
+}
 
-	.sabox-masthead-left,
-	.sabox-masthead-right {
-		display: inline-block;
-	}
+.sabox-masthead-left,
+.sabox-masthead-right {
+	display: inline-block;
+}
 
-	.sabox-masthead-left {float: left;}
-	.sabox-masthead-right {float: right;}
+.sabox-masthead-left {float: left;}
 
+.sabox-masthead-right {float: right;}
 
+/* tooltips styling */
+.epfw-tooltip {
+	position: relative;
+	display: inline;
+	margin-right: 10px;
+}
 
-	/* tooltips styling */
-	.epfw-tooltip {
-		position: relative;
-		display: inline;
-		margin-right: 10px;
-	}
+.epfw-tooltip:after {
+	font-weight: 400;
+	display: block;
+	visibility: hidden;
+	position: absolute;
+	bottom: 0;
+	left: 20%;
+	opacity: 0;
+	content: attr(data-tooltip); /* might also use attr(title) */
+	height: auto;
+	min-width: 300px;
+	z-index: 999;
+	text-decoration: none;
+	text-align: center;
+	border: 1px solid #c8d7e1;
+	border-radius: 4px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 0 56px rgba(0, 0, 0, 0.075);
+	background: #fff;
+	color: #4f748e;
+	font-size: 13px;
+	padding: 16px;
+}
 
-	.epfw-tooltip:after {
-		font-weight: 400;
-		display: block;
-		visibility: hidden;
-		position: absolute;
-		bottom: 0;
-		left: 20%;
-		opacity: 0;
-		content: attr(data-tooltip); /* might also use attr(title) */
-		height: auto;
-		min-width: 300px;
-		z-index: 999;
-		text-decoration: none;
-		text-align: center;
-		border: 1px solid #c8d7e1;
-		border-radius: 4px;
-		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 0 56px rgba(0, 0, 0, 0.075);
-		background: #fff;
-		color: #4f748e;
-		font-size: 13px;
-		padding: 16px;
-	}
+.epfw-tooltip:before {
+	position: absolute;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+	left: 50%;
+	bottom: 0px;
+	opacity: 0;
+	content: "";
+	border-style: solid;
+	border-width: 6px 6px 0 6px;
+	border-color: rgba(255, 255, 255, 0.85) transparent transparent transparent;
+}
 
-	.epfw-tooltip:before {
-		position: absolute;
-		visibility: hidden;
-		width: 0;
-		height: 0;
-		left: 50%;
-		bottom: 0px;
-		opacity: 0;
-		content: "";
-		border-style: solid;
-		border-width: 6px 6px 0 6px;
-		border-color: rgba(255, 255, 255, 0.85) transparent transparent transparent;
-	}
+.epfw-tooltip:hover:after { visibility: visible; opacity: 1; bottom: 20px; }
 
-	.epfw-tooltip:hover:after { visibility: visible; opacity: 1; bottom: 20px; }
-	.epfw-tooltip:hover:before { visibility: visible; opacity: 1; bottom: 14px; }
+.epfw-tooltip:hover:before { visibility: visible; opacity: 1; bottom: 14px; }
 
-	/* radio group styling */
-	.sabox-table input[type="radio"] {
-		display: none;
-		margin: 10px;
-	}
+/* radio group styling */
+.sabox-table input[type="radio"] {
+	display: none;
+	margin: 10px;
+}
 
+.sabox-table input[type="radio"] + label {
+	margin: .25em 0 .5em !important;
+	min-width: 100px;
+	display: inline-block;
+	padding: 4px 12px;
+	font-size: 14px;
+	line-height: 20px;
+	color: #333;
+	text-align: center;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+	vertical-align: middle;
+	cursor: pointer;
+	background-color: #f5f5f5;
+	background-image: -moz-linear-gradient(top, #fff, #e6e6e6);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(#e6e6e6));
+	background-image: -webkit-linear-gradient(top, #fff, #e6e6e6);
+	background-image: -o-linear-gradient(top, #fff, #e6e6e6);
+	background-image: linear-gradient(to bottom, #fff, #e6e6e6);
+	background-repeat: repeat-x;
+	border: 1px solid #ccc;
+	border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	border-bottom-color: #b3b3b3;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
 
-		.sabox-table input[type="radio"] + label {
-			margin: .25em 0 .5em!important;
-			min-width: 100px;
-			display: inline-block;
-			padding: 4px 12px;
-			font-size: 14px;
-			line-height: 20px;
-			color: #333;
-			text-align: center;
-			text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-			vertical-align: middle;
-			cursor: pointer;
-			background-color: #f5f5f5;
-			background-image: -moz-linear-gradient(top, #fff, #e6e6e6);
-			background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(#e6e6e6));
-			background-image: -webkit-linear-gradient(top, #fff, #e6e6e6);
-			background-image: -o-linear-gradient(top, #fff, #e6e6e6);
-			background-image: linear-gradient(to bottom, #fff, #e6e6e6);
-			background-repeat: repeat-x;
-			border: 1px solid #ccc;
-			border-color: #e6e6e6 #e6e6e6 #bfbfbf;
-			border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-			border-bottom-color: #b3b3b3;
-			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
-			filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-			-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-			-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-			box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-		}
+.sabox-table input[type="radio"]:checked + label {
+	background-image: none;
+	outline: 0;
+	-webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+	-moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+	box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+	background-color: #e0e0e0;
+}
 
-		.sabox-table input[type="radio"]:checked + label {
-			background-image: none;
-			outline: 0;
-			-webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-			-moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-			box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-			background-color: #e0e0e0;
-		}
+.sabox-radio-group {text-align: right;}
 
-		.sabox-radio-group {text-align: right;}
+.sabox-multicheckbox {text-align: right;}
 
-
-		.sabox-multicheckbox {text-align: right;}
-		.sabox-multicheckbox > div {display: inline-block; margin-left: 10px;}
+.sabox-multicheckbox > div {display: inline-block; margin-left: 10px;}
