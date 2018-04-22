@@ -76,25 +76,12 @@ class Simple_Author_Box_Helper {
 
 		$social_icons = apply_filters( 'sabox_social_icons', Simple_Author_Box_Helper::$social_icons );
 		$social_links = get_user_meta( $userd_id, 'sabox_social_links', true );
-		$use_meta     = true;
 
 		if ( ! is_array( $social_links ) ) {
 			$social_links = array();
-			$use_meta     = false;
-
-			if ( ! $show_email ) {
-				unset( $social_icons['user_email'] );
-			}
-
-			foreach ( $social_icons as $key => $social_icon ) {
-				$url = get_the_author_meta( $key, $userd_id );
-				if ( $url ) {
-					$social_links[ $key ] = $url;
-				}
-			}
 		}
 
-		if ( $show_email && $use_meta ) {
+		if ( $show_email ) {
 			$social_links['user_email'] = get_the_author_meta( 'user_email', $userd_id );
 		}
 

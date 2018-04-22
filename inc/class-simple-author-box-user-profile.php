@@ -134,6 +134,8 @@ class Simple_Author_Box_User_Profile {
 
 			update_user_meta( $user_id, 'sabox_social_links', $social_links );
 
+		}else{
+			delete_user_meta( $user_id, 'sabox_social_links' );
 		}
 
 		if ( ! isset( $_POST['sabox-profile-nonce'] ) || ! wp_verify_nonce( $_POST['sabox-profile-nonce'], 'sabox-profile-image' ) ) {
