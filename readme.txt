@@ -1,11 +1,11 @@
 === Simple Author Box ===
-Contributors: machothemes
+Contributors: machothemes, silkalns
 Tags: author box, responsive author box, author profile fields, author social icons, profile fields, author bio, author description, author profile, user profile, post author, rtl author box
 Requires at least: 4.6
 Tested up to: 4.9
 Stable tag: 2.0.4
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License: GPLv3 or later
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Adds a cool responsive author box with social icons on your posts.
 
@@ -23,7 +23,7 @@ Adds a cool responsive author box with social icons on your posts.
 * Simple Author Box has RTL support
 
 **About us:**
-We are a young team of WordPress aficionados who love building WordPress plugins & <a href="https://www.machothemes.com/" rel="friend" target="_blank" title="Premium WordPress themes">Premium WordPress themes</a> over on our theme shop. We’re also blogging and wish to help our users find the best <a rel="friend" href="https://www.machothemes.com/blog/cheap-wordpress-hosting/" target="_blank" title="Cheap WordPress Hosting">Cheap WordPress hosting</a> & the best <a href="https://www.machothemes.com/blog/best-free-wordpress-bootstrap-themes/" title="Bootstrap WordPress themes" target="_blank" rel="friend">Bootstrap WordPress Themes</a>.
+We are a young team of WordPress aficionados who love building WordPress plugins & <a href="https://www.machothemes.com/" target="_blank" title="Premium WordPress themes">Premium WordPress themes</a> over on our theme shop. We’re also blogging and wish to help our users find the best <a href="https://www.machothemes.com/blog/cheap-wordpress-hosting/" target="_blank" title="Cheap WordPress Hosting">Cheap WordPress hosting</a>.
 
 == Installation ==
 
@@ -66,6 +66,7 @@ We are a young team of WordPress aficionados who love building WordPress plugins
 * There was a bug that prevented the following options: "Open author website link in a new tab" && "Add "nofollow" attribute on author website link" when the "show author website" option was toggled to ON. Now it's fixed - yay.
 * Fixes #50 (Replace all gravatar instances in wp-admin with SAB custom image)
 * Introduces new, simplified UI
+* Updated plugin GPL requirements
 
 
 = 2.0.3 =
