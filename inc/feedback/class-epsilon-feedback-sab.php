@@ -166,7 +166,12 @@ class Epsilon_Feedback_SAB {
 					// We'll send the user to this deactivation link when they've completed or dismissed the form
 					var url = deactivateURL.attr( 'href' );
 					$( 'body' ).toggleClass( 'epsilon-deactivate-form-active' );
-					formContainer.fadeIn();
+					formContainer.fadeIn( {
+						complete: function() {
+							var offset = formContainer.offset();
+							$( 'body' ).animate( { scrollTop: Math.max( 0, offset.top - 50 ) } );
+						}
+					} );
 					formContainer.html( '<?php echo $html; ?>' );
 
 					formContainer.on( 'change', 'input[name="epsilon-deactivate-reason"]', function() {

@@ -6,7 +6,7 @@
  * Version: 2.0.4
  * Author: Macho Themes
  * Author URI: https://www.machothemes.com/
- * License: GPLv2
+ * License: GPLv3
  */
 
 /*  Copyright 2017 Machothemes (email : office [at] machothemes [dot] com)
