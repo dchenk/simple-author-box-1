@@ -3,7 +3,7 @@ Contributors: machothemes, silkalns
 Tags: author box, responsive author box, author profile fields, author social icons, profile fields, author bio, author description, author profile, user profile, post author, rtl author box
 Requires at least: 4.6
 Tested up to: 4.9
-Stable tag: 2.0.4
+Stable tag: 2.0.5
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -33,6 +33,33 @@ We are a young team of WordPress aficionados who love building WordPress plugins
 4. Activate the plugin through the 'Plugins' menu in WordPress.
 5. A new sub menu item `Simple Author Box` will appear in your main Settings menu.
 
+== Frequently Asked Questions ==
+
+= Why does the author box not display on a page? =
+
+The Simple Author Box plugin was designed to display the author information on posts, categories, tags, etc. The plugin does not work on pages – it was not designed for this, unfortunately. Adding the shortcode on a blog page will also not work because the plugin won’t have author information to display/will not know which author information to display. Adding the shortcode in a widget that is on a page is another instance when the SAB will not be displayed due to the same reasons. You can add it in a widget, but that widget has to be on a single post.
+
+= Can I remove the SAB from WooCommerce/Category/Tags pages? Can I have only on posts? =
+
+We are working on a feature for this, but in the meantime we have made a plugin containing a small fix for this.
+Please download it from here: <a href="https://www.dropbox.com/s/gdkumeuilogui6g/wp-sab-fix.zip?dl=0">https://www.dropbox.com/s/gdkumeuilogui6g/wp-sab-fix.zip?dl=0</a>
+Then go to your dashboard > Plugins > install and activate it and it will solve it.
+
+= I have two author boxes. How can I hide one? =
+
+The second author box might be a theme feature and you will need to turn it off from your theme’s options, or hide it with custom CSS.
+
+= How can I get support? =
+
+You can get free support either here on the support forums: <a href="https://wordpress.org/support/plugin/simple-author-box">https://wordpress.org/support/plugin/simple-author-box</a>
+Or if you send us an email at <a href="mailto:support@machothemes.com">support@machothemes.com</a>
+
+= How can I say thanks? =
+
+You can say thank you by leaving us a review here: <a href="https://wordpress.org/support/plugin/simple-author-box/reviews/#new-post">https://wordpress.org/support/plugin/simple-author-box/reviews/#new-post</a>
+Or you can give back by recommending this amazing plugin to your friends!
+
+
 == Screenshots ==
 
 1. Simple Author Box - Colored icons - squares
@@ -51,6 +78,9 @@ We are a young team of WordPress aficionados who love building WordPress plugins
 14. Plugin options page, simple view (v1.2)
 
 == Changelog ==
+
+= 2.0.5 =
+* Fixed Profile Image of Admin Covers All User's Avatars : https://github.com/MachoThemes/simple-author-box/issues/58
 
 = 2.0.4 =
 * Added Snapchat icon:  https://github.com/MachoThemes/simple-author-box/issues/35
