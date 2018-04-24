@@ -44,7 +44,7 @@ if ( get_the_author_meta( 'description' ) != '' || ! isset( $sabox_options['sab_
 	// author box name
 	echo '<div class="saboxplugin-authorname">';
 	echo apply_filters( 'sabox_author_html', $sab_author_link, $sabox_options, $sabox_author_id );
-	if ( is_user_logged_in() ) {
+	if ( is_user_logged_in() && $sabox_author_id == get_current_user_id() ) {
 		echo '<a  class="sab-profile-edit" target="_blank" href="' . get_edit_user_link() . '"> ' . __( 'Edit profile', 'saboxplugin' ) . '</a>';
 	}
 	echo '</div>';
@@ -86,7 +86,7 @@ if ( get_the_author_meta( 'description' ) != '' || ! isset( $sabox_options['sab_
 
 
 
-	if ( is_user_logged_in() ) {
+	if ( is_user_logged_in() && current_user_can( 'manage_options' ) ) {
 		echo '<div class="sab-edit-settings">';
 		echo '<a target="_blank" href="'.admin_url().'admin.php?page=simple-author-box-options">' . __( 'Settings', 'saboxplugin' ) . '<i class="dashicons dashicons-admin-settings"></i></a>';
 		echo '</div>';
