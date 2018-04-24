@@ -40,6 +40,8 @@ class Simple_Author_Box {
 
 	private function define_admin_hooks() {
 
+		add_filter( 'get_avatar', array( $this, 'replace_gravatar_image' ), 10, 6 );
+
 		if ( ! is_admin() ) {
 			return;
 		}
@@ -47,23 +49,20 @@ class Simple_Author_Box {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_style_and_scripts' ) );
 		add_filter( 'user_contactmethods', array( $this, 'add_extra_fields' ) );
 		add_filter( 'plugin_action_links_' . SIMPLE_AUTHOR_BOX_SLUG, array( $this, 'settings_link' ) );
-		add_filter( 'get_avatar', array( $this, 'replace_gravatar_image' ), 10, 6 );
+		
 	}
 
 
 	public function replace_gravatar_image( $avatar, $id_or_email, $size, $default, $alt, $args ) {
 
 		// Process the user identifier.
+		$user = false;
 		if ( is_numeric( $id_or_email ) ) {
 			$user = get_user_by( 'id', absint( $id_or_email ) );
 		} elseif ( is_string( $id_or_email ) ) {
-			if ( strpos( $id_or_email, '@md5.gravatar.com' ) ) {
-				// md5 hash
-				list( $email_hash ) = explode( '@', $id_or_email );
-			} else {
-				// email address
-				$email = $id_or_email;
-			}
+
+			$user = get_user_by( 'email', absint( $id_or_email ) );
+
 		} elseif ( $id_or_email instanceof WP_User ) {
 			// User Object
 			$user = $id_or_email;
@@ -75,9 +74,11 @@ class Simple_Author_Box {
 			if ( ! empty( $id_or_email->user_id ) ) {
 				$user = get_user_by( 'id', (int) $id_or_email->user_id );
 			}
-			if ( ( ! $user || is_wp_error( $user ) ) ) {
-				return $avatar;
-			}
+			
+		}
+
+		if ( ( ! $user || is_wp_error( $user ) ) ) {
+			return $avatar;
 		}
 
 
