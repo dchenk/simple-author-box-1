@@ -35,7 +35,7 @@
    */
   function adminTabSwitching() {
 
-    var navTabSelector = '.nav-tab-wrapper a';
+    var navTabSelector = '.nav-tab-wrapper .epfw-tab';
 
     // Get the first tab href
     var initialTabHref = $( navTabSelector + ':first' ).attr( 'href' );

@@ -26,6 +26,10 @@ class Simple_Author_Box_Admin_Page {
 			'miscellaneous-options' => array(
 				'label' => __( 'Misc', 'saboxplugin' ),
 			),
+			'upgrade-pro'           => array(
+				'label' => esc_html__( 'Upgrade', 'saboxplugin' ),
+				'link'  => admin_url( 'admin.php?page=sab-upgrade' ),
+			)
 		);
 
 		$settings = array(
@@ -427,39 +431,53 @@ class Simple_Author_Box_Admin_Page {
 			$this,
 			'setting_page',
 		), SIMPLE_AUTHOR_BOX_ASSETS . 'img/sab-icon.png' );
+
+		add_submenu_page( 'simple-author-box-options', __( 'Upgrade to PRO', 'saboxplugin' ), __( 'Upgrade', 'saboxplugin' ), 'manage_options', 'sab-upgrade', array(
+			$this,
+			'render_pro_page'
+		) );
 	}
 
 	public function setting_page() {
 		?>
 
-		<div class="masthead">
-			<div class="wrap sabox-wrap">
-				<div class="sabox-masthead-left">
-					<h1 class="wp-heading-inline">
+        <div class="masthead">
+            <div class="wrap sabox-wrap">
+                <div class="sabox-masthead-left">
+                    <h1 class="wp-heading-inline">
 						<?php
 						/* Translators: Welcome Screen Title. */
 						echo esc_html__( 'Simple Author Box', 'saboxplugin' );
 						?>
-						<a target="_blank" href="<?php echo get_edit_user_link(); ?>" class="page-title-action"><?php _e( 'Edit user profile', 'saboxplugin' ); ?></a>
-					</h1>
+                        <a target="_blank" href="<?php echo get_edit_user_link(); ?>"
+                           class="page-title-action"><?php _e( 'Edit user profile', 'saboxplugin' ); ?></a>
+                    </h1>
 
-				</div>
+                </div>
 
-				<div class="sabox-masthead-right">
-					<a target="_blank" href="https://www.machothemes.com/support/?utm_source=sab&utm_medium=about-page&utm_campaign=support-button"><?php _e( 'Support', 'saboxplugin' ); ?>&nbsp; &nbsp;<i class="dashicons dashicons-sos"></i></a>
-				</div>
-				<div class="wp-clearfix"></div>
-			</div>
-		</div><!--/.masthead-->
+                <div class="sabox-masthead-right">
+                    <a target="_blank"
+                       href="https://www.machothemes.com/support/?utm_source=sab&utm_medium=about-page&utm_campaign=support-button"><?php _e( 'Support', 'saboxplugin' ); ?>
+                        &nbsp; &nbsp;<i class="dashicons dashicons-sos"></i></a>
+                </div>
+                <div class="wp-clearfix"></div>
+            </div>
+        </div><!--/.masthead-->
 
-		<div class="sabox-wrap">
+        <div class="sabox-wrap">
 
-			<h2 class="epfw-tab-wrapper nav-tab-wrapper wp-clearfix">
+            <h2 class="epfw-tab-wrapper nav-tab-wrapper wp-clearfix">
 				<?php foreach ( $this->sections as $id => $section ) { ?>
-					<a class="epfw-tab nav-tab" href="#<?php echo esc_attr( $id ); ?>"><?php echo wp_kses_post( $section['label'] ); ?></a>
+					<?php if ( ! isset( $section['link'] ) ) { ?>
+                        <a class="epfw-tab nav-tab"
+                           href="#<?php echo esc_attr( $id ); ?>"><?php echo wp_kses_post( $section['label'] ); ?></a>
+					<?php } else { ?>
+                        <a class="upgrade-pro"
+                           href="<?php echo esc_attr( $section['link'] ); ?>"><?php echo wp_kses_post( $section['label'] ); ?></a>
+					<?php } ?>
 				<?php } ?>
-			</h2>
-			<form method="post" id="sabox-container">
+            </h2>
+            <form method="post" id="sabox-container">
 				<?php
 
 				wp_nonce_field( 'sabox-plugin-settings', 'sabox_plugin_settings_page' );
@@ -481,11 +499,11 @@ class Simple_Author_Box_Admin_Page {
 
 
 				?>
-			</form>
+            </form>
 
-		</div>
+        </div>
 
-		<span class="sabox-version">
+        <span class="sabox-version">
 				<?php echo _e( 'Version: ', 'saboxplugin' ) . esc_html( SIMPLE_AUTHOR_BOX_VERSION ); ?>&nbsp; &middot; &nbsp;
 			<?php echo '<a target="_blank" href="https://github.com/MachoThemes/simple-author-box/blob/master/readme.txt">' . __( 'Changelog', 'saboxplugin' ) . '</a>'; ?>
 			</span>
@@ -670,6 +688,144 @@ class Simple_Author_Box_Admin_Page {
 		echo '</tr>';
 	}
 
+	public function render_pro_page() {
+
+		$features = array(
+			'slider-options'   => array(
+				'label'   => esc_html__( 'Typography control', 'saboxplugin' ),
+				'sub'     => esc_html__( 'Control Simple Author Box\'s typography. ', 'saboxplugin' ),
+				'sab'     => '<span class="dashicons dashicons-yes"></span>',
+				'sab-pro' => '<span class="dashicons dashicons-yes"></span></i>'
+			),
+			'woocommerce'      => array(
+				'label'   => esc_html__( 'Appearance control', 'saboxplugin' ),
+				'sub'     => esc_html__( 'Manage the looks of your Author Box. Color controls, margins, paddings, pre-defined color layouts & more.', 'saboxplugin' ),
+				'sab'     => '<span class="dashicons dashicons-yes"></span>',
+				'sab-pro' => '<span class="dashicons dashicons-yes"></span></i>'
+			),
+			'reorder-sections' => array(
+				'label'   => esc_html__( 'Visible on desired post types', 'saboxplugin' ),
+				'sub'     => esc_html__( 'Select the post types where you want the author box to show up.', 'saboxplugin' ),
+				'sab'     => '<span class="dashicons dashicons-no-alt"></span>',
+				'sab-pro' => '<span class="dashicons dashicons-yes"></span></i>'
+			),
+			'custom-colors'    => array(
+				'label'   => esc_html__( 'Author name link control', 'saboxplugin' ),
+				'sub'     => esc_html__( 'Control how author name links behave. Open in new tab, add nofollow parameter.', 'saboxplugin' ),
+				'sab'     => '<span class="dashicons dashicons-no-alt"></span>',
+				'sab-pro' => '<span class="dashicons dashicons-yes"></span></i>'
+			),
+			'typography'       => array(
+				'label'   => esc_html__( 'Color controls', 'saboxplugin' ),
+				'sub'     => esc_html__( 'Customize the look of your author box. Make it yours!', 'saboxplugin' ),
+				'sab'     => '<span class="dashicons dashicons-yes"></span>',
+				'sab-pro' => '<span class="dashicons dashicons-yes"></span></i>'
+			),
+
+			'features'          => array(
+				'label'   => esc_html__( 'Pre-defined color schemes', 'saboxplugin' ),
+				'sub'     => esc_html__( 'Easily change your author box\'s  looks with one of the included professionally designed pre-defined color schemes.', 'saboxplugin' ),
+				'sab'     => '<span class="dashicons dashicons-no-alt"></span>',
+				'sab-pro' => '<span class="dashicons dashicons-yes"></span></i>'
+			),
+			'portfolio'         => array(
+				'label'   => esc_html__( 'Author title', 'saboxplugin' ),
+				'sub'     => esc_html__( '', 'saboxplugin' ),
+				'sab'     => '<span class="dashicons dashicons-no-alt"></span>',
+				'sab-pro' => '<span class="dashicons dashicons-yes"></span></i>'
+			),
+			'services'          => array(
+				'label'   => esc_html__( 'Guest authors', 'saboxplugin' ),
+				'sub'     => esc_html__( 'Easily assign post to guest authors. Make blogging & contributing easier.', 'saboxplugin' ),
+				'sab'     => '<span class="dashicons dashicons-no-alt"></span>',
+				'sab-pro' => '<span class="dashicons dashicons-yes"></span></i>'
+			),
+			'team'              => array(
+				'label'   => esc_html__( 'Post co-authors', 'saboxplugin' ),
+				'sub'     => esc_html__( 'Working on a bigger piece with more colleagues? Get everyone\'s name listed without an issue.', 'saboxplugin' ),
+				'sab'     => '<span class="dashicons dashicons-no-alt"></span>',
+				'sab-pro' => '<span class="dashicons dashicons-yes"></span></i>'
+			),
+			'testimonials'      => array(
+				'label'   => esc_html__( 'Popular authors widget', 'saboxplugin' ),
+				'sub'     => esc_html__( 'Showcase your most popular authors. Give back to the people who contribute to your blog.', 'saboxplugin' ),
+				'sab'     => '<span class="dashicons dashicons-no-alt"></span>',
+				'sab-pro' => '<span class="dashicons dashicons-yes"></span></i>'
+			),
+			'clients'           => array(
+				'label'   => esc_html__( 'Authors widget', 'saboxplugin' ),
+				'sub'     => esc_html__( '', 'saboxplugin' ),
+				'sab'     => '<span class="dashicons dashicons-no-alt"></span>',
+				'sab-pro' => '<span class="dashicons dashicons-yes"></span></i>'
+			),
+			'dedicated-support' => array(
+				'label'   => esc_html__( 'Dedicated Support Team', 'saboxplugin' ),
+				'sab'     => '<span class="dashicons dashicons-yes"></span>',
+				'sab-pro' => '<span class="dashicons dashicons-yes"></span></i>'
+			),
+			'security-updates'  => array(
+				'label'   => esc_html__( 'Critical security updates ', 'saboxplugin' ),
+				'sab'     => '<span class="dashicons dashicons-yes"></span>',
+				'sab-pro' => '<span class="dashicons dashicons-yes"></span></i>'
+			),
+
+			'featured-updates' => array(
+				'label'   => esc_html__( 'Future feature updates ', 'saboxplugin' ),
+				'sab'     => '<span class="dashicons dashicons-no-alt"></span>',
+				'sab-pro' => '<span class="dashicons dashicons-yes"></span></i>'
+			),
+		);
+
+
+		?>
+
+        <div class="wrap about-wrap simple-author-box-wrap">
+            <h1><?php echo esc_html__( 'Why you should be upgrading', 'saboxplugin' ); ?></h1>
+            <p class="about-text"><?php echo esc_html__( 'Introducing one of the most author box systems ever made for WordPress. Simple Author Box is an exquisite WordPress Author Box plugin perfectly fit for any needs. We\'ve outlined the PRO features below.', 'saboxplugin' ); ?></p>
+            <div class="wp-badge"></div>
+            <h2 class="nav-tab-wrapper wp-clearfix">
+                <a href="<?php echo admin_url( 'admin.php?page=sab-upgrade' ); ?>"
+                   class="nav-tab nav-tab-active"><?php echo esc_html__( 'Comparison Table: Lite vs PRO', 'saboxplugin' ); ?></a>
+            </h2>
+            <div class="featured-section features">
+                <table class="free-pro-table">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th><?php _e( 'Free', 'saboxplugin' ) ?></th>
+                        <th><?php _e( 'PRO', 'saboxplugin' ) ?></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+					<?php foreach ( $features as $feature ): ?>
+                        <tr>
+                            <td class="feature">
+                                <h3><?php echo $feature['label']; ?></h3>
+								<?php if ( isset( $feature['sub'] ) ): ?>
+                                    <p><?php echo $feature['sub']; ?></p>
+								<?php endif ?>
+                            </td>
+                            <td class="sab-feature">
+								<?php echo $feature['sab']; ?>
+                            </td>
+                            <td class="sab-pro-feature">
+								<?php echo $feature['sab-pro']; ?>
+                            </td>
+                        </tr>
+					<?php endforeach; ?>
+                    <tr>
+                        <td></td>
+                        <td colspan="2" class="text-right">
+                            <a href="//www.machothemes.com/plugin/simple-author-box-pro?utm_source=sab&utm_medium=about-page&utm_campaign=upsell"
+                               target="_blank" class="button button-primary button-hero"><span
+                                        class="dashicons dashicons-cart"></span><?php _e( 'Get The Pro Version Now!', 'saboxplugin' ) ?>
+                            </a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+	<?php }
 }
 
 new Simple_Author_Box_Admin_Page();
