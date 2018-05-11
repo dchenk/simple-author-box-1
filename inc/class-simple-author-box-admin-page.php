@@ -77,6 +77,17 @@ class Simple_Author_Box_Admin_Page {
 					'type'        => 'toggle',
 					'group'       => 'saboxplugin_options',
 				),
+				'sab_position'    => array(
+					'label'       => __( 'Author box position', 'saboxplugin' ),
+					'description' => __( 'Select where you want to show the author box ( before or after the content )', 'saboxplugin' ),
+					'type'        => 'select',
+					'choices'     => array(
+						'top'    => __( 'Before Content', 'saboxplugin' ),
+						'bottom' => __( 'After Content', 'saboxplugin' ),
+					),
+					'default'     => 'bottom',
+					'group'       => 'saboxplugin_options',
+				),
 			),
 			'appearance-options'    => array(
 				'sab_box_margin_top'         => array(
@@ -432,10 +443,15 @@ class Simple_Author_Box_Admin_Page {
 			'setting_page',
 		), SIMPLE_AUTHOR_BOX_ASSETS . 'img/sab-icon.png' );
 
-		add_submenu_page( 'simple-author-box-options', __( 'Upgrade to PRO', 'saboxplugin' ), __( 'Upgrade', 'saboxplugin' ), 'manage_options', 'sab-upgrade', array(
-			$this,
-			'render_pro_page'
-		) );
+		$show_upsell = apply_filters( 'sabox_show_upsell', true );
+
+		if ( $show_upsell ) {
+			add_submenu_page( 'simple-author-box-options', __( 'Upgrade to PRO', 'saboxplugin' ), __( 'Upgrade', 'saboxplugin' ), 'manage_options', 'sab-upgrade', array(
+				$this,
+				'render_pro_page'
+			) );
+		}
+		
 	}
 
 	public function setting_page() {
@@ -659,8 +675,10 @@ class Simple_Author_Box_Admin_Page {
 						$field['choices'] = $class::$method();
 					}
 				}
-
-				$field['default'] = array_keys( $field['choices'] );
+				
+				if ( ! isset( $field['default'] ) ) {
+					$field['default'] = array_keys( $field['choices'] );
+				}
 
 				$values = isset( $this->options[ $field_name ] ) ? $this->options[ $field_name ] : $field['default'];
 				foreach ( $field['choices'] as $key => $choice ) {

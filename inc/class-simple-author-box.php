@@ -297,7 +297,29 @@ class Simple_Author_Box {
 	}
 
 	public function shortcode( $atts ) {
-		$html = wpsabox_author_box();
+		$defaults = array(
+			'ids' => '',
+		);
+
+		$atts = wp_parse_args( $atts, $defaults );
+
+		if ( '' != $atts['ids'] ) {
+			$ids = explode( ',' , $atts['ids'] );
+			ob_start();
+			$sabox_options        = get_option( 'saboxplugin_options' );
+			foreach ( $ids as $user_id ) {
+				
+				$template        = Simple_Author_Box_Helper::get_template();
+				$sabox_author_id = $user_id;
+				echo '<div class="sabox-plus-item">';
+				include( $template );
+				echo '</div>';
+
+			}
+			$html = ob_get_clean();
+		}else{
+			$html = wpsabox_author_box();
+		}
 
 		return $html;
 	}

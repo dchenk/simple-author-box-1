@@ -33,8 +33,12 @@ if ( ! function_exists( 'wpsabox_author_box' ) ) {
 			}
 
 			do_action( 'sabox_after_author_box', $sabox_options );
-
-			$saboxmeta .= ob_get_clean();
+			if ( isset( $sabox_options['sab_position'] ) && 'top' == $sabox_options['sab_position'] ) {
+				$saboxmeta = ob_get_clean() . $saboxmeta;
+			}else{
+				$saboxmeta .= ob_get_clean();
+			}
+			
 
 		}
 		return $saboxmeta;
