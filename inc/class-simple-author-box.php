@@ -49,7 +49,7 @@ class Simple_Author_Box {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_style_and_scripts' ) );
 		add_filter( 'user_contactmethods', array( $this, 'add_extra_fields' ) );
 		add_filter( 'plugin_action_links_' . SIMPLE_AUTHOR_BOX_SLUG, array( $this, 'settings_link' ) );
-		
+
 	}
 
 
@@ -74,16 +74,14 @@ class Simple_Author_Box {
 			if ( ! empty( $id_or_email->user_id ) ) {
 				$user = get_user_by( 'id', (int) $id_or_email->user_id );
 			}
-			
 		}
 
 		if ( ! $user || is_wp_error( $user ) ) {
 			return $avatar;
 		}
 
-
 		$custom_profile_image = get_user_meta( $user->ID, 'sabox-profile-image', true );
-		$class = array( 'avatar', 'avatar-' . (int) $args['size'], 'photo' );
+		$class                = array( 'avatar', 'avatar-' . (int) $args['size'], 'photo' );
 
 		if ( ! $args['found_avatar'] || $args['force_default'] ) {
 			$class[] = 'avatar-default';
@@ -97,7 +95,7 @@ class Simple_Author_Box {
 			}
 		}
 
-		if ( $custom_profile_image !== '' && $args['force_default'] !== true ) {
+		if ( '' !== $custom_profile_image && true !== $args['force_default'] ) {
 
 			$avatar = sprintf(
 				"<img alt='%s' src='%s' srcset='%s' class='%s' height='%d' width='%d' %s/>",
@@ -123,10 +121,12 @@ class Simple_Author_Box {
 		add_action( 'wp_enqueue_scripts', array( $this, 'saboxplugin_author_box_style' ), 10 );
 
 		if ( isset( $this->options['sab_footer_inline_style'] ) ) {
-			add_action( 'wp_footer', array(
-				$this,
-				'inline_style',
-			), 13 );
+			add_action(
+				'wp_footer', array(
+					$this,
+					'inline_style',
+				), 13
+			);
 		} else {
 			add_action( 'wp_head', array( $this, 'inline_style' ), 15 );
 		}
@@ -153,22 +153,25 @@ class Simple_Author_Box {
 		wp_enqueue_style( 'sabox-css', SIMPLE_AUTHOR_BOX_ASSETS . 'css/sabox.css' );
 		wp_enqueue_style( 'saboxplugin-admin-style', SIMPLE_AUTHOR_BOX_ASSETS . 'css/sabox-admin-style' . $suffix . '.css' );
 
-		if ( 'toplevel_page_simple-author-box-options' == $hook  ) {
+		if ( 'toplevel_page_simple-author-box-options' == $hook ) {
 
 			// Styles
 			wp_enqueue_style( 'wp-color-picker' );
 			wp_enqueue_style( 'jquery-ui', SIMPLE_AUTHOR_BOX_ASSETS . 'css/jquery-ui.min.css' );
 
-
 			// Scripts
-			wp_enqueue_script( 'sabox-admin-js', SIMPLE_AUTHOR_BOX_ASSETS . 'js/sabox-admin.js', array(
-				'jquery-ui-slider',
-				'wp-color-picker',
-			), false, true );
-			wp_enqueue_script( 'sabox-plugin-install', SIMPLE_AUTHOR_BOX_ASSETS . 'js/plugin-install.js', array(
-				'jquery',
-				'updates',
-			), '1.0.0', 'all' );
+			wp_enqueue_script(
+				'sabox-admin-js', SIMPLE_AUTHOR_BOX_ASSETS . 'js/sabox-admin.js', array(
+					'jquery-ui-slider',
+					'wp-color-picker',
+				), false, true
+			);
+			wp_enqueue_script(
+				'sabox-plugin-install', SIMPLE_AUTHOR_BOX_ASSETS . 'js/plugin-install.js', array(
+					'jquery',
+					'updates',
+				), '1.0.0', 'all'
+			);
 
 		} elseif ( 'profile.php' == $hook || 'user-edit.php' == $hook ) {
 
@@ -211,7 +214,6 @@ class Simple_Author_Box {
 		$sab_protocol   = is_ssl() ? 'https' : 'http';
 		$sab_box_subset = get_option( 'sab_box_subset' );
 
-
 		/**
 		 * Check for duplicate font families, remove duplicates & re-work the font enqueue procedure
 		 *
@@ -245,7 +247,6 @@ class Simple_Author_Box {
 
 		$google_fonts = array_unique( $google_fonts );
 
-
 		if ( ! empty( $google_fonts ) ) { // let's check the array's not empty before actually loading; we want to avoid loading 'none' font-familes
 			$final_google_fonts = array();
 
@@ -259,7 +260,6 @@ class Simple_Author_Box {
 		/**
 		 * end changes introduced in 2.0.4
 		 */
-
 
 		if ( ! isset( $this->options['sab_load_fa'] ) ) {
 			wp_register_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' );
@@ -289,7 +289,7 @@ class Simple_Author_Box {
 			return;
 		}
 
-		$style = '<style type="text/css">';
+		$style  = '<style type="text/css">';
 		$style .= Simple_Author_Box_Helper::generate_inline_css();
 		$style .= '</style>';
 
@@ -304,11 +304,11 @@ class Simple_Author_Box {
 		$atts = wp_parse_args( $atts, $defaults );
 
 		if ( '' != $atts['ids'] ) {
-			$ids = explode( ',' , $atts['ids'] );
+			$ids = explode( ',', $atts['ids'] );
 			ob_start();
-			$sabox_options        = get_option( 'saboxplugin_options' );
+			$sabox_options = get_option( 'saboxplugin_options' );
 			foreach ( $ids as $user_id ) {
-				
+
 				$template        = Simple_Author_Box_Helper::get_template();
 				$sabox_author_id = $user_id;
 				echo '<div class="sabox-plus-item">';
@@ -317,7 +317,7 @@ class Simple_Author_Box {
 
 			}
 			$html = ob_get_clean();
-		}else{
+		} else {
 			$html = wpsabox_author_box();
 		}
 

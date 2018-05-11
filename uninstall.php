@@ -1,7 +1,7 @@
 <?php
 
 /*----------------------------------------------------------------------------------------------------------
-    Uninstall Simple Author Box plugin - deletes plugin data in database
+	Uninstall Simple Author Box plugin - deletes plugin data in database
 -----------------------------------------------------------------------------------------------------------*/
 
 // Exit if accessed directly

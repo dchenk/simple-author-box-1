@@ -11,10 +11,12 @@ class Epsilon_Feedback_SAB {
 		$this->plugin_name = basename( $this->plugin_file, '.php' );
 
 		// Deactivation
-		add_filter( 'plugin_action_links_' . plugin_basename( $this->plugin_file ), array(
-			$this,
-			'filter_action_links',
-		) );
+		add_filter(
+			'plugin_action_links_' . plugin_basename( $this->plugin_file ), array(
+				$this,
+				'filter_action_links',
+			)
+		);
 		add_action( 'admin_footer-plugins.php', array( $this, 'goodbye_ajax' ) );
 		add_action( 'wp_ajax_epsilon_deactivate_plugin', array( $this, 'epsilon_deactivate_plugin_callback' ) );
 
@@ -48,7 +50,7 @@ class Epsilon_Feedback_SAB {
 		$form = $this->get_form_info();
 
 		// Build the HTML to go in the form
-		$html = '<div class="epsilon-deactivate-form-head"><strong>' . esc_html( $form['heading'] ) . '</strong></div>';
+		$html  = '<div class="epsilon-deactivate-form-head"><strong>' . esc_html( $form['heading'] ) . '</strong></div>';
 		$html .= '<div class="epsilon-deactivate-form-body"><p>' . esc_html( $form['body'] ) . '</p>';
 		if ( is_array( $form['options'] ) ) {
 			$html .= '<div class="epsilon-deactivate-options"><p>';
@@ -155,11 +157,11 @@ class Epsilon_Feedback_SAB {
 				var deactivateURL = $( "#epsilon-deactivate-link-<?php echo esc_attr( $this->plugin_name ); ?>" ),
 					formContainer = $( '#epsilon-deactivate-form-<?php echo esc_attr( $this->plugin_name ); ?>' ),
 					detailsStrings = {
-						'setup': '<?php echo __( 'What was the dificult part ?', 'saboxplugin' ) ?>',
-						'documentation': '<?php echo __( 'What can we describe more ?', 'saboxplugin' ) ?>',
-						'features': '<?php echo __( 'How could we improve ?', 'saboxplugin' ) ?>',
-						'better-plugin': '<?php echo __( 'Can you mention it ?', 'saboxplugin' ) ?>',
-						'incompatibility': '<?php echo __( 'With what plugin or theme is incompatible ?', 'saboxplugin' ) ?>',
+						'setup': '<?php echo __( 'What was the dificult part ?', 'saboxplugin' ); ?>',
+						'documentation': '<?php echo __( 'What can we describe more ?', 'saboxplugin' ); ?>',
+						'features': '<?php echo __( 'How could we improve ?', 'saboxplugin' ); ?>',
+						'better-plugin': '<?php echo __( 'Can you mention it ?', 'saboxplugin' ); ?>',
+						'incompatibility': '<?php echo __( 'With what plugin or theme is incompatible ?', 'saboxplugin' ); ?>',
 					};
 
 				$( deactivateURL ).on( "click", function() {
@@ -219,7 +221,8 @@ class Epsilon_Feedback_SAB {
 				} );
 			} );
 		</script>
-	<?php }
+	<?php
+	}
 
 	/*
 	 * Form text strings
@@ -255,18 +258,24 @@ class Epsilon_Feedback_SAB {
 			);
 			$request = new Epsilon_Plugin_Request_SAB( $this->plugin_file, $args );
 			if ( $request->request_successful ) {
-				echo json_encode( array(
-					'status' => 'ok',
-				) );
+				echo json_encode(
+					array(
+						'status' => 'ok',
+					)
+				);
 			} else {
-				echo json_encode( array(
-					'status' => 'nok',
-				) );
+				echo json_encode(
+					array(
+						'status' => 'nok',
+					)
+				);
 			}
 		} else {
-			echo json_encode( array(
-				'status' => 'ok',
-			) );
+			echo json_encode(
+				array(
+					'status' => 'ok',
+				)
+			);
 		}
 
 		die();

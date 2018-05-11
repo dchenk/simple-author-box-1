@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /*----------------------------------------------------------------------------------------------------------
-    Adding the author box to the end of your single post
+	Adding the author box to the end of your single post
 -----------------------------------------------------------------------------------------------------------*/
 if ( ! function_exists( 'wpsabox_author_box' ) ) {
 
@@ -34,7 +34,7 @@ if ( ! function_exists( 'wpsabox_author_box' ) ) {
 
 			do_action( 'sabox_after_author_box', $sabox_options );
 
-			$sabox = ob_get_clean();
+			$sabox  = ob_get_clean();
 			$return = $saboxmeta . $sabox;
 
 			// Filter returning HTML of the Author Box

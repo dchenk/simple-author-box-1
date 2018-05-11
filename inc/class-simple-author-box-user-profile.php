@@ -134,7 +134,7 @@ class Simple_Author_Box_User_Profile {
 
 			update_user_meta( $user_id, 'sabox_social_links', $social_links );
 
-		}else{
+		} else {
 			delete_user_meta( $user_id, 'sabox_social_links' );
 		}
 
