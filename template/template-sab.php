@@ -23,7 +23,7 @@ if ( isset( $sabox_options['sab_web_rel'] ) ) {
 	$sab_web_rel = '';
 }
 
-$sab_author_link = sprintf( '<a href="%s">%s</a>', esc_url( get_author_posts_url( $sabox_author_id ) ), esc_html( get_the_author_meta( 'display_name', $sabox_author_id ) ) );
+$sab_author_link = sprintf( '<a href="%s" class="vcard author"><span class="fn">%s</span></a>', esc_url( get_author_posts_url( $sabox_author_id ) ), esc_html( get_the_author_meta( 'display_name', $sabox_author_id ) ) );
 
 if ( get_the_author_meta( 'description' ) != '' || ! isset( $sabox_options['sab_no_description'] ) ) { // hide the author box if no description is provided
 
@@ -52,12 +52,12 @@ if ( get_the_author_meta( 'description' ) != '' || ! isset( $sabox_options['sab_
 
 	// author box description
 	echo '<div class="saboxplugin-desc">';
-	echo '<div class="vcard author"><div class="fn">';
+	echo '<div>';
 	$description = get_the_author_meta( 'description', $sabox_author_id );
 	$description = wptexturize( $description );
 	$description = wpautop( $description );
 	echo wp_kses_post( $description );
-	echo '</div></div>';
+	echo '</div>';
 	echo '</div>';
 
 	if ( is_single() ) {
