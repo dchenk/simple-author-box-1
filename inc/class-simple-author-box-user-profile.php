@@ -57,6 +57,7 @@ class Simple_Author_Box_User_Profile {
 					?>
 					<tr>
 						<th>
+							<span class="sabox-drag"></span>
 							<select name="sabox-social-icons[]">
 								<?php foreach ( $social_icons as $sabox_social_id => $sabox_social_name ) { ?>
 									<option value="<?php echo $sabox_social_id; ?>"><?php echo $sabox_social_name; ?></option>
