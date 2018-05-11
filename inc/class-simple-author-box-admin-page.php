@@ -77,17 +77,6 @@ class Simple_Author_Box_Admin_Page {
 					'type'        => 'toggle',
 					'group'       => 'saboxplugin_options',
 				),
-				'sab_position'    => array(
-					'label'       => __( 'Author box position', 'saboxplugin' ),
-					'description' => __( 'Select where you want to show the author box ( before or after the content )', 'saboxplugin' ),
-					'type'        => 'select',
-					'choices'     => array(
-						'top'    => __( 'Before Content', 'saboxplugin' ),
-						'bottom' => __( 'After Content', 'saboxplugin' ),
-					),
-					'default'     => 'bottom',
-					'group'       => 'saboxplugin_options',
-				),
 			),
 			'appearance-options'    => array(
 				'sab_box_margin_top'         => array(
