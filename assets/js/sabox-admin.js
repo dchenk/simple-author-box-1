@@ -35,21 +35,30 @@
    */
   function adminTabSwitching() {
 
-    var navTabSelector = '.nav-tab-wrapper .epfw-tab';
+    var navTabSelector = '.nav-tab-wrapper .epfw-tab:not( .epfw-tab-link )',
+    	initialTabHref,
+    	initialTabID,
+    	url;
 
-    // Get the first tab href
-    var initialTabHref = $( navTabSelector + ':first' ).attr( 'href' );
+    // Get the current tab
+    if ( '' !== window.location.hash && $( window.location.hash + '-tab.epfw-turn-into-tab' ).length > 0 ) {
+		initialTabHref = window.location.hash;
+    }else{
+    	initialTabHref = $( navTabSelector + ':first' ).attr( 'href' );
+    }
+
+    initialTabID = initialTabHref + '-tab';
 
     /**
      * Default tab handling
      */
 
     // Make the first tab active by default
-    $( navTabSelector + ':first' ).addClass( 'nav-tab-active' );
+    $( navTabSelector + '[href="' + initialTabHref + '"]' ).addClass( 'nav-tab-active' );
 
     // Make all the tabs, except the first one hidden
     $( '.epfw-turn-into-tab' ).each( function( index, value ) {
-      if ( '#' + $( this ).attr( 'id' ) !== initialTabHref ) {
+      if ( '#' + $( this ).attr( 'id' ) !== initialTabID ) {
         $( this ).hide();
       }
     } );
@@ -59,7 +68,7 @@
      */
     $( navTabSelector ).click( function( event ) {
 
-      var clickedTab = $( this ).attr( 'href' );
+      var clickedTab = $( this ).attr( 'href' ) + '-tab';
       $( navTabSelector ).removeClass( 'nav-tab-active' ); // Remove class from previous selector
       $( this ).addClass( 'nav-tab-active' ).blur(); // Add class to currently clicked selector
 
@@ -71,9 +80,6 @@
         $( clickedTab ).fadeIn();
 
       } );
-
-      // Prevent default behavior
-      event.preventDefault();
 
     } );
   }

@@ -29,6 +29,7 @@ class Simple_Author_Box_Admin_Page {
 			'upgrade-pro'           => array(
 				'label' => esc_html__( 'Upgrade', 'saboxplugin' ),
 				'link'  => admin_url( 'admin.php?page=sab-upgrade' ),
+				'class' => 'upgrade-pro',
 			),
 		);
 
@@ -475,11 +476,22 @@ class Simple_Author_Box_Admin_Page {
 
 			<h2 class="epfw-tab-wrapper nav-tab-wrapper wp-clearfix">
 				<?php foreach ( $this->sections as $id => $section ) { ?>
-					<?php if ( ! isset( $section['link'] ) ) { ?>
-						<a class="epfw-tab nav-tab" href="#<?php echo esc_attr( $id ); ?>"><?php echo wp_kses_post( $section['label'] ); ?></a>
-					<?php } else { ?>
-						<a class="upgrade-pro" href="<?php echo esc_attr( $section['link'] ); ?>"><?php echo wp_kses_post( $section['label'] ); ?></a>
-					<?php } ?>
+					<?php
+					$class = "epfw-tab nav-tab";
+
+					if ( isset( $section['link'] ) ) {
+						$url = $section['link'];
+						$class .= ' epfw-tab-link';
+					}else{
+						$url = '#' . $id;
+					}
+
+					if ( isset( $section['class'] ) ) {
+						$class .= ' ' . $section['class'];
+					}
+
+					?>
+					<a class="<?php echo esc_attr( $class ) ?>" href="<?php echo esc_url( $url ); ?>"><?php echo wp_kses_post( $section['label'] ); ?></a>
 				<?php } ?>
 			</h2>
 			<form method="post" id="sabox-container">
@@ -488,7 +500,7 @@ class Simple_Author_Box_Admin_Page {
 				wp_nonce_field( 'sabox-plugin-settings', 'sabox_plugin_settings_page' );
 
 				foreach ( $this->settings as $tab_name => $fields ) {
-					echo '<div class="epfw-turn-into-tab" id="' . esc_attr( $tab_name ) . '">';
+					echo '<div class="epfw-turn-into-tab" id="' . esc_attr( $tab_name ) . '-tab">';
 					echo '<table class="form-table sabox-table">';
 					foreach ( $fields as $field_name => $field ) {
 						$this->generate_setting_field( $field_name, $field );
