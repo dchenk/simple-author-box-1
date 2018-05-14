@@ -1,6 +1,7 @@
 {
   "name": "simple-author-box",
   "main": "Gruntfile.js",
+  "version": "2.0.6",
   "author": "Macho Themes",
   "license": "GPL v3",
   "devDependencies": {
@@ -13,5 +14,8 @@
     "load-grunt-tasks": "^3.3.0",
     "grunt-contrib-compress": "^0.14.0",
     "grunt-contrib-copy": "^0.8.2"
+  },
+  "dependencies": {
+    "npm": "^6.0.1"
   }
 }
