@@ -524,12 +524,15 @@ class Simple_Author_Box_Admin_Page {
 		<span class="sabox-version">
 				<?php echo _e( 'Version: ', 'saboxplugin' ) . esc_html( apply_filters( 'sabox_show_pro_version', SIMPLE_AUTHOR_BOX_VERSION ) ); ?>
 
-			<?php
-			if ( ! SIMPLE_AUTHOR_BOX_PRO_VERSION ) {
-				echo '&nbsp; &middot; &nbsp;';
-				echo '<a target="_blank" href="https://github.com/MachoThemes/simple-author-box/blob/master/readme.txt">' . __( 'Changelog', 'saboxplugin' ) . '</a>';
-			}
-			?>
+				<?php
+
+				$show_changelog = apply_filters( 'sabox_show_changelog', true );
+
+				if ( $show_changelog ) {
+					echo '&nbsp; &middot; &nbsp;';
+					echo '<a target="_blank" href="https://github.com/MachoThemes/simple-author-box/blob/master/readme.txt">' . __( 'Changelog', 'saboxplugin' ) . '</a>';
+				}
+				?>
 			</span>
 
 		<?php
