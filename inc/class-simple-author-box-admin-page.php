@@ -456,15 +456,17 @@ class Simple_Author_Box_Admin_Page {
 					<h1 class="wp-heading-inline">
 						<?php
 						/* Translators: Welcome Screen Title. */
-						echo esc_html__( 'Simple Author Box', 'saboxplugin' );
+						echo esc_html( apply_filters( 'sabox_show_pro_title', __( 'Simple Author Box', 'saboxplugin' ) ) );
 						?>
-						<a target="_blank" href="<?php echo get_edit_user_link(); ?>" class="page-title-action"><?php _e( 'Edit user profile', 'saboxplugin' ); ?></a>
+						<a target="_blank" href="<?php echo get_edit_user_link(); ?>"
+						   class="page-title-action"><?php _e( 'Edit user profile', 'saboxplugin' ); ?></a>
 					</h1>
 
 				</div>
 
 				<div class="sabox-masthead-right">
-					<a target="_blank" href="https://www.machothemes.com/support/?utm_source=sab&utm_medium=about-page&utm_campaign=support-button"><?php _e( 'Support', 'saboxplugin' ); ?>
+					<a target="_blank"
+					   href="https://www.machothemes.com/support/?utm_source=sab&utm_medium=about-page&utm_campaign=support-button"><?php _e( 'Support', 'saboxplugin' ); ?>
 						&nbsp; &nbsp;<i class="dashicons dashicons-sos"></i>
 					</a>
 				</div>
@@ -491,7 +493,8 @@ class Simple_Author_Box_Admin_Page {
 					}
 
 					?>
-					<a class="<?php echo esc_attr( $class ); ?>" href="<?php echo esc_url( $url ); ?>"><?php echo wp_kses_post( $section['label'] ); ?></a>
+					<a class="<?php echo esc_attr( $class ); ?>"
+					   href="<?php echo esc_url( $url ); ?>"><?php echo wp_kses_post( $section['label'] ); ?></a>
 				<?php } ?>
 			</h2>
 			<form method="post" id="sabox-container">
@@ -519,8 +522,14 @@ class Simple_Author_Box_Admin_Page {
 		</div>
 
 		<span class="sabox-version">
-				<?php echo _e( 'Version: ', 'saboxplugin' ) . esc_html( SIMPLE_AUTHOR_BOX_VERSION ); ?>&nbsp; &middot; &nbsp;
-			<?php echo '<a target="_blank" href="https://github.com/MachoThemes/simple-author-box/blob/master/readme.txt">' . __( 'Changelog', 'saboxplugin' ) . '</a>'; ?>
+				<?php echo _e( 'Version: ', 'saboxplugin' ) . esc_html( apply_filters( 'sabox_show_pro_version', SIMPLE_AUTHOR_BOX_VERSION ) ); ?>
+
+			<?php
+			if ( ! SIMPLE_AUTHOR_BOX_PRO_VERSION ) {
+				echo '&nbsp; &middot; &nbsp;';
+				echo '<a target="_blank" href="https://github.com/MachoThemes/simple-author-box/blob/master/readme.txt">' . __( 'Changelog', 'saboxplugin' ) . '</a>';
+			}
+			?>
 			</span>
 
 		<?php
@@ -800,7 +809,8 @@ class Simple_Author_Box_Admin_Page {
 			<p class="about-text"><?php echo esc_html__( 'Introducing one of the most author box systems ever made for WordPress. Simple Author Box is an exquisite WordPress Author Box plugin perfectly fit for any needs. We\'ve outlined the PRO features below.', 'saboxplugin' ); ?></p>
 			<div class="wp-badge"></div>
 			<h2 class="nav-tab-wrapper wp-clearfix">
-				<a href="<?php echo admin_url( 'admin.php?page=sab-upgrade' ); ?>" class="nav-tab nav-tab-active"><?php echo esc_html__( 'Comparison Table: Lite vs PRO', 'saboxplugin' ); ?></a>
+				<a href="<?php echo admin_url( 'admin.php?page=sab-upgrade' ); ?>"
+				   class="nav-tab nav-tab-active"><?php echo esc_html__( 'Comparison Table: Lite vs PRO', 'saboxplugin' ); ?></a>
 			</h2>
 			<div class="featured-section features">
 				<table class="free-pro-table">
@@ -831,7 +841,8 @@ class Simple_Author_Box_Admin_Page {
 					<tr>
 						<td></td>
 						<td colspan="2" class="text-right">
-							<a href="//www.machothemes.com/plugin/simple-author-box-pro?utm_source=sab&utm_medium=about-page&utm_campaign=upsell" target="_blank" class="button button-primary button-hero">
+							<a href="//www.machothemes.com/plugin/simple-author-box-pro?utm_source=sab&utm_medium=about-page&utm_campaign=upsell"
+							   target="_blank" class="button button-primary button-hero">
 								<span class="dashicons dashicons-cart"></span>
 								<?php _e( 'Get The Pro Version Now!', 'saboxplugin' ); ?>
 							</a></td>
@@ -840,7 +851,7 @@ class Simple_Author_Box_Admin_Page {
 				</table>
 			</div>
 		</div>
-	<?php
+		<?php
 	}
 }
 
