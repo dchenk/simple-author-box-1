@@ -477,12 +477,12 @@ class Simple_Author_Box_Admin_Page {
 			<h2 class="epfw-tab-wrapper nav-tab-wrapper wp-clearfix">
 				<?php foreach ( $this->sections as $id => $section ) { ?>
 					<?php
-					$class = "epfw-tab nav-tab";
+					$class = 'epfw-tab nav-tab';
 
 					if ( isset( $section['link'] ) ) {
-						$url = $section['link'];
+						$url    = $section['link'];
 						$class .= ' epfw-tab-link';
-					}else{
+					} else {
 						$url = '#' . $id;
 					}
 
@@ -491,7 +491,7 @@ class Simple_Author_Box_Admin_Page {
 					}
 
 					?>
-					<a class="<?php echo esc_attr( $class ) ?>" href="<?php echo esc_url( $url ); ?>"><?php echo wp_kses_post( $section['label'] ); ?></a>
+					<a class="<?php echo esc_attr( $class ); ?>" href="<?php echo esc_url( $url ); ?>"><?php echo wp_kses_post( $section['label'] ); ?></a>
 				<?php } ?>
 			</h2>
 			<form method="post" id="sabox-container">
