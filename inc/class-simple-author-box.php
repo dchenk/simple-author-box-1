@@ -49,7 +49,6 @@ class Simple_Author_Box {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_style_and_scripts' ) );
 		add_filter( 'user_contactmethods', array( $this, 'add_extra_fields' ) );
 		add_filter( 'plugin_action_links_' . SIMPLE_AUTHOR_BOX_SLUG, array( $this, 'settings_link' ) );
-
 	}
 
 
@@ -123,9 +122,9 @@ class Simple_Author_Box {
 		if ( isset( $this->options['sab_footer_inline_style'] ) ) {
 			add_action(
 				'wp_footer', array(
-					$this,
-					'inline_style',
-				), 13
+				$this,
+				'inline_style',
+			), 13
 			);
 		} else {
 			add_action( 'wp_head', array( $this, 'inline_style' ), 15 );
@@ -162,15 +161,15 @@ class Simple_Author_Box {
 			// Scripts
 			wp_enqueue_script(
 				'sabox-admin-js', SIMPLE_AUTHOR_BOX_ASSETS . 'js/sabox-admin.js', array(
-					'jquery-ui-slider',
-					'wp-color-picker',
-				), false, true
+				'jquery-ui-slider',
+				'wp-color-picker',
+			), false, true
 			);
 			wp_enqueue_script(
 				'sabox-plugin-install', SIMPLE_AUTHOR_BOX_ASSETS . 'js/plugin-install.js', array(
-					'jquery',
-					'updates',
-				), '1.0.0', 'all'
+				'jquery',
+				'updates',
+			), '1.0.0', 'all'
 			);
 
 		} elseif ( 'profile.php' == $hook || 'user-edit.php' == $hook ) {
@@ -281,7 +280,9 @@ class Simple_Author_Box {
 
 		wp_enqueue_style( 'sab-plugin' );
 
+
 	}
+
 
 	public function inline_style() {
 
@@ -289,7 +290,7 @@ class Simple_Author_Box {
 			return;
 		}
 
-		$style  = '<style type="text/css">';
+		$style = '<style type="text/css">';
 		$style .= Simple_Author_Box_Helper::generate_inline_css();
 		$style .= '</style>';
 
@@ -332,5 +333,4 @@ class Simple_Author_Box {
 
 		return true;
 	}
-
 }

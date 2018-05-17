@@ -79,6 +79,10 @@ Or you can give back by recommending this amazing plugin to your friends!
 
 == Changelog ==
 
+= 2.0.6 =
+* Initial PRO version release & minor bug fixes
+* Saving now remembers the tab you were on
+
 = 2.0.5 =
 * Fixed Profile Image of Admin Covers All User's Avatars : https://github.com/MachoThemes/simple-author-box/issues/58
 
