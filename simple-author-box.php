@@ -41,7 +41,7 @@ Simple_Author_Box::get_instance();
 require_once 'inc/feedback/class-epsilon-feedback-sab.php';
 new Epsilon_Feedback_SAB( __FILE__ );
 
-add_filter( 'amp_post_template_data', 'my_func' );
+add_filter( 'amp_post_template_data', 'sab_amp_css' );
 
 /**
  * AMP compatibility
@@ -51,7 +51,7 @@ add_filter( 'amp_post_template_data', 'my_func' );
  * @return mixed
  */
 
-function my_func( $data ) {
+function sab_amp_css( $data ) {
 
 	$data['post_amp_styles'] = array(
 		'.saboxplugin-wrap'                                                              => array(
