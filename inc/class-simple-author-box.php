@@ -166,7 +166,7 @@ class Simple_Author_Box {
 	}
 
 	public function settings_link( array $links ) {
-		$links['sab'] = sprintf( '<a href="%s">%s</a>', admin_url( 'admin.php?page=simple-author-box-options' ), __( 'Settings', 'sabox-plugin' ) );
+		$links['sab'] = sprintf( '<a href="%s">%s</a>', admin_url( 'admin.php?page=simple-author-box-options' ), __( 'Settings', 'saboxplugin' ) );
 
 		return $links;
 	}
