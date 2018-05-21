@@ -70,7 +70,7 @@
 	position: relative;
 	display: block;
 	background: #fcfcfc;
-	padding: 0 15px;
+	padding: 5px;
 	-webkit-box-shadow: 0 1px 0 0 #eee inset;
 	-moz-box-shadow: 0 1px 0 0 #eee inset;
 	box-shadow: 0 1px 0 0 #eee inset;
@@ -98,28 +98,11 @@
 	-webkit-box-shadow: none !important;
 }
 
-.saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-color:before {
-	display: block;
-	width: 30px;
-	height: 30px;
-	line-height: 33px;
-	text-align: center;
-	speak: none;
-}
-
 .saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-color {
 	font-style: normal;
 	font-weight: normal;
 	text-decoration: inherit;
-	font-size: 14px;
-	position: relative;
-	display: -moz-inline-stack;
-	display: inline-block;
-	vertical-align: middle;
-	*vertical-align: auto;
-	zoom: 1;
-	*display: inline;
-	margin: 10px 5px;
+	margin: 5px;
 	background-clip: content-box;
 	-moz-background-clip: content-box;
 	-webkit-background-clip: content-box;
@@ -131,12 +114,7 @@
 	overflow: hidden;
 }
 
-.saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-grey:before {
-	display: block;
-	text-align: center;
-	speak: none;
-	line-height: 1;
-}
+
 
 .saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-grey {
 	font-style: normal;
@@ -170,13 +148,39 @@
 	color: #fff;
 }
 
+.saboxplugin-socials .fa {
+	text-align: center;
+	display: inline-block;
+}
+
+/* Hotfixes for a few icons */
+.saboxplugin-socials .fa-googleplus:before {
+	content: '\f0d5' !important;
+}
+
+.saboxplugin-socials .fa-sharethis:before {
+	content: '\f1e0' !important;
+}
+
+.saboxplugin-socials .fa-stackoverflow:before {
+	content: '\f16c' !important;
+}
+
+.saboxplugin-socials .fa-stumbleUpon:before {
+	content: '\f1a4' !important;
+}
+
+.saboxplugin-socials .fa-user_email:before {
+	content: '\f0e0' !important;
+}
+
 /*  COLORED BACKGROUND AND LONG SHADOW EFFECT FOR SOCIAL ICONS
 -------------------------------------------------------------- */
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-twitch {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-twitch {
 	background-color: #6441a5;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-addthis {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-addthis {
 	background: #ff8662;
 	border: 1px solid #d5644b;
 	text-shadow: rgb(213, 100, 75) 1px 1px,
@@ -211,7 +215,7 @@
 	rgb(213, 100, 75) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-behance {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-behance {
 	background: #0294ff;
 	border: 1px solid #0083d4;
 	text-shadow: rgb(0, 131, 212) 1px 1px,
@@ -246,7 +250,7 @@
 	rgb(0, 131, 212) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-delicious {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-delicious {
 	background: #0294ff;
 	border: 1px solid #007ecd;
 	text-shadow: rgb(0, 126, 205) 1px 1px,
@@ -281,7 +285,7 @@
 	rgb(0, 126, 205) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-deviantart {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-deviantart {
 	background: #dce22b;
 	border: 1px solid #b2b423;
 	text-shadow: rgb(178, 180, 35) 1px 1px,
@@ -316,7 +320,7 @@
 	rgb(178, 180, 35) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-digg {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-digg {
 	background: #1b8ec4;
 	border: 1px solid #126c92;
 	text-shadow: rgb(18, 108, 146) 1px 1px,
@@ -351,7 +355,7 @@
 	rgb(18, 108, 146) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-dribbble {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-dribbble {
 	background: #ef76a4;
 	border: 1px solid #c05c84;
 	text-shadow: rgb(192, 92, 132) 1px 1px,
@@ -386,7 +390,7 @@
 	rgb(192, 92, 132) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-facebook {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-facebook {
 	background: #3b5998;
 	border: 1px solid #1e3d7a;
 	text-shadow: rgb(30, 61, 122) 1px 1px,
@@ -421,7 +425,7 @@
 	rgb(30, 61, 122) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-flickr {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-flickr {
 	background: #ff0586;
 	border: 1px solid #d0006f;
 	text-shadow: rgb(208, 0, 111) 1px 1px,
@@ -456,7 +460,7 @@
 	rgb(208, 0, 111) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-github {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-github {
 	background: #829aa8;
 	border: 1px solid #4f7385;
 	text-shadow: rgb(79, 115, 133) 1px 1px,
@@ -491,7 +495,7 @@
 	rgb(79, 115, 133) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-google {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-google {
 	background: #e8262f;
 	border: 1px solid #c20c18;
 	text-shadow: rgb(194, 12, 24) 1px 1px,
@@ -526,7 +530,7 @@
 	rgb(194, 12, 24) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-googleplus {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-googleplus {
 	background: #dd4b39;
 	border: 1px solid #b32414;
 	text-shadow: rgb(179, 36, 20) 1px 1px,
@@ -561,7 +565,7 @@
 	rgb(179, 36, 20) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-html5 {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-html5 {
 	background: #f16528;
 	border: 1px solid #c23d08;
 	text-shadow: rgb(194, 61, 8) 1px 1px,
@@ -596,7 +600,7 @@
 	rgb(194, 61, 8) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-instagram {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-instagram {
 	background: #417096;
 	border: 1px solid #244f70;
 	text-shadow: rgb(36, 79, 112) 1px 1px,
@@ -631,7 +635,7 @@
 	rgb(36, 79, 112) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-linkedin {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-linkedin {
 	background: #1583bb;
 	border: 1px solid #036390;
 	text-shadow: rgb(3, 99, 144) 1px 1px,
@@ -666,7 +670,7 @@
 	rgb(3, 99, 144) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-pinterest {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-pinterest {
 	background: #cb2027;
 	border: 1px solid #9d060e;
 	text-shadow: rgb(157, 6, 62) 1px 1px,
@@ -701,7 +705,7 @@
 	rgb(157, 6, 62) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-reddit {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-reddit {
 	background: #ff4107;
 	border: 1px solid #c62d02;
 	text-shadow: rgb(198, 45, 2) 1px 1px,
@@ -736,7 +740,7 @@
 	rgb(198, 45, 2) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-rss {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-rss {
 	background: #ff7a21;
 	border: 1px solid #c24b02;
 	text-shadow: rgb(194, 75, 2) 1px 1px,
@@ -771,7 +775,7 @@
 	rgb(194, 75, 2) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-sharethis {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-sharethis {
 	background: #1d9565;
 	border: 1px solid #076840;
 	text-shadow: rgb(7, 104, 64) 1px 1px,
@@ -806,7 +810,7 @@
 	rgb(7, 104, 64) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-skype {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-skype {
 	background: #3fc1f4;
 	border: 1px solid #1b95c2;
 	text-shadow: rgb(27, 149, 194) 1px 1px,
@@ -841,7 +845,7 @@
 	rgb(27, 149, 194) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-soundcloud {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-soundcloud {
 	background: #ff5419;
 	border: 1px solid #c73002;
 	text-shadow: rgb(199, 48, 2) 1px 1px,
@@ -876,7 +880,7 @@
 	rgb(199, 48, 2) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-spotify {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-spotify {
 	background: #aecf02;
 	border: 1px solid #829900;
 	text-shadow: rgb(130, 153, 0) 1px 1px,
@@ -911,7 +915,7 @@
 	rgb(130, 153, 0) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-stackoverflow {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-stackoverflow {
 	background: #ff661e;
 	border: 1px solid #ce3a00;
 	text-shadow: rgb(206, 58, 0) 1px 1px,
@@ -946,8 +950,8 @@
 	rgb(206, 58, 0) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-steam,
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-user_email {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-steam,
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-user_email {
 	background: #484848;
 	border: 1px solid #302b2b;
 	text-shadow: rgb(48, 43, 43) 1px 1px,
@@ -982,7 +986,7 @@
 	rgb(48, 43, 43) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-stumbleUpon {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-stumbleUpon {
 	background: #eb4923;
 	border: 1px solid #be2507;
 	text-shadow: rgb(190, 37, 7) 1px 1px,
@@ -1017,7 +1021,7 @@
 	rgb(190, 37, 7) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-tumblr {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-tumblr {
 	background: #3c576c;
 	border: 1px solid #1e3546;
 	text-shadow: rgb(30, 53, 70) 1px 1px,
@@ -1052,7 +1056,7 @@
 	rgb(30, 53, 70) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-twitter {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-twitter {
 	background: #00aced;
 	border: 1px solid #008ab8;
 	text-shadow: rgb(0, 138, 184) 1px 1px,
@@ -1087,7 +1091,7 @@
 	rgb(0, 138, 184) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-vimeo {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-vimeo {
 	background: #006599;
 	border: 1px solid #00496a;
 	text-shadow: rgb(0, 73, 106) 1px 1px,
@@ -1122,7 +1126,7 @@
 	rgb(0, 73, 106) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-windows {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-windows {
 	background: #00adef;
 	border: 1px solid #038bbc;
 	text-shadow: rgb(3, 139, 188) 1px 1px,
@@ -1157,7 +1161,7 @@
 	rgb(3, 139, 188) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-wordpress {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-wordpress {
 	background: #21759a;
 	border: 1px solid #0f607e;
 	text-shadow: rgb(15, 96, 126) 1px 1px,
@@ -1192,7 +1196,7 @@
 	rgb(15, 96, 126) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-yahoo {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-yahoo {
 	background: #4101af;
 	border: 1px solid #290074;
 	text-shadow: rgb(41, 0, 116) 1px 1px,
@@ -1227,7 +1231,7 @@
 	rgb(41, 0, 116) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-youtube {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-youtube {
 	background: #e52c27;
 	border: 1px solid #be0707;
 	text-shadow: rgb(190, 7, 7) 1px 1px,
@@ -1262,7 +1266,7 @@
 	rgb(190, 7, 7) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-xing {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-xing {
 	background: #026466;
 	border: 1px solid #004746;
 	text-shadow: rgb(0, 71, 70) 1px 1px,
@@ -1297,7 +1301,7 @@
 	rgb(0, 71, 70) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-mixcloud {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-mixcloud {
 	background: #52aad8;
 	border: 1px solid #1b95c2;
 	text-shadow: rgb(27, 149, 194) 1px 1px,
@@ -1332,23 +1336,23 @@
 	rgb(27, 149, 194) 30px 30px;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-vk {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-vk {
 	background-color: #45668e;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-medium {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-medium {
 	background-color: #00ab6c;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-quora {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-quora {
 	background-color: #a82400;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-meetup {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-meetup {
 	background-color: #e0393e;
 }
 
-.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.saboxplugin-icon-goodreads {
+.saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-goodreads {
 	background: #553b08;
 	border: 1px solid #1b95c2;
 }

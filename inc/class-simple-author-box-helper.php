@@ -925,9 +925,8 @@ class Simple_Author_Box_Helper {
 		// Author website text size
 		$style .= '.saboxplugin-wrap .saboxplugin-web {font-size:' . absint( $sabox_web_size ) . 'px;}';
 		// Icons size
-		$style .= '.saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-color {font-size:' . absint( $sabox_icon_size + 3 ) . 'px;}';
-		$style .= '.saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-color:before {width:' . absint( $sabox_icon_size + $sabox_icon_size ) . 'px; height:' . absint( $sabox_icon_size + $sabox_icon_size ) . 'px; line-height:' . absint( $sabox_icon_size + $sabox_icon_size + 1 ) . 'px; }';
-		$style .= '.saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-grey {font-size:' . absint( $sabox_icon_size ) . 'px;}';
+		$style .= '.saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-color.fa:before {font-size:' . absint( $sabox_icon_size ) . 'px;}';
+		$style .= '.saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-color.fa {width:' . absint( $sabox_icon_size * 2 ) . 'px; height:' . absint( $sabox_icon_size * 2 ) . 'px; line-height:' . absint( $sabox_icon_size * 2 ) . 'px; }';
 
 		return apply_filters( 'sabox_inline_css', $style );
 	}

@@ -1,13 +1,16 @@
 <?php
 
 /**
- *
+ * Our main plugin class
  */
 class Simple_Author_Box {
 
 	private static $instance = null;
 	private $options;
 
+	/**
+	 * Function constructor
+	 */
 	function __construct() {
 
 		$this->options = get_option( 'saboxplugin_options', array() );
@@ -18,6 +21,11 @@ class Simple_Author_Box {
 
 	}
 
+	/**
+	 * Singleton pattern
+	 *
+	 * @return void
+	 */
 	public static function get_instance() {
 		if ( is_null( self::$instance ) ) {
 			self::$instance = new self();
@@ -31,20 +39,25 @@ class Simple_Author_Box {
 		require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-helper.php';
 		require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/functions.php';
 
+		// everything below this line gets loaded only in the admin back-end
 		if ( is_admin() ) {
 			require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-admin-page.php';
 			require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-user-profile.php';
 		}
 	}
 
-
+	/**
+	 * Admin hooks
+	 *
+	 * @return void
+	 */
 	private function define_admin_hooks() {
 
 		/**
 		 * everything hooked here loads on both front-end & back-end
 		 */
 		add_filter( 'get_avatar', array( $this, 'replace_gravatar_image' ), 10, 6 );
-		add_filter( 'amp_post_template_data', array( $this, 'sab_amp_css' ) );
+		add_filter( 'amp_post_template_data', array( $this, 'sab_amp_css' ) ); // @since 2.0.7
 
 		/**
 		 * Only load when we're in the admin panel
@@ -57,6 +70,19 @@ class Simple_Author_Box {
 	}
 
 
+	/**
+	 * See this: https://codex.wordpress.org/Plugin_API/Filter_Reference/get_avatar
+	 *
+	 * Custom function to overwrite WordPress's get_avatar function
+	 *
+	 * @param [type] $avatar
+	 * @param [type] $id_or_email
+	 * @param [type] $size
+	 * @param [type] $default
+	 * @param [type] $alt
+	 * @param [type] $args
+	 * @return void
+	 */
 	public function replace_gravatar_image( $avatar, $id_or_email, $size, $default, $alt, $args ) {
 
 		// Process the user identifier.
@@ -118,31 +144,29 @@ class Simple_Author_Box {
 
 	private function define_public_hooks() {
 
+		add_action( 'wp_enqueue_scripts', array( $this, 'saboxplugin_author_box_style' ), 10 );
+		add_shortcode( 'simple-author-box', array( $this, 'shortcode' ) );
+		add_filter( 'sabox_hide_social_icons', array( $this, 'show_social_media_icons' ), 10, 2 );
+
 		if ( ! isset( $this->options['sab_autoinsert'] ) ) {
 			add_filter( 'the_content', 'wpsabox_author_box' );
 		}
 
-		add_action( 'wp_enqueue_scripts', array( $this, 'saboxplugin_author_box_style' ), 10 );
-
 		if ( isset( $this->options['sab_footer_inline_style'] ) ) {
 			add_action(
 				'wp_footer', array(
-				$this,
-				'inline_style',
-			), 13
+					$this,
+					'inline_style',
+				), 13
 			);
 		} else {
 			add_action( 'wp_head', array( $this, 'inline_style' ), 15 );
 		}
 
-		add_shortcode( 'simple-author-box', array( $this, 'shortcode' ) );
-		add_filter( 'sabox_hide_social_icons', array( $this, 'show_social_media_icons' ), 10, 2 );
-
 	}
 
-	public function settings_link( $links ) {
-		$settings_link = '<a href="' . admin_url( 'admin.php?page=simple-author-box-options' ) . '">' . __( 'Settings', 'saboxplugin' ) . '</a>';
-		array_unshift( $links, $settings_link );
+	public function settings_link( array $links ) {
+		$links['sab'] = sprintf( '<a href="%s">%s</a>', admin_url( 'admin.php?page=simple-author-box-options' ), __( 'Settings', 'sabox-plugin' ) );
 
 		return $links;
 	}
@@ -154,9 +178,11 @@ class Simple_Author_Box {
 			$suffix = '';
 		}
 
+		// globally loaded
 		wp_enqueue_style( 'sabox-css', SIMPLE_AUTHOR_BOX_ASSETS . 'css/sabox.css' );
 		wp_enqueue_style( 'saboxplugin-admin-style', SIMPLE_AUTHOR_BOX_ASSETS . 'css/sabox-admin-style' . $suffix . '.css' );
 
+		// loaded only on plugin page
 		if ( 'toplevel_page_simple-author-box-options' == $hook ) {
 
 			// Styles
@@ -166,17 +192,18 @@ class Simple_Author_Box {
 			// Scripts
 			wp_enqueue_script(
 				'sabox-admin-js', SIMPLE_AUTHOR_BOX_ASSETS . 'js/sabox-admin.js', array(
-				'jquery-ui-slider',
-				'wp-color-picker',
-			), false, true
+					'jquery-ui-slider',
+					'wp-color-picker',
+				), false, true
 			);
 			wp_enqueue_script(
 				'sabox-plugin-install', SIMPLE_AUTHOR_BOX_ASSETS . 'js/plugin-install.js', array(
-				'jquery',
-				'updates',
-			), '1.0.0', 'all'
+					'jquery',
+					'updates',
+				), '1.0.0', 'all'
 			);
 
+			// loaded only on user profile page
 		} elseif ( 'profile.php' == $hook || 'user-edit.php' == $hook ) {
 
 			wp_enqueue_style( 'saboxplugin-admin-style', SIMPLE_AUTHOR_BOX_ASSETS . 'css/sabox-admin-style' . $suffix . '.css' );
@@ -266,7 +293,7 @@ class Simple_Author_Box {
 		 */
 
 		if ( ! isset( $this->options['sab_load_fa'] ) ) {
-			wp_register_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' );
+			wp_register_style( 'font-awesome', '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' );
 		}
 
 		wp_register_style( 'sab-plugin', SIMPLE_AUTHOR_BOX_ASSETS . 'css/simple-author-box' . $suffix . '.css', false, SIMPLE_AUTHOR_BOX_VERSION );
@@ -285,7 +312,6 @@ class Simple_Author_Box {
 
 		wp_enqueue_style( 'sab-plugin' );
 
-
 	}
 
 
@@ -295,7 +321,7 @@ class Simple_Author_Box {
 			return;
 		}
 
-		$style = '<style type="text/css">';
+		$style  = '<style type="text/css">';
 		$style .= Simple_Author_Box_Helper::generate_inline_css();
 		$style .= '</style>';
 
@@ -341,6 +367,7 @@ class Simple_Author_Box {
 
 	/**
 	 * AMP compatibility
+	 * @since 2.0
 	 *
 	 * @param $data
 	 *
@@ -350,56 +377,47 @@ class Simple_Author_Box {
 	function sab_amp_css( $data ) {
 
 		$data['post_amp_styles'] = array(
-			'.saboxplugin-wrap'                                                    => array(
-				'box-sizing: border-box',
-				'border: 1px solid #EEE',
-				'width: 100%',
-				'clear: both',
-				'overflow : hidden',
-				'word-wrap: break-word',
-				'position: relative',
-			),
-			'.saboxplugin-wrap .saboxplugin-gravatar'                              => array(
+			'.saboxplugin-wrap .saboxplugin-gravatar'     => array(
 				'float: left',
 				'padding: 20px',
 			),
-			'.saboxplugin-wrap .saboxplugin-gravatar img'                          => array(
+			'.saboxplugin-wrap .saboxplugin-gravatar img' => array(
 				'max-width: 100px',
 				'height: auto',
 			),
-			'.saboxplugin-wrap .saboxplugin-authorname'                            => array(
+			'.saboxplugin-wrap .saboxplugin-authorname'   => array(
 				'font-size: 18px',
 				'line-height: 1',
 				'margin: 20px 0 0 20px',
 				'display: block',
 			),
-			'.saboxplugin-wrap .saboxplugin-authorname a'                          => array(
+			'.saboxplugin-wrap .saboxplugin-authorname a' => array(
 				'text-decoration: none',
 			),
-			'.saboxplugin-wrap .saboxplugin-desc'                                  => array(
+			'.saboxplugin-wrap .saboxplugin-desc'         => array(
 				'display: block',
 				'margin: 5px 20px',
 			),
-			'.saboxplugin-wrap .saboxplugin-desc a'                                => array(
+			'.saboxplugin-wrap .saboxplugin-desc a'       => array(
 				'text-decoration: none',
 			),
-			'.saboxplugin-wrap .saboxplugin-desc p'                                => array(
+			'.saboxplugin-wrap .saboxplugin-desc p'       => array(
 				'margin: 5px 0 12px 0',
 			),
-			'.saboxplugin-wrap .saboxplugin-web'                                   => array(
+			'.saboxplugin-wrap .saboxplugin-web'          => array(
 				'margin: 0 20px 15px',
 				'text-align: left',
 			),
-			'.saboxplugin-wrap .saboxplugin-socials'                               => array(
+			'.saboxplugin-wrap .saboxplugin-socials'      => array(
 				'position: relative',
 				'display: block',
 				'background: #fcfcfc',
-				'padding: 0 15px',
+				'padding: 5px',
 				'box-shadow: 0 1px 0 0 #eee inset',
 				'-webkit-box-shadow: 0 1px 0 0 #eee inset',
 				'-moz-box-shadow: 0 1px 0 0 #eee inset',
 			),
-			'.saboxplugin-wrap .saboxplugin-socials a'                             => array(
+			'.saboxplugin-wrap .saboxplugin-socials a'    => array(
 				'text-decoration: none',
 				'box-shadow: none',
 				'padding: 0',
@@ -410,18 +428,56 @@ class Simple_Author_Box {
 				'-moz-transition: opacity 0.4s',
 				'-o-transition: opacity 0.4s',
 			),
-			'.saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-grey'        => array(
+			'.saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-grey' => array(
 				'display: inline-block',
 				'vertical-align: middle',
 				'margin: 10px 5px',
 				'color: #444',
 			),
-			'.saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-grey:before' => array(
-				'display: block',
-				'text-align: center',
-				'line-height: 1',
+			'.saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-color.fa:before' => array(
+				'font-size: ' . get_option( 'sab_box_icon_size', 14 ) . 'px',
 			),
-
+			'.saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-color.fa' => array(
+				'width: ' . absint( get_option( 'sab_box_icon_size', 14 ) ) * 2 . 'px',
+				'height: ' . absint( get_option( 'sab_box_icon_size', 14 ) ) * 2 . 'px',
+				'line-height: ' . absint( get_option( 'sab_box_icon_size', 14 ) ) * 2 . 'px',
+			),
+			'.saboxplugin-wrap .saboxplugin-socials.sabox-colored .saboxplugin-icon-color' => array(
+				'color: #FFF',
+				'background-color: grey',
+				'margin: 5px',
+				'text-align: center',
+				'vertical-align: middle',
+			),
+			// hotfixes for some icons since we changed from sabox-icon to using fa-
+			'.saboxplugin-socials .fa-googleplus:before'  => array(
+				"content: '\\f0d5' !important",
+			),
+			'.saboxplugin-socials .fa-sharethis:before'   => array(
+				"content: '\\f1e0' !important",
+			),
+			'.saboxplugin-socials .fa-stackoverflow:before' => array(
+				"content: '\\f16c' !important",
+			),
+			'.saboxplugin-socials .fa-stumbleUpon:before' => array(
+				"content: '\\f1a4' !important",
+			),
+			'.saboxplugin-socials .fa-user_email:before'  => array(
+				"content: '\\f0e0' !important",
+			),
+			// custom paddings & margins
+			'.saboxplugin-wrap'                           => array(
+				'margin-top: ' . absint( get_option( 'sab_box_margin_top', 0 ) ) . 'px',
+				'margin-bottom: ' . absint( get_option( 'sab_box_margin_bottom', 0 ) ) . 'px',
+				'padding: ' . absint( get_option( 'sab_box_padding_top_bottom', 0 ) ) . 'px ' . absint( get_option( 'sab_box_padding_left_right', 0 ) ) . 'px',
+				'box-sizing: border-box',
+				'border: 1px solid #EEE',
+				'width: 100%',
+				'clear: both',
+				'overflow : hidden',
+				'word-wrap: break-word',
+				'position: relative',
+			),
 		);
 
 		$data['font_urls'] = array(
@@ -431,6 +487,4 @@ class Simple_Author_Box {
 
 		return $data;
 	}
-
-
 }
