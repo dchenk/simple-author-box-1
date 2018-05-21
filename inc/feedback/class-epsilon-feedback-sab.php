@@ -171,6 +171,9 @@ class Epsilon_Feedback_SAB {
 					formContainer.fadeIn( {
 						complete: function() {
 							var offset = formContainer.offset();
+							if( offset.top < 50 ) {
+								$(this).parent().css('top', (50 - offset.top) + 'px')
+							}
 							$( 'body' ).animate( { scrollTop: Math.max( 0, offset.top - 50 ) } );
 						}
 					} );
