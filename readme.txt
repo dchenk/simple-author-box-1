@@ -79,6 +79,10 @@ Or you can give back by recommending this amazing plugin to your friends!
 
 == Changelog ==
 
+= 2.0.7 = 
+* Added AMP compatibility
+* Fixed some CSS isues & cleaned up the code
+
 = 2.0.6 =
 * Initial PRO version release & minor bug fixes
 * Saving now remembers the tab you were on
