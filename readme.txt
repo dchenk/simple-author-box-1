@@ -3,7 +3,7 @@ Contributors: machothemes, silkalns
 Tags: author box, responsive author box, author profile fields, author social icons, profile fields, author bio, author description, author profile, user profile, post author, rtl author box
 Requires at least: 4.6
 Tested up to: 4.9
-Stable tag: 2.0.5
+Stable tag: 2.0.7
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
