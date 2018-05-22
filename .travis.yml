@@ -48,8 +48,8 @@ notifications:
 cache:
   directories:
   - node_modules
-  # after_success: curl -L https://raw.github.com/cristianraiber/travis-deployment/deploy.sh | bash
-  # env:
-    # global:
-      #  - SVN_REPO: https://plugins.svn.wordpress.org/$TRAVIS_BRANCH/
-       # - secure: "ZNGMiXE0/uRCdIy2gNGeaQMCMWnsXy643m9U8UlNtOuUmnkrHzAiDeip/C7A/D1HZqaBFN7gILztSeJls6mR0onw1bjL4ex0Zabh0GUTIsg+5DVOvRjLvCGOMKtkHOxdT90x+QDvlTQcWvl4OMEoKrwX11dwtVxo+XG+/7BR2tQ="
+   after_success: wget -L https://raw.github.com/cristianraiber/travis-deployment/deploy.sh | bash
+   env:
+     global:
+        - SVN_REPO: https://plugins.svn.wordpress.org/$TRAVIS_BRANCH/
+        - secure: "ZNGMiXE0/uRCdIy2gNGeaQMCMWnsXy643m9U8UlNtOuUmnkrHzAiDeip/C7A/D1HZqaBFN7gILztSeJls6mR0onw1bjL4ex0Zabh0GUTIsg+5DVOvRjLvCGOMKtkHOxdT90x+QDvlTQcWvl4OMEoKrwX11dwtVxo+XG+/7BR2tQ="
