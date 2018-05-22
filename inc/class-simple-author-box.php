@@ -293,7 +293,7 @@ class Simple_Author_Box {
 		 */
 
 		if ( ! isset( $this->options['sab_load_fa'] ) ) {
-			wp_register_style( 'font-awesome', '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' );
+			wp_register_style( 'font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' );
 		}
 
 		wp_register_style( 'sab-plugin', SIMPLE_AUTHOR_BOX_ASSETS . 'css/simple-author-box' . $suffix . '.css', false, SIMPLE_AUTHOR_BOX_VERSION );
@@ -403,6 +403,8 @@ class Simple_Author_Box {
 			),
 			'.saboxplugin-wrap .saboxplugin-desc p'       => array(
 				'margin: 5px 0 12px 0',
+				'font-size: ' . absint( get_option( 'sab_box_desc_size', 14 ) ),
+				'line-height: ' . absint( get_option( 'sab_box_desc_size', 14 ) + 7 ),
 			),
 			'.saboxplugin-wrap .saboxplugin-web'          => array(
 				'margin: 0 20px 15px',
@@ -464,6 +466,9 @@ class Simple_Author_Box {
 			),
 			'.saboxplugin-socials .fa-user_email:before'  => array(
 				"content: '\\f0e0' !important",
+			),
+			'.saboxplugin-socials .fa-addthis:before'  => array(
+				"content: '\\f0fe' !important",
 			),
 			// custom paddings & margins
 			'.saboxplugin-wrap'                           => array(

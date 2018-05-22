@@ -921,7 +921,7 @@ class Simple_Author_Box_Helper {
 		// Author name text size
 		$style .= '.saboxplugin-wrap .saboxplugin-authorname {font-size:' . absint( $sabox_name_size ) . 'px; line-height:' . absint( $sabox_name_size + 7 ) . 'px;}';
 		// Author description font size
-		$style .= '.saboxplugin-wrap .saboxplugin-desc {font-size:' . absint( $sabox_desc_size ) . 'px; line-height:' . absint( $sabox_desc_size + 7 ) . 'px;}';
+		$style .= '.saboxplugin-wrap .saboxplugin-desc p, .saboxplugin-wrap .saboxplugin-desc {font-size:' . absint( $sabox_desc_size ) . 'px !important; line-height:' . absint( $sabox_desc_size + 7 ) . 'px !important;}';
 		// Author website text size
 		$style .= '.saboxplugin-wrap .saboxplugin-web {font-size:' . absint( $sabox_web_size ) . 'px;}';
 		// Icons size

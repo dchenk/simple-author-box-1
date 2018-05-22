@@ -162,6 +162,10 @@
 	content: '\f1e0' !important;
 }
 
+.saboxplugin-socials .fa-addthis:before {
+	content: '\f0fe' !important;
+}
+
 .saboxplugin-socials .fa-stackoverflow:before {
 	content: '\f16c' !important;
 }
