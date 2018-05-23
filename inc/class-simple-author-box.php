@@ -403,8 +403,8 @@ class Simple_Author_Box {
 			),
 			'.saboxplugin-wrap .saboxplugin-desc p'       => array(
 				'margin: 5px 0 12px 0',
-				'font-size: ' . absint( get_option( 'sab_box_desc_size', 14 ) ),
-				'line-height: ' . absint( get_option( 'sab_box_desc_size', 14 ) + 7 ),
+				'font-size: ' . absint( get_option( 'sab_box_desc_size', 14 ) ) . 'px',
+				'line-height: ' . absint( get_option( 'sab_box_desc_size', 14 ) + 7 ) . 'px',
 			),
 			'.saboxplugin-wrap .saboxplugin-web'          => array(
 				'margin: 0 20px 15px',
