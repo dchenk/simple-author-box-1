@@ -293,7 +293,7 @@ class Simple_Author_Box {
 		 */
 
 		if ( ! isset( $this->options['sab_load_fa'] ) ) {
-			wp_register_style( 'font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' );
+			wp_register_style( 'font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' );
 		}
 
 		wp_register_style( 'sab-plugin', SIMPLE_AUTHOR_BOX_ASSETS . 'css/simple-author-box' . $suffix . '.css', false, SIMPLE_AUTHOR_BOX_VERSION );
@@ -453,22 +453,22 @@ class Simple_Author_Box {
 			),
 			// hotfixes for some icons since we changed from sabox-icon to using fa-
 			'.saboxplugin-socials .fa-googleplus:before'  => array(
-				"content: '\\f0d5' !important",
+				"content: '\\f0d5' ",
 			),
 			'.saboxplugin-socials .fa-sharethis:before'   => array(
-				"content: '\\f1e0' !important",
+				"content: '\\f1e0' ",
 			),
 			'.saboxplugin-socials .fa-stackoverflow:before' => array(
-				"content: '\\f16c' !important",
+				"content: '\\f16c' ",
 			),
 			'.saboxplugin-socials .fa-stumbleUpon:before' => array(
-				"content: '\\f1a4' !important",
+				"content: '\\f1a4' ",
 			),
 			'.saboxplugin-socials .fa-user_email:before'  => array(
-				"content: '\\f0e0' !important",
+				"content: '\\f0e0' ",
 			),
-			'.saboxplugin-socials .fa-addthis:before'  => array(
-				"content: '\\f0fe' !important",
+			'.saboxplugin-socials .fa-addthis:before'     => array(
+				"content: '\\f0fe' ",
 			),
 			// custom paddings & margins
 			'.saboxplugin-wrap'                           => array(
@@ -486,8 +486,8 @@ class Simple_Author_Box {
 		);
 
 		$data['font_urls'] = array(
-			'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2',
-			'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css',
+			'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2',
+			'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
 		);
 
 		return $data;

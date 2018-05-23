@@ -79,6 +79,9 @@ Or you can give back by recommending this amazing plugin to your friends!
 
 == Changelog ==
 
+= 2.0.9 =
+* AMP CSS fixes & validator
+
 = 2.0.8 = 
 * Fixed a small bug re. custom AMP CSS (forgot to add 'px' units for author description paragraphs, browser was interpreting them as em)
 
