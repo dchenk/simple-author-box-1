@@ -4,6 +4,7 @@
   "version": "2.0.9",
   "author": "Macho Themes",
   "license": "GPL v3",
+  "repository": "https://github.com/machothemes/simple-author-box.git",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-checktextdomain": "^1.0.0",
