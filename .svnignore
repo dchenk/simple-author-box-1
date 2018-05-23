@@ -13,3 +13,8 @@ npm-debug.log
 package.json
 package-lock.json
 phpunit.xml
+.jshintignore
+.jscrc
+.jshintrc
+phpcs.ruleset.xml
+set_tags.sh
