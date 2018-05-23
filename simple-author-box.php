@@ -30,7 +30,7 @@
 define( 'SIMPLE_AUTHOR_BOX_PATH', plugin_dir_path( __FILE__ ) );
 define( 'SIMPLE_AUTHOR_BOX_ASSETS', plugins_url( '/assets/', __FILE__ ) );
 define( 'SIMPLE_AUTHOR_BOX_SLUG', plugin_basename( __FILE__ ) );
-define( 'SIMPLE_AUTHOR_BOX_VERSION', '2.0.7' );
+define( 'SIMPLE_AUTHOR_BOX_VERSION', '2.0.8' );
 define( 'SIMPLE_AUTHOR_SCRIPT_DEBUG', false );
 
 
