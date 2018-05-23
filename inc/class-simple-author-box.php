@@ -486,8 +486,8 @@ class Simple_Author_Box {
 		);
 
 		$data['font_urls'] = array(
-			'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2',
-			'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+			'Font Awesome' => 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2',
+			'Font Awesome' => 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
 		);
 
 		return $data;
