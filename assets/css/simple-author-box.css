@@ -178,6 +178,10 @@
 	content: '\f0e0' !important;
 }
 
+.saboxplugin-socials .fa-goodreads:before {
+	content: '\f02d' !important;
+}
+
 /*  COLORED BACKGROUND AND LONG SHADOW EFFECT FOR SOCIAL ICONS
 -------------------------------------------------------------- */
 .saboxplugin-socials.sabox-colored .saboxplugin-icon-color.fa-twitch {
@@ -1439,5 +1443,3 @@ a.sab-profile-edit {
 	.saboxplugin-socials {
 		line-height: 1 !important;
 	}
-
-

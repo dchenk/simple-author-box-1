@@ -470,6 +470,9 @@ class Simple_Author_Box {
 			'.saboxplugin-socials .fa-addthis:before'     => array(
 				"content: '\\f0fe' ",
 			),
+			'.saboxplugin-socials .fa-goodreads:before'   => array(
+				"content: '\\f02d' ",
+			),
 			// custom paddings & margins
 			'.saboxplugin-wrap'                           => array(
 				'margin-top: ' . absint( get_option( 'sab_box_margin_top', 0 ) ) . 'px',
