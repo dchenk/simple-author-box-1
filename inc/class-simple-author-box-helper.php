@@ -880,6 +880,18 @@ class Simple_Author_Box_Helper {
 		if ( isset( $sabox_options['sab_box_icons_back'] ) && ! empty( $sabox_options['sab_box_icons_back'] ) ) {
 			$style .= '.saboxplugin-wrap .saboxplugin-socials{background-color:' . esc_html( $sabox_options['sab_box_icons_back'] ) . ';}';
 		}
+		// Background color of author box
+		if ( isset( $sabox_options['sab_box_author_back'] ) && ! empty( $sabox_options['sab_box_author_back'] ) ) {
+			$style .= '.saboxplugin-wrap {background-color:' . esc_html( $sabox_options['sab_box_author_back'] ) . ';}';
+		}
+		// Color of author box paragraphs
+		if ( isset( $sabox_options['sab_box_author_p_color'] ) && ! empty( $sabox_options['sab_box_author_p_color'] ) ) {
+			$style .= '.saboxplugin-wrap .saboxplugin-desc p, .saboxplugin-wrap .saboxplugin-desc  {color:' . esc_html( $sabox_options['sab_box_author_p_color'] ) . ' !important;}';
+		}
+		// Color of author box paragraphs
+		if ( isset( $sabox_options['sab_box_author_a_color'] ) && ! empty( $sabox_options['sab_box_author_a_color'] ) ) {
+			$style .= '.saboxplugin-wrap .saboxplugin-desc a, .saboxplugin-wrap .saboxplugin-desc  {color:' . esc_html( $sabox_options['sab_box_author_a_color'] ) . ' !important;}';
+		}
 		// Color of social icons (for symbols only):
 		if ( isset( $sabox_options['sab_box_icons_color'] ) && ! empty( $sabox_options['sab_box_icons_color'] ) ) {
 			$style .= '.saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-grey {color:' . esc_html( $sabox_options['sab_box_icons_color'] ) . ';}';

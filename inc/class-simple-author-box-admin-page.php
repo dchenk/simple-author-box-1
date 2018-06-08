@@ -247,6 +247,24 @@ class Simple_Author_Box_Admin_Page {
 					'type'        => 'color',
 					'group'       => 'saboxplugin_options',
 				),
+				'sab_box_author_back'   => array(
+					'label'       => __( 'Background color of author box', 'saboxplugin' ),
+					'description' => __( 'Select the color for the author box background', 'saboxplugin' ),
+					'type'        => 'color',
+					'group'       => 'saboxplugin_options',
+				),
+				'sab_box_author_p_color'   => array(
+					'label'       => __( 'Color of author box paragraphs', 'saboxplugin' ),
+					'description' => __( 'Select the color for the author box paragraphs', 'saboxplugin' ),
+					'type'        => 'color',
+					'group'       => 'saboxplugin_options',
+				),
+				'sab_box_author_a_color'   => array(
+					'label'       => __( 'Color of author box links', 'saboxplugin' ),
+					'description' => __( 'Select the color for the author box links', 'saboxplugin' ),
+					'type'        => 'color',
+					'group'       => 'saboxplugin_options',
+				),
 				'sab_box_icons_color'  => array(
 					'label'       => __( 'Social icons color (for symbols only)', 'saboxplugin' ),
 					'description' => __( 'Select the color for social icons when using the symbols only social icon type', 'saboxplugin' ),
