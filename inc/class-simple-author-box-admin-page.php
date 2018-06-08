@@ -691,7 +691,7 @@ class Simple_Author_Box_Admin_Page {
 				break;
 			case 'color':
 				$value = isset( $this->options[ $field_name ] ) ? $this->options[ $field_name ] : '';
-				echo '<div class="sadbox-colorpicker">';
+				echo '<div class="sabox-colorpicker">';
 				echo '<input id="' . esc_attr( $field_name ) . '" class="saboxfield sabox-color" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '">';
 				echo '</div>';
 				break;
