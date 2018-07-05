@@ -83,7 +83,7 @@ class Simple_Author_Box {
 	 * @param [type] $args
 	 * @return void
 	 */
-	public function replace_gravatar_image( $avatar, $id_or_email, $size, $default, $alt, $args ) {
+	public function replace_gravatar_image( $avatar, $id_or_email, $size, $default, $alt, $args = array() ) {
 
 		// Process the user identifier.
 		$user = false;
