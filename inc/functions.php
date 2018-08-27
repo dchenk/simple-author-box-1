@@ -22,7 +22,7 @@ if ( ! function_exists( 'wpsabox_author_box' ) ) {
 			$template = Simple_Author_Box_Helper::get_template();
 
 			ob_start();
-			$sabox_options        = get_option( 'saboxplugin_options' );
+			$sabox_options        = Simple_Author_Box_Helper::get_option( 'saboxplugin_options' );
 			$sabox_author_id      = $post->post_author;
 			$show_post_author_box = apply_filters( 'sabox_check_if_show_post_author_box', true, $sabox_options );
 

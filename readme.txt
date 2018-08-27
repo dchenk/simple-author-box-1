@@ -1,6 +1,6 @@
 === Simple Author Box ===
 Contributors: machothemes, silkalns
-Tags: author box, responsive author box, author profile fields, author social icons, profile fields, author bio, author description, author profile, user profile, post author, rtl author box
+Tags: author box, responsive author box, author profile fields, author social icons, profile fields, author bio, author description, author profile, user profile, post author, rtl author box, amp, accelerated mobile pages
 Requires at least: 4.6
 Tested up to: 4.9
 Stable tag: 2.0.9
@@ -21,6 +21,7 @@ Adds a cool responsive author box with social icons on your posts.
 * Automatically insert the author box at the end of your post
 * Option to manually insert the author box on your template file (single.php or author.php)
 * Simple Author Box has RTL support
+* Simple Author Box has AMP support
 
 **About us:**
 We are a young team of WordPress aficionados who love building WordPress plugins & <a href="https://www.machothemes.com/" target="_blank" title="Premium WordPress themes">Premium WordPress themes</a> over on our theme shop. We’re also blogging and wish to help our users find the best <a href="https://www.machothemes.com/blog/cheap-wordpress-hosting/" target="_blank" title="Cheap WordPress Hosting">Cheap WordPress hosting</a>.

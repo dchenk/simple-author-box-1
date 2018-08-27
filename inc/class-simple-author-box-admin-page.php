@@ -387,60 +387,60 @@ class Simple_Author_Box_Admin_Page {
 
 	private function get_all_options() {
 
-		$this->options = get_option( 'saboxplugin_options', array() );
+		$this->options = Simple_Author_Box_Helper::get_option( 'saboxplugin_options' );
 
-		$sab_box_margin_top = get_option( 'sab_box_margin_top' );
+		$sab_box_margin_top = Simple_Author_Box_Helper::get_option( 'sab_box_margin_top' );
 		if ( $sab_box_margin_top ) {
 			$this->options['sab_box_margin_top'] = $sab_box_margin_top;
 		}
 
-		$sab_box_margin_bottom = get_option( 'sab_box_margin_bottom' );
+		$sab_box_margin_bottom = Simple_Author_Box_Helper::get_option( 'sab_box_margin_bottom' );
 		if ( $sab_box_margin_bottom ) {
 			$this->options['sab_box_margin_bottom'] = $sab_box_margin_bottom;
 		}
 
-		$sab_box_icon_size = get_option( 'sab_box_icon_size' );
+		$sab_box_icon_size = Simple_Author_Box_Helper::get_option( 'sab_box_icon_size' );
 		if ( $sab_box_icon_size ) {
 			$this->options['sab_box_icon_size'] = $sab_box_icon_size;
 		}
 
-		$sab_box_author_font_size = get_option( 'sab_box_name_size' );
+		$sab_box_author_font_size = Simple_Author_Box_Helper::get_option( 'sab_box_name_size' );
 		if ( $sab_box_author_font_size ) {
 			$this->options['sab_box_name_size'] = $sab_box_author_font_size;
 		}
 
-		$sab_box_web_size = get_option( 'sab_box_web_size' );
+		$sab_box_web_size = Simple_Author_Box_Helper::get_option( 'sab_box_web_size' );
 		if ( $sab_box_web_size ) {
 			$this->options['sab_box_web_size'] = $sab_box_web_size;
 		}
 
-		$sab_box_name_font = get_option( 'sab_box_name_font' );
+		$sab_box_name_font = Simple_Author_Box_Helper::get_option( 'sab_box_name_font' );
 		if ( $sab_box_name_font ) {
 			$this->options['sab_box_name_font'] = $sab_box_name_font;
 		}
 
-		$sab_box_subset = get_option( 'sab_box_subset' );
+		$sab_box_subset = Simple_Author_Box_Helper::get_option( 'sab_box_subset' );
 		if ( $sab_box_subset ) {
 			$this->options['sab_box_subset'] = $sab_box_subset;
 		}
 
-		$sab_box_desc_font = get_option( 'sab_box_desc_font' );
+		$sab_box_desc_font = Simple_Author_Box_Helper::get_option( 'sab_box_desc_font' );
 		if ( $sab_box_desc_font ) {
 			$this->options['sab_box_desc_font'] = $sab_box_desc_font;
 		}
 
-		$sab_box_web_font = get_option( 'sab_box_web_font' );
+		$sab_box_web_font = Simple_Author_Box_Helper::get_option( 'sab_box_web_font' );
 		if ( $sab_box_web_font ) {
 			$this->options['sab_box_web_font'] = $sab_box_web_font;
 		}
 
-		$sab_box_desc_size = get_option( 'sab_box_desc_size' );
+		$sab_box_desc_size = Simple_Author_Box_Helper::get_option( 'sab_box_desc_size' );
 		if ( $sab_box_desc_size ) {
 			$this->options['sab_box_desc_size'] = $sab_box_desc_size;
 		}
 
-		$this->options['sab_box_padding_top_bottom'] = get_option( 'sab_box_padding_top_bottom', 0 );
-		$this->options['sab_box_padding_left_right'] = get_option( 'sab_box_padding_left_right', 0 );
+		$this->options['sab_box_padding_top_bottom'] = Simple_Author_Box_Helper::get_option( 'sab_box_padding_top_bottom' );
+		$this->options['sab_box_padding_left_right'] = Simple_Author_Box_Helper::get_option( 'sab_box_padding_left_right' );
 
 	}
 
@@ -596,6 +596,7 @@ class Simple_Author_Box_Admin_Page {
 
 			do_action( 'sabox_save_settings' );
 
+			Simple_Author_Box_Helper::reset_options();
 			$this->get_all_options();
 
 		}
@@ -875,5 +876,3 @@ class Simple_Author_Box_Admin_Page {
 		<?php
 	}
 }
-
-new Simple_Author_Box_Admin_Page();

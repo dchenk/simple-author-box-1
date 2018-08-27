@@ -6,6 +6,7 @@
 class Simple_Author_Box_Helper {
 
 	public static $fonts = array();
+	public static $options = array();
 
 	static $social_icons = array(
 		'addthis'       => 'Add This',
@@ -54,7 +55,7 @@ class Simple_Author_Box_Helper {
 
 	public static function get_sabox_social_icon( $url, $icon_name ) {
 
-		$options = get_option( 'saboxplugin_options' );
+		$options = self::get_option( 'saboxplugin_options' );
 
 		if ( isset( $options['sab_link_target'] ) && '0' != $options['sab_link_target'] ) {
 			$sabox_blank = '_blank';
@@ -827,22 +828,77 @@ class Simple_Author_Box_Helper {
 
 	}
 
+	public static function reset_options() {
+		self::$options = array();
+	}
+
+	public static function get_option( $key, $force = false ) {
+
+		$defaults = apply_filters( 'sab_box_options_defaults', array(
+			'saboxplugin_options' => array(
+				'sab_avatar_style'       => '0',
+				'sab_web_position'       => '0',
+				'sab_colored'            => '0',
+				'sab_icons_style'        => '0',
+			),
+			'sab_box_margin_top'         => '0',
+			'sab_box_margin_bottom'      => '0',
+			'sab_box_padding_top_bottom' => '0',
+			'sab_box_padding_left_right' => '0',
+			'sab_box_subset'             => 'none',
+			'sab_box_name_font'          => 'None',
+			'sab_box_web_font'           => 'None',
+			'sab_box_desc_font'          => 'None',
+			'sab_box_name_size'          => '18',
+			'sab_box_web_size'           => '14',
+			'sab_box_desc_size'          => '14',
+			'sab_box_icon_size'          => '18',
+			'sab_desc_style'             => '0',
+		) );
+
+		if ( 'saboxplugin_options' == $key ) {
+			
+			if ( ! isset( self::$options['saboxplugin_options'] ) ) {
+				self::$options['saboxplugin_options'] = get_option( 'saboxplugin_options', array() );
+			}
+
+			return wp_parse_args( self::$options['saboxplugin_options'], $defaults['saboxplugin_options'] );
+
+		} else {
+			
+			if ( isset( self::$options[ $key ] ) ) {
+				
+				return self::$options[ $key ];
+
+			}else{
+
+				$option = get_option( $key, false );
+				if ( false === $option && isset( $defaults[ $key ] ) ) {
+					return $defaults[ $key ];
+				} elseif ( false !== $option ) {
+					self::$options[ $key ] = $option;
+					return self::$options[ $key ];
+				}
+
+			}
+
+		}
+
+		return false;
+
+	}
+
 	public static function generate_inline_css() {
 
-		$padding_top_bottom  = get_option( 'sab_box_padding_top_bottom', 0 );
-		$padding_left_right  = get_option( 'sab_box_padding_left_right', 0 );
-		$sabox_top_margin    = get_option( 'sab_box_margin_top', 0 );
-		$sabox_bottom_margin = get_option( 'sab_box_margin_bottom', 0 );
-		$sabox_name_size     = get_option( 'sab_box_name_size', 18 );
-		$sabox_desc_size     = get_option( 'sab_box_desc_size', 14 );
-		$sabox_icon_size     = get_option( 'sab_box_icon_size', 14 );
-		$sabox_options       = get_option( 'saboxplugin_options', array() );
-
-		if ( isset( $sabox_options['sab_web'] ) and get_option( 'sab_box_web_size' ) ) {
-			$sabox_web_size = get_option( 'sab_box_web_size' );
-		} else {
-			$sabox_web_size = 14;
-		}
+		$padding_top_bottom  = self::get_option( 'sab_box_padding_top_bottom' );
+		$padding_left_right  = self::get_option( 'sab_box_padding_left_right' );
+		$sabox_top_margin    = self::get_option( 'sab_box_margin_top' );
+		$sabox_bottom_margin = self::get_option( 'sab_box_margin_bottom' );
+		$sabox_name_size     = self::get_option( 'sab_box_name_size' );
+		$sabox_desc_size     = self::get_option( 'sab_box_desc_size' );
+		$sabox_icon_size     = self::get_option( 'sab_box_icon_size' );
+		$sabox_options       = self::get_option( 'saboxplugin_options' );
+		$sabox_web_size      = self::get_option( 'sab_box_web_size' );
 
 		$style = '';
 
