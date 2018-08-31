@@ -124,6 +124,18 @@ class Simple_Author_Box_Admin_Page {
 					),
 					'default'     => '0',
 				),
+				'sab_box_border_width' => array(
+					'label'       => __( 'Border Width', 'saboxplugin' ),
+					'description' => __( 'This controls the border width of the author box', 'saboxplugin' ),
+					'type'        => 'slider',
+					'choices'     => array(
+						'min'       => 0,
+						'max'       => 100,
+						'increment' => 1,
+					),
+					'default'     => '1',
+					'group'       => 'saboxplugin_options',
+				),
 				'sab_avatar_style'           => array(
 					'label'       => __( 'Author avatar image style', 'saboxplugin' ),
 					'description' => __( 'Change the shape of the author’s avatar image', 'saboxplugin' ),
@@ -270,7 +282,6 @@ class Simple_Author_Box_Admin_Page {
 					'description' => __( 'Select the color for social icons when using the symbols only social icon type', 'saboxplugin' ),
 					'type'        => 'color',
 					'group'       => 'saboxplugin_options',
-					'condition'   => 'sab_colored',
 				),
 			),
 			'typography-options'    => array(
@@ -361,12 +372,6 @@ class Simple_Author_Box_Admin_Page {
 				),
 			),
 			'miscellaneous-options' => array(
-				'sab_load_fa'             => array(
-					'label'       => __( 'Disable Font Awesome stylesheet', 'saboxplugin' ),
-					'description' => __( 'Turn ON to prevent Font Awesome from loading its stylesheet. ONLY do this if your theme or another plugin already loads the Font Awesome stylesheet.', 'saboxplugin' ),
-					'type'        => 'toggle',
-					'group'       => 'saboxplugin_options',
-				),
 				'sab_footer_inline_style' => array(
 					'label'       => __( 'Load generated inline style to footer', 'saboxplugin' ),
 					'description' => __( 'This option is useful ONLY if you run a plugin that optimizes your CSS delivery or moves your stylesheets to the footer, to get a higher score on speed testing services. However, the plugin style is loaded only on single post and single page.', 'saboxplugin' ),
@@ -571,7 +576,7 @@ class Simple_Author_Box_Admin_Page {
 						}
 
 						if ( ! isset( $settings[ $setting['group'] ][ $key ] ) && isset( $groups[ $setting['group'] ][ $key ] ) ) {
-							unset( $groups[ $setting['group'] ][ $key ] );
+							$groups[ $setting['group'] ][ $key ] = '0';
 						}
 
 						if ( isset( $settings[ $setting['group'] ][ $key ] ) ) {
@@ -665,9 +670,10 @@ class Simple_Author_Box_Admin_Page {
 		echo '<td>';
 		switch ( $field['type'] ) {
 			case 'toggle':
+				$value = isset( $this->options[ $field_name ] ) ? $this->options[ $field_name ] : '0';
 				echo '<div class="checkbox_switch">';
 				echo '<div class="onoffswitch">';
-				echo '<input type="checkbox" id="' . esc_attr( $field_name ) . '" name="' . esc_attr( $name ) . '" class="onoffswitch-checkbox saboxfield" ' . checked( 1, isset( $this->options[ $field_name ] ), false ) . ' value="1">';
+				echo '<input type="checkbox" id="' . esc_attr( $field_name ) . '" name="' . esc_attr( $name ) . '" class="onoffswitch-checkbox saboxfield" ' . checked( 1, $value, false ) . ' value="1">';
 				echo '<label class="onoffswitch-label" for="' . esc_attr( $field_name ) . '"></label>';
 				echo '</div>';
 				echo '</div>';

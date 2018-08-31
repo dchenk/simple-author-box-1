@@ -91,7 +91,7 @@ class Simple_Author_Box_User_Profile {
 		}
 
 		$default_url = SIMPLE_AUTHOR_BOX_ASSETS . 'img/default.png';
-		$image_url   = get_user_meta( $user->ID, 'sabox-profile-image', true );
+		$image   = get_user_meta( $user->ID, 'sabox-profile-image', true );
 
 		?>
 
@@ -103,8 +103,8 @@ class Simple_Author_Box_User_Profile {
 					<td>
 						<div id="sab-current-image">
 							<?php wp_nonce_field( 'sabox-profile-image', 'sabox-profile-nonce' ); ?>
-							<input type="hidden" name="sabox-custom-image" id="sabox-custom-image" value="<?php echo esc_attr( $image_url ); ?>">
-							<img data-default="<?php echo esc_url_raw( $default_url ); ?>" src="<?php echo '' != $image_url ? esc_url_raw( $image_url ) : esc_url_raw( $default_url ); ?>">
+							<img data-default="<?php echo esc_url_raw( $default_url ); ?>" src="<?php echo '' != $image ? esc_url_raw( $image ) : esc_url_raw( $default_url ); ?>"><br>
+							<input type="text" name="sabox-custom-image" id="sabox-custom-image" class="regular-text" value="<?php echo esc_attr( $image ); ?>">
 						</div>
 						<div class="actions">
 							<a href="#" class="button-secondary" id="sabox-remove-image"><?php _e( 'Remove Image', 'saboxplugin' ); ?></a>
@@ -152,6 +152,8 @@ class Simple_Author_Box_User_Profile {
 		} else {
 			delete_user_meta( $user_id, 'sabox-profile-image' );
 		}
+
+
 
 	}
 

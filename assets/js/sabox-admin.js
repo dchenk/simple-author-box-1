@@ -6,7 +6,7 @@
         var value = getElementValue( $( this ) );
         var elements = context.find( '.show_if_' + $( this ).attr( 'id' ) );
 
-        if ( value && '0' !== value ) {
+        if ( value && '0' != value ) {
             elements.show( 300 );
         } else {
             elements.hide( 250 );
