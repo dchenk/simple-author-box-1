@@ -498,7 +498,9 @@ class Simple_Author_Box_Admin_Page {
 		</div><!--/.masthead-->
 
 		<div class="sabox-wrap">
-
+			<div class="sabox-preview">
+				<?php do_action( 'sab_admin_preview' ) ?>
+			</div>
 			<h2 class="epfw-tab-wrapper nav-tab-wrapper wp-clearfix">
 				<?php foreach ( $this->sections as $id => $section ) { ?>
 					<?php
@@ -520,6 +522,7 @@ class Simple_Author_Box_Admin_Page {
 					   href="<?php echo esc_url( $url ); ?>"><?php echo wp_kses_post( $section['label'] ); ?></a>
 				<?php } ?>
 			</h2>
+			
 			<form method="post" id="sabox-container">
 				<?php
 

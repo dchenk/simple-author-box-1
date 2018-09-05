@@ -8,7 +8,7 @@ class Simple_Author_Box_Helper {
 	public static $fonts = array();
 	public static $options = array();
 
-	static $social_icons = array(
+	public static $social_icons = array(
 		'addthis'       => 'Add This',
 		'behance'       => 'Behance',
 		'delicious'     => 'Delicious',
@@ -73,15 +73,13 @@ class Simple_Author_Box_Helper {
 		$type = 'simple';
 		if ( '1' == $options['sab_colored'] ) {
 			if ( '1' == $options['sab_icons_style'] ) {
-				$type = 'circe';
+				$type = 'circle';
 			}else{
 				$type = 'square';
 			}
 		}
 
 		$svg_icon = Simple_Author_Box_Social::icon_to_svg( $icon_name, $type );
-		//<span class="' . esc_attr( $sab_color ) . ' fa fa-' . esc_attr( $icon_name ) . '">
-
 		return '<a target="' . esc_attr( $sabox_blank ) . '" href="' . esc_url( $url ) . '" rel="nofollow" class="' . esc_attr( $sab_color ) . '">' . $svg_icon . '</span></a>';
 
 	}

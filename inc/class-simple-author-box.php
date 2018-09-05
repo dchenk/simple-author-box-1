@@ -43,6 +43,7 @@ class Simple_Author_Box {
 		if ( is_admin() ) {
 			require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-admin-page.php';
 			require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-user-profile.php';
+			require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-previewer.php';
 		}
 	}
 
@@ -71,7 +72,11 @@ class Simple_Author_Box {
 	}
 
 	public function initialize_admin() {
+		// Class that handles admin page
 		new Simple_Author_Box_Admin_Page();
+
+		// Class that handles author box previewer
+		new Simple_Author_Box_Previewer();
 	}
 
 

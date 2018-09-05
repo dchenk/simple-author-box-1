@@ -12,7 +12,7 @@ class Simple_Author_Box_Social {
 			$icon_svg = self::simple_icon( $icon );
 		}elseif ( 'square' == $type ) {
 			$icon_svg = self::square_long_shadow_icon( $icon );
-		}elseif ( 'circe' == $type ) {
+		}elseif ( 'circle' == $type ) {
 			$icon_svg = self::circle_long_shadow_icon( $icon );
 		}
 

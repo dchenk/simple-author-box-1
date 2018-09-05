@@ -118,7 +118,11 @@
         }
         if ( colorpickers.length > 0 ) {
             colorpickers.each( function( $index, $colorpicker ) {
-                $( $colorpicker ).wpColorPicker();
+                $( $colorpicker ).wpColorPicker({
+                    change : function( event, ui ){
+                        jQuery( event.target ).val( ui.color.toString() ).trigger( 'change' );
+                    }
+                });
             });
         }
 
