@@ -58,7 +58,7 @@ class Simple_Author_Box_Helper {
 
 		$options = self::get_option( 'saboxplugin_options' );
 
-		if ( '0' != $options['sab_link_target'] ) {
+		if ( '0' != $options['sab_link_target'] && 'user_email' != $icon_name ) {
 			$sabox_blank = '_blank';
 		} else {
 			$sabox_blank = '_self';

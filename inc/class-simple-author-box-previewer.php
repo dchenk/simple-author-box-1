@@ -88,7 +88,7 @@ class Simple_Author_Box_Previewer {
 
 		// author box name
 		echo '<div class="saboxplugin-authorname">';
-		echo '<a href="#" class="vcard author"><span class="fn">John Doe</span></a>';
+		echo apply_filters( 'sabox_preview_author_html', '<a href="#" class="vcard author"><span class="fn">John Doe</span></a>' );
 		echo '</div>';
 
 
@@ -266,6 +266,7 @@ class Simple_Author_Box_Previewer {
 		$style .= '.sab-simple-icons,.sab-circle-icons,.sab-square-icons{display:none;}.sab-show-simple .sab-simple-icons{ display:block; }.sab-show-circle .sab-circle-icons{ display:block; }.sab-show-square .sab-square-icons{ display:block; }';
 		$style .= '.saboxplugin-wrap a{cursor:not-allowed;}';
 
+		$style = apply_filters( 'sabox-previewer-css', $style, $sabox_options );
 		return $style;
 
 	}

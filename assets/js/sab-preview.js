@@ -1,7 +1,7 @@
 wp.SAB = 'undefined' === typeof( wp.SAB ) ? {} : wp.SAB;
 wp.SAB.views = 'undefined' === typeof( wp.SAB.views ) ? {} : wp.SAB.views;
 wp.SAB.models = 'undefined' === typeof( wp.SAB.models ) ? {} : wp.SAB.models;
-wp.SAB.collections = 'undefined' === typeof( wp.SAB.models ) ? {} : wp.SAB.collections;
+wp.SAB.contructors = 'undefined' === typeof( wp.SAB.contructors ) ? [] : wp.SAB.contructors;
 
 wp.SAB.models.Settings = Backbone.Model.extend({
 	initialize: function(){
