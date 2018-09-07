@@ -31,7 +31,7 @@ define( 'SIMPLE_AUTHOR_BOX_PATH', plugin_dir_path( __FILE__ ) );
 define( 'SIMPLE_AUTHOR_BOX_ASSETS', plugins_url( '/assets/', __FILE__ ) );
 define( 'SIMPLE_AUTHOR_BOX_SLUG', plugin_basename( __FILE__ ) );
 define( 'SIMPLE_AUTHOR_BOX_VERSION', '2.1.0' );
-define( 'SIMPLE_AUTHOR_SCRIPT_DEBUG', true );
+define( 'SIMPLE_AUTHOR_SCRIPT_DEBUG', false );
 
 
 require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box.php';
