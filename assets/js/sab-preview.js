@@ -356,8 +356,6 @@ wp.SAB.views.Settings = Backbone.View.extend({
             value = event.target.value;
         }
 
-        console.log( event.target.id + ' have value ' + event.target.value );
-
         // Update the model
         this.model.set( event.target.id, value );
 
