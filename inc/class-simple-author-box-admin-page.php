@@ -839,7 +839,7 @@ class Simple_Author_Box_Admin_Page {
 
 		<div class="wrap about-wrap simple-author-box-wrap">
 			<h1><?php echo esc_html__( 'Why you should be upgrading', 'saboxplugin' ); ?></h1>
-			<p class="about-text"><?php echo esc_html__( 'Introducing one of the most author box systems ever made for WordPress. Simple Author Box is an exquisite WordPress Author Box plugin perfectly fit for any needs. We\'ve outlined the PRO features below.', 'saboxplugin' ); ?></p>
+			<p class="about-text"><?php echo esc_html__( 'Introducing one of the best author box systems ever made for WordPress. Simple Author Box is an exquisite WordPress Author Box plugin perfectly fit for any needs. We\'ve outlined the PRO features below.', 'saboxplugin' ); ?></p>
 			<div class="wp-badge"></div>
 			<h2 class="nav-tab-wrapper wp-clearfix">
 				<a href="<?php echo admin_url( 'admin.php?page=sab-upgrade' ); ?>"
