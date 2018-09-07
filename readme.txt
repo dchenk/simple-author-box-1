@@ -3,7 +3,7 @@ Contributors: machothemes, silkalns
 Tags: author box, responsive author box, author profile fields, author social icons, profile fields, author bio, author description, author profile, user profile, post author, rtl author box, amp, accelerated mobile pages
 Requires at least: 4.6
 Tested up to: 4.9
-Stable tag: 2.0.9
+Stable tag: 2.1.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -79,6 +79,15 @@ Or you can give back by recommending this amazing plugin to your friends!
 14. Plugin options page, simple view (v1.2)
 
 == Changelog ==
+
+= 2.1.0=
+* Speed improvment ( We removed FA and added icons as SVG's and removed our css file and added inline )
+* Added new Social Icon : Mastodont
+* Added RTL Support
+* Added option to add external url for user avatar
+* Added option to control the width of border
+* Fixed small issues
+See complete list here : https://github.com/MachoThemes/simple-author-box/milestone/7?closed=1
 
 = 2.0.9 =
 * AMP CSS fixes & validator
