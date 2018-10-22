@@ -2,8 +2,9 @@
 Contributors: machothemes, silkalns
 Tags: author box, responsive author box, author profile fields, author social icons, profile fields, author bio, author description, author profile, user profile, post author, rtl author box, amp, accelerated mobile pages
 Requires at least: 4.6
+Requires PHP: 5.6
 Tested up to: 4.9
-Stable tag: 2.1.0
+Stable tag: trunk
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -42,9 +43,7 @@ The Simple Author Box plugin was designed to display the author information on p
 
 = Can I remove the SAB from WooCommerce/Category/Tags pages? Can I have only on posts? =
 
-We are working on a feature for this, but in the meantime we have made a plugin containing a small fix for this.
-Please download it from here: <a href="https://www.dropbox.com/s/gdkumeuilogui6g/wp-sab-fix.zip?dl=0">https://www.dropbox.com/s/gdkumeuilogui6g/wp-sab-fix.zip?dl=0</a>
-Then go to your dashboard > Plugins > install and activate it and it will solve it.
+The PRO version of Simple Author Box fixes this.
 
 = I have two author boxes. How can I hide one? =
 
@@ -80,8 +79,8 @@ Or you can give back by recommending this amazing plugin to your friends!
 
 == Changelog ==
 
-= 2.1.0=
-* Speed improvment ( We removed FA and added icons as SVG's and removed our css file and added inline )
+= 2.1.0 =
+* Speed improvement ( We removed FA and added icons as SVG's and removed our css file and added inline )
 * Added new Social Icon : Mastodont
 * Added RTL Support
 * Added option to add external url for user avatar
