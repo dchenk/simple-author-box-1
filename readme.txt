@@ -79,6 +79,9 @@ Or you can give back by recommending this amazing plugin to your friends!
 
 == Changelog ==
 
+= 2.1.1 = 
+* Minor fixes & version bump
+
 = 2.1.0 =
 * Speed improvement ( We removed FA and added icons as SVG's and removed our css file and added inline )
 * Added new Social Icon : Mastodont
